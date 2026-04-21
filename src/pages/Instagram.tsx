@@ -1,0 +1,373 @@
+import { useState } from "react";
+import { motion } from "framer-motion";
+
+// ─── Data ────────────────────────────────────────────────────────────────────
+// Replace image URLs and captions with real posts from @adclubtrivandrum.
+// Each post mimics the Instagram single-post view.
+
+interface Post {
+  id: string;
+  image: string;
+  alt: string;
+  likes: number;
+  caption: string;
+  tags: string[];
+  date: string;
+  comments: { user: string; text: string }[];
+}
+
+const HANDLE = "adclubtvm";
+const AVATAR = "https://ui-avatars.com/api/?name=ACT&background=1a1a1a&color=fff&size=128&bold=true&font-size=0.4";
+
+const posts: Post[] = [
+  {
+    id: "1",
+    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
+    alt: "Kreative Kochi 2024 – Award Night",
+    likes: 214,
+    caption: "Another year, another unforgettable night at Kreative Kochi. Proud of every single member who brought their A-game. ✦",
+    tags: ["#KreativeKochi", "#AdClubTVM", "#Advertising", "#Creativity"],
+    date: "March 2024",
+    comments: [
+      { user: "creative_kerala", text: "What a night! 🏆" },
+      { user: "design.tvm", text: "Congratulations team! 🎉" },
+    ],
+  },
+  {
+    id: "2",
+    image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&q=80",
+    alt: "Workshop – Crafting Brand Stories",
+    likes: 178,
+    caption: "Our latest workshop on brand storytelling had the room buzzing. Ideas you can't learn in a classroom — only in a room full of curious minds.",
+    tags: ["#BrandStorytelling", "#AdClubTVM", "#Workshop"],
+    date: "February 2024",
+    comments: [
+      { user: "marketer_manu", text: "Best workshop this semester!" },
+      { user: "adworld_kerala", text: "More of these please 🙌" },
+    ],
+  },
+  {
+    id: "3",
+    image: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=600&q=80",
+    alt: "Behind the scenes – shoot day",
+    likes: 301,
+    caption: "Behind the lens. Behind the idea. Behind the chaos — that's where the magic lives. 📸",
+    tags: ["#BTS", "#AdClubTVM", "#CreativeProcess"],
+    date: "January 2024",
+    comments: [
+      { user: "visual_tvm", text: "Love the energy here ❤️" },
+      { user: "frames_and_ideas", text: "Stunning shot!" },
+    ],
+  },
+  {
+    id: "4",
+    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&q=80",
+    alt: "Team members collaborating",
+    likes: 256,
+    caption: "The best ideas come from conversations. Keep talking, keep creating. 💡",
+    tags: ["#TeamACT", "#AdClubTVM", "#Collaboration"],
+    date: "December 2023",
+    comments: [
+      { user: "ad_enthusiast", text: "This is the vibe 🔥" },
+      { user: "kerala_creative", text: "Squad goals 💯" },
+    ],
+  },
+  {
+    id: "5",
+    image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&q=80",
+    alt: "Guest lecture by industry veteran",
+    likes: 189,
+    caption: "Words from the industry that will stay with us for a lifetime. Thank you for an incredible evening. 🙏",
+    tags: ["#GuestLecture", "#AdClubTVM", "#Industry"],
+    date: "November 2023",
+    comments: [
+      { user: "aspiring_ad", text: "Would love to attend next time!" },
+    ],
+  },
+  {
+    id: "6",
+    image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&q=80",
+    alt: "Annual Club Meetup",
+    likes: 342,
+    caption: "The whole family together. This is what Ad Club TVM is all about. ✦ Trivandrum's creative community.",
+    tags: ["#AdClubTVM", "#Community", "#Trivandrum"],
+    date: "October 2023",
+    comments: [
+      { user: "tvm_creative", text: "Miss this so much 🥺" },
+      { user: "ad_nerds", text: "Legendary evening!" },
+    ],
+  },
+];
+
+// ─── Sub-components ───────────────────────────────────────────────────────────
+
+function HeartIcon({ filled }: { filled: boolean }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className="w-6 h-6"
+      fill={filled ? "currentColor" : "none"}
+      stroke="currentColor"
+      strokeWidth={filled ? 0 : 1.5}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+      />
+    </svg>
+  );
+}
+
+function CommentIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={1.5}>
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z"
+      />
+    </svg>
+  );
+}
+
+function ShareIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={1.5}>
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"
+      />
+    </svg>
+  );
+}
+
+function BookmarkIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={1.5}>
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z"
+      />
+    </svg>
+  );
+}
+
+function EllipsisIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor">
+      <path d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
+    </svg>
+  );
+}
+
+// ─── Single Instagram Post Card ───────────────────────────────────────────────
+
+function InstagramCard({ post, index }: { post: Post; index: number }) {
+  const [liked, setLiked] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const [showAllComments, setShowAllComments] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+
+  const displayedComments = showAllComments ? post.comments : post.comments.slice(0, 1);
+
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 32 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: index * 0.08 }}
+      className="bg-paper border border-rule w-full max-w-[468px] mx-auto"
+      style={{ fontFamily: "var(--font-body, system-ui, sans-serif)" }}
+    >
+      {/* Header */}
+      <div className="flex items-center justify-between px-3 py-3 border-b border-rule">
+        <div className="flex items-center gap-2.5">
+          <div className="w-8 h-8 rounded-full overflow-hidden ring-2 ring-ink ring-offset-2 ring-offset-paper">
+            <img src={AVATAR} alt={HANDLE} className="w-full h-full object-cover" />
+          </div>
+          <div className="flex flex-col leading-none">
+            <span className="text-[13px] font-semibold text-ink tracking-tight">
+              {HANDLE}
+            </span>
+            <span className="text-[11px] text-mid mt-0.5">{post.date}</span>
+          </div>
+        </div>
+        <button className="text-mid hover:text-ink transition-colors">
+          <EllipsisIcon />
+        </button>
+      </div>
+
+      {/* Image */}
+      <div className="relative w-full aspect-square overflow-hidden bg-rule">
+        <img
+          src={post.image}
+          alt={post.alt}
+          className="w-full h-full object-cover"
+          loading="lazy"
+        />
+      </div>
+
+      {/* Action bar */}
+      <div className="flex items-center justify-between px-3 pt-3 pb-1">
+        <div className="flex items-center gap-3.5">
+          {/* Like */}
+          <motion.button
+            onClick={() => setLiked((v) => !v)}
+            whileTap={{ scale: 0.82 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            className={`transition-colors ${liked ? "text-rose-500" : "text-ink hover:text-mid"}`}
+            aria-label="Like"
+          >
+            <HeartIcon filled={liked} />
+          </motion.button>
+
+          {/* Comment */}
+          <button className="text-ink hover:text-mid transition-colors" aria-label="Comment">
+            <CommentIcon />
+          </button>
+
+          {/* Share */}
+          <button className="text-ink hover:text-mid transition-colors" aria-label="Share">
+            <ShareIcon />
+          </button>
+        </div>
+
+        {/* Bookmark */}
+        <motion.button
+          onClick={() => setSaved((v) => !v)}
+          whileTap={{ scale: 0.82 }}
+          transition={{ type: "spring", stiffness: 400, damping: 17 }}
+          className={`transition-colors ${saved ? "text-ink" : "text-ink hover:text-mid"}`}
+          aria-label="Save"
+        >
+          <BookmarkIcon />
+        </motion.button>
+      </div>
+
+      {/* Likes count */}
+      <div className="px-3 py-1">
+        <span className="text-[13px] font-semibold text-ink">
+          {(post.likes + (liked ? 1 : 0)).toLocaleString()} likes
+        </span>
+      </div>
+
+      {/* Caption */}
+      <div className="px-3 pb-2">
+        <p className="text-[13px] text-ink leading-relaxed">
+          <span className="font-semibold mr-1.5">{HANDLE}</span>
+          {expanded || post.caption.length < 100
+            ? post.caption
+            : post.caption.slice(0, 100) + "…"}
+          {post.caption.length >= 100 && (
+            <button
+              onClick={() => setExpanded((v) => !v)}
+              className="text-mid ml-1 text-[12px] hover:text-ink transition-colors"
+            >
+              {expanded ? "less" : "more"}
+            </button>
+          )}
+        </p>
+        <div className="flex flex-wrap gap-1 mt-1.5">
+          {post.tags.map((tag) => (
+            <span key={tag} className="text-[12px] text-blue-500/80">
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Comments */}
+      <div className="px-3 pb-2 space-y-1">
+        {post.comments.length > 1 && !showAllComments && (
+          <button
+            onClick={() => setShowAllComments(true)}
+            className="text-[12px] text-mid hover:text-ink transition-colors block"
+          >
+            View all {post.comments.length} comments
+          </button>
+        )}
+        {displayedComments.map((c) => (
+          <p key={c.user} className="text-[13px] text-ink">
+            <span className="font-semibold mr-1.5">{c.user}</span>
+            {c.text}
+          </p>
+        ))}
+      </div>
+
+      {/* Add a comment */}
+      <div className="flex items-center gap-2 px-3 py-3 border-t border-rule">
+        <div className="w-6 h-6 rounded-full overflow-hidden bg-rule shrink-0" />
+        <input
+          type="text"
+          placeholder="Add a comment…"
+          className="flex-1 text-[13px] text-ink bg-transparent placeholder:text-mid outline-none"
+          readOnly
+          onFocus={(e) => e.target.blur()}
+        />
+        <span className="text-[12px] font-semibold text-blue-400/70 cursor-default select-none">Post</span>
+      </div>
+    </motion.article>
+  );
+}
+
+// ─── Page ─────────────────────────────────────────────────────────────────────
+
+export default function Instagram() {
+  return (
+    <main className="min-h-screen bg-paper pt-14">
+      {/* Editorial header */}
+      <section className="px-6 md:px-10 pt-16 pb-10 border-b border-rule">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-2xl"
+        >
+          <p className="text-[10px] tracking-[0.25em] uppercase text-mid font-body mb-3">
+            @{HANDLE}
+          </p>
+          <h1 className="font-display text-4xl md:text-5xl font-800 tracking-tight text-ink leading-none mb-4">
+            Instagram
+          </h1>
+          <p className="text-sm text-mid font-body leading-relaxed max-w-md">
+            A curated feed from the Ad Club Trivandrum community — workshops,
+            award nights, behind-the-scenes, and everything in between.
+          </p>
+        </motion.div>
+      </section>
+
+      {/* Feed */}
+      <section className="py-12 px-4">
+        <div className="flex flex-col gap-8 items-center">
+          {posts.map((post, i) => (
+            <InstagramCard key={post.id} post={post} index={i} />
+          ))}
+        </div>
+
+        {/* Follow CTA */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mt-16 pb-4"
+        >
+          <p className="text-xs text-mid font-body tracking-widest uppercase mb-3">
+            See more on Instagram
+          </p>
+          <a
+            href={`https://www.instagram.com/${HANDLE}/`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-xs tracking-[0.15em] uppercase font-body text-ink border border-ink px-5 py-2.5 hover:bg-ink hover:text-paper transition-all duration-200"
+          >
+            Follow @{HANDLE}
+          </a>
+        </motion.div>
+      </section>
+    </main>
+  );
+}
