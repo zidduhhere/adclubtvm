@@ -23,8 +23,7 @@ export default function EventDetail() {
 
       {/* ── HERO IMAGE ─────────────────────────────────────────── */}
       <section className="px-6 md:px-16 pt-6">
-        <div className="w-full h-[200px] md:h-[280px] rounded-3xl overflow-hidden shadow-md"
-          className="bg-(--color-muted)">
+        <div className="w-full h-[200px] md:h-[280px] rounded-3xl overflow-hidden shadow-md bg-muted">
           <img src={galleryImages[0] ?? `https://picsum.photos/seed/${event.id}-hero/1400/500`}
             alt={event.title} className="w-full h-full object-cover" />
         </div>
@@ -66,8 +65,7 @@ export default function EventDetail() {
 
         <div className="flex flex-col md:flex-row gap-10 md:gap-14 items-start">
           {/* Portrait */}
-          <div className="w-full md:w-48 shrink-0 h-[200px] md:h-[240px] rounded-2xl overflow-hidden shadow-sm"
-            className="bg-(--color-muted)">
+          <div className="w-full md:w-48 shrink-0 h-[200px] md:h-[240px] rounded-2xl overflow-hidden shadow-sm bg-muted">
             <img src={`https://picsum.photos/seed/speaker-${event.id}/400/600`} alt="Speaker"
               className="w-full h-full object-cover" />
           </div>

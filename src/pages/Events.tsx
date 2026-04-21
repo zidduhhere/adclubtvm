@@ -61,8 +61,7 @@ export default function Events() {
               className="group flex flex-col rounded-2xl overflow-hidden border border-(--color-muted) bg-white hover:shadow-md transition-shadow"
             >
               {/* Image — tall portrait */}
-              <div className="relative overflow-hidden h-[180px] md:h-[200px]"
-                className="bg-(--color-muted)">
+              <div className="relative overflow-hidden h-[180px] md:h-[200px] bg-muted">
                 <img src={card.image} alt={card.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 {!card.real && (

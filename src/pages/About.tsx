@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import SectionTag from "../components/SectionTag";
+
 
 const teamMembers = [
   { name: "Arjun Menon", role: "President", linkedin: "#", instagram: "#" },
@@ -44,16 +44,14 @@ export default function About() {
               A vibrant community of advertising and media professionals in Kerala's capital — fostering innovation, collaboration, and professional excellence.
             </p>
             <Link to="/about"
-              className="self-start inline-flex items-center gap-2 px-7 py-3.5 text-sm font-body font-medium tracking-wide text-white rounded-full transition-opacity hover:opacity-85"
-              className="bg-coral">
+              className="self-start inline-flex items-center gap-2 px-7 py-3.5 text-sm font-body font-medium tracking-wide text-white bg-coral rounded-full transition-opacity hover:opacity-85">
               Join with Us
             </Link>
           </div>
 
           {/* Right */}
           <div className="flex-45 w-full">
-            <div className="w-full aspect-video rounded-3xl overflow-hidden shadow-md"
-              className="bg-(--color-muted)">
+            <div className="w-full aspect-video rounded-3xl overflow-hidden shadow-md bg-muted">
               <img src="https://picsum.photos/seed/about-hero/800/700" alt="About ACT"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
             </div>
@@ -75,8 +73,7 @@ export default function About() {
       <section className="px-6 md:px-16 py-16 border-b border-(--color-muted)">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {["about-a", "about-b", "about-c"].map((seed) => (
-            <div key={seed} className="aspect-video rounded-2xl overflow-hidden shadow-sm"
-              className="bg-(--color-muted)">
+            <div key={seed} className="aspect-video rounded-2xl overflow-hidden shadow-sm bg-muted">
               <img src={`https://picsum.photos/seed/${seed}/700/525`} alt=""
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
             </div>
@@ -114,8 +111,7 @@ export default function About() {
 
       {/* ── FULL-WIDTH IMAGE ─────────────────────────────────── */}
       <section className="px-6 md:px-16 py-16 border-b border-(--color-muted)">
-        <div className="w-full h-[180px] md:h-[220px] rounded-3xl overflow-hidden shadow-md"
-          className="bg-(--color-muted)">
+        <div className="w-full h-[180px] md:h-[220px] rounded-3xl overflow-hidden shadow-md bg-muted">
           <img src="https://picsum.photos/seed/about-wide/1400/400" alt="ACT community"
             className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
         </div>
@@ -151,8 +147,7 @@ export default function About() {
             <div key={member.name}
               className="flex items-start gap-4 border border-(--color-muted) rounded-2xl p-4 bg-white hover:shadow-md transition-shadow">
               {/* Photo */}
-              <div className="w-20 h-20 shrink-0 rounded-xl overflow-hidden"
-                className="bg-(--color-muted)">
+              <div className="w-20 h-20 shrink-0 rounded-xl overflow-hidden bg-muted">
                 <img src={`https://picsum.photos/seed/${member.name.replace(" ", "")}/200/200`}
                   alt={member.name} className="w-full h-full object-cover" />
               </div>
@@ -201,8 +196,7 @@ export default function About() {
             </div>
 
             <button type="submit"
-              className="self-end inline-flex items-center gap-2 px-7 py-3 text-sm font-body font-medium tracking-wide text-white rounded-full transition-opacity hover:opacity-85"
-              className="bg-coral">
+              className="self-end inline-flex items-center gap-2 px-7 py-3 text-sm font-body font-medium tracking-wide text-white bg-coral rounded-full transition-opacity hover:opacity-85">
               Send Message →
             </button>
           </form>
