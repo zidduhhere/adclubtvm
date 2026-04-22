@@ -4,8 +4,8 @@ import { useRef, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { events, upcoming } from "../data/events";
 import SectionTag from "../components/SectionTag";
-import CircularText from "../components/CircularText";
 import { StackedCardsInteraction } from "../components/ui/stacked-cards-interaction";
+import HeroSection from "../components/HeroSection";
 
 const marqueeText =
   "EVENTS · AWARDS · NETWORKING · SEMINARS · TRIVANDRUM · KERALA · CREATIVITY · ADVERTISING · ";
@@ -87,96 +87,10 @@ export default function Home() {
   const [activeFlagship, setActiveFlagship] = useState<number>(2);
 
   return (
-    <main className="pt-16 min-h-screen bg-surface overflow-x-hidden">
+    <main className="min-h-screen overflow-x-hidden">
 
       {/* ── HERO ─────────────────────────────────────────────────── */}
-      <section
-        className="px-6 md:px-16 border-b border-muted"
-        style={{ minHeight: "calc(100vh - 4rem)" }}
-      >
-        <div
-          className="flex flex-col md:flex-row gap-12 md:gap-16 items-center"
-          style={{ minHeight: "inherit" }}
-        >
-          {/* Left */}
-          <div className="flex-1 flex flex-col gap-7 py-16 md:py-24">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <SectionTag>Advertising Club · Trivandrum</SectionTag>
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.65, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="font-display font-bold text-bg-warm leading-[1.04] tracking-tight"
-              style={{ fontSize: "clamp(3rem, 8vw, 5.5rem)" }}
-            >
-              For the Love<br />
-              of <span className="text-purple">Advertising</span>.
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-              className="font-body text-base text-bg-warm/65 leading-relaxed max-w-sm"
-            >
-              A vibrant community of advertising and media professionals in
-              Kerala's capital — fostering innovation, collaboration, and
-              professional excellence.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="flex flex-wrap gap-3"
-            >
-              <Link
-                to="/events"
-                className="inline-flex items-center gap-2.5 px-7 py-3.5 text-sm font-body font-medium tracking-wide text-white bg-purple rounded-full hover:bg-purple-light transition-colors"
-              >
-                Explore Events <span>→</span>
-              </Link>
-              <Link
-                to="/about"
-                className="inline-flex items-center gap-2.5 px-7 py-3.5 text-sm font-body font-medium tracking-wide text-purple border border-purple rounded-full hover:bg-purple/8 transition-colors"
-              >
-                Learn More
-              </Link>
-            </motion.div>
-          </div>
-
-          {/* Right — SVG */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="flex-1 w-full self-stretch flex items-center justify-center py-10 relative"
-          >
-            <img
-              src="/SVG/asset-4.svg"
-              alt="Advertising Club Trivandrum"
-              className="w-full max-h-[65vh] object-contain"
-            />
-            <div
-              className="absolute top-6 right-6"
-              style={{ transform: "scale(0.6)", transformOrigin: "top right" }}
-            >
-              <CircularText
-                text="ACT CLUB · ACT CLUB · ACT CLUB · "
-                spinDuration={18}
-                onHover="speedUp"
-                className="text-purple"
-              />
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      <HeroSection />
 
       {/* ── MARQUEE ──────────────────────────────────────────────── */}
       <div className="border-b border-muted overflow-hidden py-4 bg-surface">
