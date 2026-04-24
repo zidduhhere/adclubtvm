@@ -6,7 +6,7 @@ export default function EventDetail() {
   const event = events.find((e) => e.id === id) ?? events[0];
 
   const galleryImages = event.images ?? Array.from({ length: 8 }, (_, i) =>
-    `https://picsum.photos/seed/gal-${event.id}-${i}/600/800`
+    `https://placehold.co/600x800/1a1a2e/ffffff?text=Photo+${i + 1}`
   );
 
   return (
@@ -24,7 +24,7 @@ export default function EventDetail() {
       {/* ── HERO IMAGE ─────────────────────────────────────────── */}
       <section className="px-6 md:px-16 pt-6">
         <div className="w-full h-[200px] md:h-[280px] rounded-3xl overflow-hidden shadow-md bg-muted">
-          <img src={galleryImages[0] ?? `https://picsum.photos/seed/${event.id}-hero/1400/500`}
+          <img src={galleryImages[0] ?? `https://placehold.co/1400x500/1a1a2e/ffffff?text=Event+Hero`}
             alt={event.title} className="w-full h-full object-cover" />
         </div>
       </section>
@@ -66,7 +66,7 @@ export default function EventDetail() {
         <div className="flex flex-col md:flex-row gap-10 md:gap-14 items-start">
           {/* Portrait */}
           <div className="w-full md:w-48 shrink-0 h-[200px] md:h-[240px] rounded-2xl overflow-hidden shadow-sm bg-muted">
-            <img src={`https://picsum.photos/seed/speaker-${event.id}/400/600`} alt="Speaker"
+            <img src="https://placehold.co/400x600/2d1b69/ffffff?text=Speaker" alt="Speaker"
               className="w-full h-full object-cover" />
           </div>
 

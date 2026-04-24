@@ -33,7 +33,7 @@ export function Footer({
   copyright,
 }: FooterProps) {
   return (
-    <footer className="bg-[var(--color-bg)] text-white">
+    <footer className="bg-purple text-white">
       {/* Giant display text */}
       <div className="px-6 md:px-10 pt-20 pb-16 border-b border-white/10">
         <p

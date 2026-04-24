@@ -1,0 +1,1572 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {
+    "hyperedges": [
+      {
+        "id": "purple_pink_design_system",
+        "label": "Purple-Pink Color Design System with Yellow Accents",
+        "nodes": [
+          "logo_branding",
+          "color_palette_primary",
+          "heart_vector_asset",
+          "love_asset_pattern_1",
+          "love_asset_pattern_2",
+          "design_system_decorative_elements"
+        ],
+        "relation": "form",
+        "confidence": "INFERRED",
+        "confidence_score": 0.92,
+        "source_file": "public/logo.svg, public/Group.svg, public/heart-vector.svg, public/love-asset-3.svg, public/love-asset-4.svg"
+      },
+      {
+        "id": "decorative_accent_elements",
+        "label": "Decorative Accent and Animation Assets",
+        "nodes": [
+          "decorative_curve_asset",
+          "spiral_decorative_asset",
+          "cross_accent_asset",
+          "starburst_accent",
+          "eye_balls_decorative"
+        ],
+        "relation": "form",
+        "confidence": "INFERRED",
+        "confidence_score": 0.85,
+        "source_file": "public/asset-3.svg, public/spiral-asset-1.svg, public/aseset-5.svg, public/aseset-5-starburst.svg, public/eye-balls.svg"
+      },
+      {
+        "id": "ui_component_library",
+        "label": "UI Component Library with Hero and Custom Elements",
+        "nodes": [
+          "hero_3d_component",
+          "custom_cursor_element",
+          "design_system_decorative_elements",
+          "color_palette_primary"
+        ],
+        "relation": "implement",
+        "confidence": "INFERRED",
+        "confidence_score": 0.8,
+        "source_file": "src/assets/hero.png, public/cursor.svg, public/Group.svg"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "label": "eslint.config.js",
+      "file_type": "code",
+      "source_file": "eslint.config.js",
+      "source_location": "L1",
+      "id": "eslint_config",
+      "community": 14
+    },
+    {
+      "label": "vite.config.ts",
+      "file_type": "code",
+      "source_file": "vite.config.ts",
+      "source_location": "L1",
+      "id": "vite_config",
+      "community": 15
+    },
+    {
+      "label": "App.tsx",
+      "file_type": "code",
+      "source_file": "src/App.tsx",
+      "source_location": "L1",
+      "id": "app",
+      "community": 0
+    },
+    {
+      "label": "main.tsx",
+      "file_type": "code",
+      "source_file": "src/main.tsx",
+      "source_location": "L1",
+      "id": "main",
+      "community": 16
+    },
+    {
+      "label": "Nav.tsx",
+      "file_type": "code",
+      "source_file": "src/components/Nav.tsx",
+      "source_location": "L1",
+      "id": "nav",
+      "community": 4
+    },
+    {
+      "label": "onScroll()",
+      "file_type": "code",
+      "source_file": "src/components/Nav.tsx",
+      "source_location": "L30",
+      "id": "nav_onscroll",
+      "community": 4
+    },
+    {
+      "label": "CircularText.tsx",
+      "file_type": "code",
+      "source_file": "src/components/CircularText.tsx",
+      "source_location": "L1",
+      "id": "circulartext",
+      "community": 5
+    },
+    {
+      "label": "getRotationTransition()",
+      "file_type": "code",
+      "source_file": "src/components/CircularText.tsx",
+      "source_location": "L11",
+      "id": "circulartext_getrotationtransition",
+      "community": 5
+    },
+    {
+      "label": "getTransition()",
+      "file_type": "code",
+      "source_file": "src/components/CircularText.tsx",
+      "source_location": "L20",
+      "id": "circulartext_gettransition",
+      "community": 5
+    },
+    {
+      "label": "CircularText()",
+      "file_type": "code",
+      "source_file": "src/components/CircularText.tsx",
+      "source_location": "L29",
+      "id": "circulartext_circulartext",
+      "community": 5
+    },
+    {
+      "label": "CustomCursor.tsx",
+      "file_type": "code",
+      "source_file": "src/components/CustomCursor.tsx",
+      "source_location": "L1",
+      "id": "customcursor",
+      "community": 11
+    },
+    {
+      "label": "CustomCursor()",
+      "file_type": "code",
+      "source_file": "src/components/CustomCursor.tsx",
+      "source_location": "L3",
+      "id": "customcursor_customcursor",
+      "community": 11
+    },
+    {
+      "label": "DomeGallery.tsx",
+      "file_type": "code",
+      "source_file": "src/components/DomeGallery.tsx",
+      "source_location": "L1",
+      "id": "domegallery",
+      "community": 1
+    },
+    {
+      "label": "clamp()",
+      "file_type": "code",
+      "source_file": "src/components/DomeGallery.tsx",
+      "source_location": "L73",
+      "id": "domegallery_clamp",
+      "community": 1
+    },
+    {
+      "label": "normalizeAngle()",
+      "file_type": "code",
+      "source_file": "src/components/DomeGallery.tsx",
+      "source_location": "L74",
+      "id": "domegallery_normalizeangle",
+      "community": 1
+    },
+    {
+      "label": "wrapAngleSigned()",
+      "file_type": "code",
+      "source_file": "src/components/DomeGallery.tsx",
+      "source_location": "L75",
+      "id": "domegallery_wrapanglesigned",
+      "community": 1
+    },
+    {
+      "label": "getDataNumber()",
+      "file_type": "code",
+      "source_file": "src/components/DomeGallery.tsx",
+      "source_location": "L79",
+      "id": "domegallery_getdatanumber",
+      "community": 1
+    },
+    {
+      "label": "buildItems()",
+      "file_type": "code",
+      "source_file": "src/components/DomeGallery.tsx",
+      "source_location": "L85",
+      "id": "domegallery_builditems",
+      "community": 1
+    },
+    {
+      "label": "computeItemBaseRotation()",
+      "file_type": "code",
+      "source_file": "src/components/DomeGallery.tsx",
+      "source_location": "L134",
+      "id": "domegallery_computeitembaserotation",
+      "community": 1
+    },
+    {
+      "label": "applyTransform()",
+      "file_type": "code",
+      "source_file": "src/components/DomeGallery.tsx",
+      "source_location": "L202",
+      "id": "domegallery_applytransform",
+      "community": 1
+    },
+    {
+      "label": "close()",
+      "file_type": "code",
+      "source_file": "src/components/DomeGallery.tsx",
+      "source_location": "L434",
+      "id": "domegallery_close",
+      "community": 1
+    },
+    {
+      "label": "onKey()",
+      "file_type": "code",
+      "source_file": "src/components/DomeGallery.tsx",
+      "source_location": "L557",
+      "id": "domegallery_onkey",
+      "community": 1
+    },
+    {
+      "label": "openItemFromElement()",
+      "file_type": "code",
+      "source_file": "src/components/DomeGallery.tsx",
+      "source_location": "L568",
+      "id": "domegallery_openitemfromelement",
+      "community": 1
+    },
+    {
+      "label": "footer.tsx",
+      "file_type": "code",
+      "source_file": "src/components/ui/footer.tsx",
+      "source_location": "L1",
+      "id": "footer",
+      "community": 0
+    },
+    {
+      "label": "HeroSection.tsx",
+      "file_type": "code",
+      "source_file": "src/components/HeroSection.tsx",
+      "source_location": "L1",
+      "id": "herosection",
+      "community": 6
+    },
+    {
+      "label": "FigmaCursor()",
+      "file_type": "code",
+      "source_file": "src/components/HeroSection.tsx",
+      "source_location": "L9",
+      "id": "herosection_figmacursor",
+      "community": 6
+    },
+    {
+      "label": "InteractiveEyeballs()",
+      "file_type": "code",
+      "source_file": "src/components/HeroSection.tsx",
+      "source_location": "L63",
+      "id": "herosection_interactiveeyeballs",
+      "community": 6
+    },
+    {
+      "label": "SectionTag.tsx",
+      "file_type": "code",
+      "source_file": "src/components/SectionTag.tsx",
+      "source_location": "L1",
+      "id": "sectiontag",
+      "community": 0
+    },
+    {
+      "label": "SectionTag()",
+      "file_type": "code",
+      "source_file": "src/components/SectionTag.tsx",
+      "source_location": "L6",
+      "id": "sectiontag_sectiontag",
+      "community": 0
+    },
+    {
+      "label": "StaggeredMenu.tsx",
+      "file_type": "code",
+      "source_file": "src/components/StaggeredMenu.tsx",
+      "source_location": "L1",
+      "id": "staggeredmenu",
+      "community": 4
+    },
+    {
+      "label": "handleClickOutside()",
+      "file_type": "code",
+      "source_file": "src/components/StaggeredMenu.tsx",
+      "source_location": "L288",
+      "id": "staggeredmenu_handleclickoutside",
+      "community": 4
+    },
+    {
+      "label": "accentColor()",
+      "file_type": "code",
+      "source_file": "src/components/StaggeredMenu.tsx",
+      "source_location": "L302",
+      "id": "staggeredmenu_accentcolor",
+      "community": 4
+    },
+    {
+      "label": "banner.tsx",
+      "file_type": "code",
+      "source_file": "src/components/ui/banner.tsx",
+      "source_location": "L1",
+      "id": "banner",
+      "community": 2
+    },
+    {
+      "label": "Grid()",
+      "file_type": "code",
+      "source_file": "src/components/ui/banner.tsx",
+      "source_location": "L7",
+      "id": "banner_grid",
+      "community": 2
+    },
+    {
+      "label": "grain-gradient-hero-section.tsx",
+      "file_type": "code",
+      "source_file": "src/components/ui/grain-gradient-hero-section.tsx",
+      "source_location": "L1",
+      "id": "grain_gradient_hero_section",
+      "community": 2
+    },
+    {
+      "label": "stacked-cards-interaction.tsx",
+      "file_type": "code",
+      "source_file": "src/components/ui/stacked-cards-interaction.tsx",
+      "source_location": "L1",
+      "id": "stacked_cards_interaction",
+      "community": 2
+    },
+    {
+      "label": "dome-gallery.tsx",
+      "file_type": "code",
+      "source_file": "src/components/ui/dome-gallery.tsx",
+      "source_location": "L1",
+      "id": "dome_gallery",
+      "community": 0
+    },
+    {
+      "label": "toggle()",
+      "file_type": "code",
+      "source_file": "src/components/ui/dome-gallery.tsx",
+      "source_location": "L24",
+      "id": "dome_gallery_toggle",
+      "community": 0
+    },
+    {
+      "label": "etheral-shadow.tsx",
+      "file_type": "code",
+      "source_file": "src/components/ui/etheral-shadow.tsx",
+      "source_location": "L1",
+      "id": "etheral_shadow",
+      "community": 7
+    },
+    {
+      "label": "mapRange()",
+      "file_type": "code",
+      "source_file": "src/components/ui/etheral-shadow.tsx",
+      "source_location": "L32",
+      "id": "etheral_shadow_maprange",
+      "community": 7
+    },
+    {
+      "label": "useInstanceId()",
+      "file_type": "code",
+      "source_file": "src/components/ui/etheral-shadow.tsx",
+      "source_location": "L44",
+      "id": "etheral_shadow_useinstanceid",
+      "community": 7
+    },
+    {
+      "label": "button.tsx",
+      "file_type": "code",
+      "source_file": "src/components/ui/button.tsx",
+      "source_location": "L1",
+      "id": "button",
+      "community": 2
+    },
+    {
+      "label": "utils.ts",
+      "file_type": "code",
+      "source_file": "src/lib/utils.ts",
+      "source_location": "L1",
+      "id": "utils",
+      "community": 2
+    },
+    {
+      "label": "cn()",
+      "file_type": "code",
+      "source_file": "src/lib/utils.ts",
+      "source_location": "L4",
+      "id": "utils_cn",
+      "community": 2
+    },
+    {
+      "label": "Instagram.tsx",
+      "file_type": "code",
+      "source_file": "src/pages/Instagram.tsx",
+      "source_location": "L1",
+      "id": "instagram",
+      "community": 8
+    },
+    {
+      "label": "Events.tsx",
+      "file_type": "code",
+      "source_file": "src/pages/Events.tsx",
+      "source_location": "L1",
+      "id": "events",
+      "community": 0
+    },
+    {
+      "label": "Gallery.tsx",
+      "file_type": "code",
+      "source_file": "src/pages/Gallery.tsx",
+      "source_location": "L1",
+      "id": "gallery",
+      "community": 0
+    },
+    {
+      "label": "Gallery()",
+      "file_type": "code",
+      "source_file": "src/pages/Gallery.tsx",
+      "source_location": "L14",
+      "id": "gallery_gallery",
+      "community": 0
+    },
+    {
+      "label": "HeartIcon()",
+      "file_type": "code",
+      "source_file": "src/pages/Instagram.tsx",
+      "source_location": "L104",
+      "id": "instagram_hearticon",
+      "community": 8
+    },
+    {
+      "label": "InstagramCard()",
+      "file_type": "code",
+      "source_file": "src/pages/Instagram.tsx",
+      "source_location": "L168",
+      "id": "instagram_instagramcard",
+      "community": 8
+    },
+    {
+      "label": "Home.tsx",
+      "file_type": "code",
+      "source_file": "src/pages/Home.tsx",
+      "source_location": "L1",
+      "id": "home",
+      "community": 0
+    },
+    {
+      "label": "FadeUp()",
+      "file_type": "code",
+      "source_file": "src/pages/Home.tsx",
+      "source_location": "L70",
+      "id": "home_fadeup",
+      "community": 0
+    },
+    {
+      "label": "EventDetail.tsx",
+      "file_type": "code",
+      "source_file": "src/pages/EventDetail.tsx",
+      "source_location": "L1",
+      "id": "eventdetail",
+      "community": 0
+    },
+    {
+      "label": "About.tsx",
+      "file_type": "code",
+      "source_file": "src/pages/About.tsx",
+      "source_location": "L1",
+      "id": "about",
+      "community": 9
+    },
+    {
+      "label": "handleChange()",
+      "file_type": "code",
+      "source_file": "src/pages/About.tsx",
+      "source_location": "L17",
+      "id": "about_handlechange",
+      "community": 9
+    },
+    {
+      "label": "handleSubmit()",
+      "file_type": "code",
+      "source_file": "src/pages/About.tsx",
+      "source_location": "L21",
+      "id": "about_handlesubmit",
+      "community": 9
+    },
+    {
+      "label": "React + TypeScript + Vite Template Project",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "lines 1-76",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "readme_project",
+      "community": 3
+    },
+    {
+      "label": "Ad Club TVM Logo with Purple Branding",
+      "file_type": "image",
+      "source_file": "public/logo.svg",
+      "source_location": "SVG viewBox 0 0 202.52 47.54",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "logo_branding",
+      "community": 3
+    },
+    {
+      "label": "Primary Color Palette - Purple and Pink",
+      "file_type": "image",
+      "source_file": "public/Group.svg",
+      "source_location": "Paths with fills #DD85B7, #8552A1, #CDC7D3, #FEC812",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "color_palette_primary",
+      "community": 3
+    },
+    {
+      "label": "Heart Vector - Single Purple Heart",
+      "file_type": "image",
+      "source_file": "public/heart-vector.svg",
+      "source_location": "SVG path with fill #6B308E",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "heart_vector_asset",
+      "community": 10
+    },
+    {
+      "label": "Love Asset Pattern - Multiple Hearts with Yellow Accents",
+      "file_type": "image",
+      "source_file": "public/love-asset-3.svg",
+      "source_location": "Decorative grid of dots and paths",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "love_asset_pattern_1",
+      "community": 10
+    },
+    {
+      "label": "Love Asset Scattered Hearts",
+      "file_type": "image",
+      "source_file": "public/love-asset-4.svg",
+      "source_location": "Multiple pink heart paths #DD86B8",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "love_asset_pattern_2",
+      "community": 10
+    },
+    {
+      "label": "Curved Decorative Asset - Gradient Stroke",
+      "file_type": "image",
+      "source_file": "public/asset-3.svg",
+      "source_location": "Linear gradient #CF328D to #F6B1CF",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "decorative_curve_asset",
+      "community": 13
+    },
+    {
+      "label": "Cross/X Decorative Asset - Yellow",
+      "file_type": "image",
+      "source_file": "public/aseset-5.svg",
+      "source_location": "Six paths forming cross pattern fill #FEC812",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "cross_accent_asset",
+      "community": 12
+    },
+    {
+      "label": "Starburst Accent Asset - Yellow Lines",
+      "file_type": "image",
+      "source_file": "public/aseset-5-starburst.svg",
+      "source_location": "Radiating lines fill #FEC812",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "starburst_accent",
+      "community": 12
+    },
+    {
+      "label": "Spiral Decorative Asset - Gradient Curve",
+      "file_type": "image",
+      "source_file": "public/spiral-asset-1.svg",
+      "source_location": "Curved stroke with gradient",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "spiral_decorative_asset",
+      "community": 13
+    },
+    {
+      "label": "Custom Cursor UI Element",
+      "file_type": "image",
+      "source_file": "public/cursor.svg",
+      "source_location": "Arrow pointer with drop shadow",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "custom_cursor_element",
+      "community": 17
+    },
+    {
+      "label": "Eye Balls Decorative Pattern",
+      "file_type": "image",
+      "source_file": "public/eye-balls.svg",
+      "source_location": "Geometric circles and squares in multiple colors",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "eye_balls_decorative",
+      "community": 18
+    },
+    {
+      "label": "3D Isometric Stacked Layers Hero Component",
+      "file_type": "image",
+      "source_file": "src/assets/hero.png",
+      "source_location": "PNG raster image",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "hero_3d_component",
+      "community": 3
+    },
+    {
+      "label": "Decorative Design System Elements",
+      "file_type": "image",
+      "source_file": "public/Group.svg",
+      "source_location": "Grid pattern with decorative dots",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "design_system_decorative_elements",
+      "community": 3
+    },
+    {
+      "label": "Vite Build Tool Logo",
+      "file_type": "image",
+      "source_file": "src/assets/vite.svg",
+      "source_location": "SVG with purple gradient fill #9135ff",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "vite_logo_asset",
+      "community": 3
+    },
+    {
+      "label": "React Framework Logo",
+      "file_type": "image",
+      "source_file": "src/assets/react.svg",
+      "source_location": "SVG with cyan/blue fill #00D8FF",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "react_logo_asset",
+      "community": 3
+    }
+  ],
+  "links": [
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/App.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_src": "app",
+      "_tgt": "nav",
+      "source": "app",
+      "target": "nav",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/App.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_src": "app",
+      "_tgt": "footer",
+      "source": "app",
+      "target": "footer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/App.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_src": "app",
+      "_tgt": "home",
+      "source": "app",
+      "target": "home",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/App.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_src": "app",
+      "_tgt": "events",
+      "source": "app",
+      "target": "events",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/App.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_src": "app",
+      "_tgt": "gallery",
+      "source": "app",
+      "target": "gallery",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/App.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_src": "app",
+      "_tgt": "about",
+      "source": "app",
+      "target": "about",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/App.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_src": "app",
+      "_tgt": "instagram",
+      "source": "app",
+      "target": "instagram",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/App.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_src": "app",
+      "_tgt": "eventdetail",
+      "source": "app",
+      "target": "eventdetail",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/App.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "app",
+      "_tgt": "banner",
+      "source": "app",
+      "target": "banner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Nav.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_src": "nav",
+      "_tgt": "staggeredmenu",
+      "source": "nav",
+      "target": "staggeredmenu",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Nav.tsx",
+      "source_location": "L30",
+      "weight": 1.0,
+      "_src": "nav",
+      "_tgt": "nav_onscroll",
+      "source": "nav",
+      "target": "nav_onscroll",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/CircularText.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_src": "circulartext",
+      "_tgt": "circulartext_getrotationtransition",
+      "source": "circulartext",
+      "target": "circulartext_getrotationtransition",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/CircularText.tsx",
+      "source_location": "L20",
+      "weight": 1.0,
+      "_src": "circulartext",
+      "_tgt": "circulartext_gettransition",
+      "source": "circulartext",
+      "target": "circulartext_gettransition",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/CircularText.tsx",
+      "source_location": "L29",
+      "weight": 1.0,
+      "_src": "circulartext",
+      "_tgt": "circulartext_circulartext",
+      "source": "circulartext",
+      "target": "circulartext_circulartext",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/CircularText.tsx",
+      "source_location": "L21",
+      "weight": 1.0,
+      "_src": "circulartext_gettransition",
+      "_tgt": "circulartext_getrotationtransition",
+      "source": "circulartext_getrotationtransition",
+      "target": "circulartext_gettransition",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/CustomCursor.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_src": "customcursor",
+      "_tgt": "customcursor_customcursor",
+      "source": "customcursor",
+      "target": "customcursor_customcursor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/DomeGallery.tsx",
+      "source_location": "L73",
+      "weight": 1.0,
+      "_src": "domegallery",
+      "_tgt": "domegallery_clamp",
+      "source": "domegallery",
+      "target": "domegallery_clamp",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/DomeGallery.tsx",
+      "source_location": "L74",
+      "weight": 1.0,
+      "_src": "domegallery",
+      "_tgt": "domegallery_normalizeangle",
+      "source": "domegallery",
+      "target": "domegallery_normalizeangle",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/DomeGallery.tsx",
+      "source_location": "L75",
+      "weight": 1.0,
+      "_src": "domegallery",
+      "_tgt": "domegallery_wrapanglesigned",
+      "source": "domegallery",
+      "target": "domegallery_wrapanglesigned",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/DomeGallery.tsx",
+      "source_location": "L79",
+      "weight": 1.0,
+      "_src": "domegallery",
+      "_tgt": "domegallery_getdatanumber",
+      "source": "domegallery",
+      "target": "domegallery_getdatanumber",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/DomeGallery.tsx",
+      "source_location": "L85",
+      "weight": 1.0,
+      "_src": "domegallery",
+      "_tgt": "domegallery_builditems",
+      "source": "domegallery",
+      "target": "domegallery_builditems",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/DomeGallery.tsx",
+      "source_location": "L134",
+      "weight": 1.0,
+      "_src": "domegallery",
+      "_tgt": "domegallery_computeitembaserotation",
+      "source": "domegallery",
+      "target": "domegallery_computeitembaserotation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/DomeGallery.tsx",
+      "source_location": "L202",
+      "weight": 1.0,
+      "_src": "domegallery",
+      "_tgt": "domegallery_applytransform",
+      "source": "domegallery",
+      "target": "domegallery_applytransform",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/DomeGallery.tsx",
+      "source_location": "L434",
+      "weight": 1.0,
+      "_src": "domegallery",
+      "_tgt": "domegallery_close",
+      "source": "domegallery",
+      "target": "domegallery_close",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/DomeGallery.tsx",
+      "source_location": "L557",
+      "weight": 1.0,
+      "_src": "domegallery",
+      "_tgt": "domegallery_onkey",
+      "source": "domegallery",
+      "target": "domegallery_onkey",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/DomeGallery.tsx",
+      "source_location": "L568",
+      "weight": 1.0,
+      "_src": "domegallery",
+      "_tgt": "domegallery_openitemfromelement",
+      "source": "domegallery",
+      "target": "domegallery_openitemfromelement",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/DomeGallery.tsx",
+      "source_location": "L581",
+      "weight": 1.0,
+      "_src": "domegallery_openitemfromelement",
+      "_tgt": "domegallery_normalizeangle",
+      "source": "domegallery_normalizeangle",
+      "target": "domegallery_openitemfromelement",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/DomeGallery.tsx",
+      "source_location": "L576",
+      "weight": 1.0,
+      "_src": "domegallery_openitemfromelement",
+      "_tgt": "domegallery_getdatanumber",
+      "source": "domegallery_getdatanumber",
+      "target": "domegallery_openitemfromelement",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/DomeGallery.tsx",
+      "source_location": "L580",
+      "weight": 1.0,
+      "_src": "domegallery_openitemfromelement",
+      "_tgt": "domegallery_computeitembaserotation",
+      "source": "domegallery_computeitembaserotation",
+      "target": "domegallery_openitemfromelement",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/DomeGallery.tsx",
+      "source_location": "L558",
+      "weight": 1.0,
+      "_src": "domegallery_onkey",
+      "_tgt": "domegallery_close",
+      "source": "domegallery_close",
+      "target": "domegallery_onkey",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Footer.tsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_src": "footer",
+      "_tgt": "footer",
+      "source": "footer",
+      "target": "footer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/HeroSection.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_src": "herosection",
+      "_tgt": "herosection_figmacursor",
+      "source": "herosection",
+      "target": "herosection_figmacursor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/HeroSection.tsx",
+      "source_location": "L63",
+      "weight": 1.0,
+      "_src": "herosection",
+      "_tgt": "herosection_interactiveeyeballs",
+      "source": "herosection",
+      "target": "herosection_interactiveeyeballs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Home.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_src": "home",
+      "_tgt": "herosection",
+      "source": "herosection",
+      "target": "home",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/SectionTag.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_src": "sectiontag",
+      "_tgt": "sectiontag_sectiontag",
+      "source": "sectiontag",
+      "target": "sectiontag_sectiontag",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Home.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_src": "home",
+      "_tgt": "sectiontag",
+      "source": "sectiontag",
+      "target": "home",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/StaggeredMenu.tsx",
+      "source_location": "L288",
+      "weight": 1.0,
+      "_src": "staggeredmenu",
+      "_tgt": "staggeredmenu_handleclickoutside",
+      "source": "staggeredmenu",
+      "target": "staggeredmenu_handleclickoutside",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/StaggeredMenu.tsx",
+      "source_location": "L302",
+      "weight": 1.0,
+      "_src": "staggeredmenu",
+      "_tgt": "staggeredmenu_accentcolor",
+      "source": "staggeredmenu",
+      "target": "staggeredmenu_accentcolor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/banner.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_src": "banner",
+      "_tgt": "utils",
+      "source": "banner",
+      "target": "utils",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/banner.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_src": "banner",
+      "_tgt": "banner_grid",
+      "source": "banner",
+      "target": "banner_grid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/grain-gradient-hero-section.tsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_src": "grain_gradient_hero_section",
+      "_tgt": "button",
+      "source": "grain_gradient_hero_section",
+      "target": "button",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/stacked-cards-interaction.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_src": "stacked_cards_interaction",
+      "_tgt": "utils",
+      "source": "stacked_cards_interaction",
+      "target": "utils",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Home.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_src": "home",
+      "_tgt": "stacked_cards_interaction",
+      "source": "stacked_cards_interaction",
+      "target": "home",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/dome-gallery.tsx",
+      "source_location": "L24",
+      "weight": 1.0,
+      "_src": "dome_gallery",
+      "_tgt": "dome_gallery_toggle",
+      "source": "dome_gallery",
+      "target": "dome_gallery_toggle",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Gallery.tsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_src": "gallery",
+      "_tgt": "dome_gallery",
+      "source": "dome_gallery",
+      "target": "gallery",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/etheral-shadow.tsx",
+      "source_location": "L32",
+      "weight": 1.0,
+      "_src": "etheral_shadow",
+      "_tgt": "etheral_shadow_maprange",
+      "source": "etheral_shadow",
+      "target": "etheral_shadow_maprange",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/etheral-shadow.tsx",
+      "source_location": "L44",
+      "weight": 1.0,
+      "_src": "etheral_shadow",
+      "_tgt": "etheral_shadow_useinstanceid",
+      "source": "etheral_shadow",
+      "target": "etheral_shadow_useinstanceid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/button.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_src": "button",
+      "_tgt": "utils",
+      "source": "button",
+      "target": "utils",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/utils.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_src": "utils",
+      "_tgt": "utils_cn",
+      "source": "utils",
+      "target": "utils_cn",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Instagram.tsx",
+      "source_location": "L104",
+      "weight": 1.0,
+      "_src": "instagram",
+      "_tgt": "instagram_hearticon",
+      "source": "instagram",
+      "target": "instagram_hearticon",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Instagram.tsx",
+      "source_location": "L168",
+      "weight": 1.0,
+      "_src": "instagram",
+      "_tgt": "instagram_instagramcard",
+      "source": "instagram",
+      "target": "instagram_instagramcard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Gallery.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_src": "gallery",
+      "_tgt": "events",
+      "source": "events",
+      "target": "gallery",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Events.tsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_src": "events",
+      "_tgt": "events",
+      "source": "events",
+      "target": "events",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Home.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_src": "home",
+      "_tgt": "events",
+      "source": "events",
+      "target": "home",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/EventDetail.tsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_src": "eventdetail",
+      "_tgt": "events",
+      "source": "events",
+      "target": "eventdetail",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Gallery.tsx",
+      "source_location": "L14",
+      "weight": 1.0,
+      "_src": "gallery",
+      "_tgt": "gallery_gallery",
+      "source": "gallery",
+      "target": "gallery_gallery",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Home.tsx",
+      "source_location": "L70",
+      "weight": 1.0,
+      "_src": "home",
+      "_tgt": "home_fadeup",
+      "source": "home",
+      "target": "home_fadeup",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/About.tsx",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_src": "about",
+      "_tgt": "about_handlechange",
+      "source": "about",
+      "target": "about_handlechange",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/About.tsx",
+      "source_location": "L21",
+      "weight": 1.0,
+      "_src": "about",
+      "_tgt": "about_handlesubmit",
+      "source": "about",
+      "target": "about_handlesubmit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md, src/assets/vite.svg",
+      "source_location": "README mentions Vite",
+      "weight": 1.0,
+      "_src": "readme_project",
+      "_tgt": "vite_logo_asset",
+      "source": "readme_project",
+      "target": "vite_logo_asset"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md, src/assets/react.svg",
+      "source_location": "README mentions React",
+      "weight": 1.0,
+      "_src": "readme_project",
+      "_tgt": "react_logo_asset",
+      "source": "readme_project",
+      "target": "react_logo_asset"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "public/logo.svg, public/Group.svg",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "logo_branding",
+      "_tgt": "color_palette_primary",
+      "source": "logo_branding",
+      "target": "color_palette_primary"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/logo.svg, src/assets/vite.svg",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "logo_branding",
+      "_tgt": "vite_logo_asset",
+      "source": "logo_branding",
+      "target": "vite_logo_asset"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "public/Group.svg",
+      "source_location": "Shared color tokens and decoration patterns",
+      "weight": 1.0,
+      "_src": "color_palette_primary",
+      "_tgt": "design_system_decorative_elements",
+      "source": "color_palette_primary",
+      "target": "design_system_decorative_elements"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.88,
+      "source_file": "src/assets/hero.png, public/Group.svg",
+      "source_location": "Purple and pink color scheme",
+      "weight": 1.0,
+      "_src": "hero_3d_component",
+      "_tgt": "color_palette_primary",
+      "source": "color_palette_primary",
+      "target": "hero_3d_component"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.88,
+      "source_file": "public/heart-vector.svg, public/love-asset-3.svg",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "heart_vector_asset",
+      "_tgt": "love_asset_pattern_1",
+      "source": "heart_vector_asset",
+      "target": "love_asset_pattern_1"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.82,
+      "source_file": "public/love-asset-3.svg, public/love-asset-4.svg",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "love_asset_pattern_1",
+      "_tgt": "love_asset_pattern_2",
+      "source": "love_asset_pattern_1",
+      "target": "love_asset_pattern_2"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "public/asset-3.svg, public/spiral-asset-1.svg",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "decorative_curve_asset",
+      "_tgt": "spiral_decorative_asset",
+      "source": "decorative_curve_asset",
+      "target": "spiral_decorative_asset"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.78,
+      "source_file": "public/aseset-5.svg, public/aseset-5-starburst.svg",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "cross_accent_asset",
+      "_tgt": "starburst_accent",
+      "source": "cross_accent_asset",
+      "target": "starburst_accent"
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "purple_pink_design_system",
+      "label": "Purple-Pink Color Design System with Yellow Accents",
+      "nodes": [
+        "logo_branding",
+        "color_palette_primary",
+        "heart_vector_asset",
+        "love_asset_pattern_1",
+        "love_asset_pattern_2",
+        "design_system_decorative_elements"
+      ],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.92,
+      "source_file": "public/logo.svg, public/Group.svg, public/heart-vector.svg, public/love-asset-3.svg, public/love-asset-4.svg"
+    },
+    {
+      "id": "decorative_accent_elements",
+      "label": "Decorative Accent and Animation Assets",
+      "nodes": [
+        "decorative_curve_asset",
+        "spiral_decorative_asset",
+        "cross_accent_asset",
+        "starburst_accent",
+        "eye_balls_decorative"
+      ],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "public/asset-3.svg, public/spiral-asset-1.svg, public/aseset-5.svg, public/aseset-5-starburst.svg, public/eye-balls.svg"
+    },
+    {
+      "id": "ui_component_library",
+      "label": "UI Component Library with Hero and Custom Elements",
+      "nodes": [
+        "hero_3d_component",
+        "custom_cursor_element",
+        "design_system_decorative_elements",
+        "color_palette_primary"
+      ],
+      "relation": "implement",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/assets/hero.png, public/cursor.svg, public/Group.svg"
+    }
+  ]
+}

@@ -52,7 +52,7 @@ export default function About() {
           {/* Right */}
           <div className="flex-45 w-full">
             <div className="w-full aspect-video rounded-3xl overflow-hidden shadow-md bg-muted">
-              <img src="https://picsum.photos/seed/about-hero/800/700" alt="About ACT"
+              <img src="https://placehold.co/800x700/1a1a2e/ffffff?text=About+ACT" alt="About ACT"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
             </div>
           </div>
@@ -74,7 +74,7 @@ export default function About() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {["about-a", "about-b", "about-c"].map((seed) => (
             <div key={seed} className="aspect-video rounded-2xl overflow-hidden shadow-sm bg-muted">
-              <img src={`https://picsum.photos/seed/${seed}/700/525`} alt=""
+              <img src="https://placehold.co/700x525/2d1b69/ffffff?text=Photo" alt=""
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
             </div>
           ))}
@@ -112,7 +112,7 @@ export default function About() {
       {/* ── FULL-WIDTH IMAGE ─────────────────────────────────── */}
       <section className="px-6 md:px-16 py-16 border-b border-(--color-muted)">
         <div className="w-full h-[180px] md:h-[220px] rounded-3xl overflow-hidden shadow-md bg-muted">
-          <img src="https://picsum.photos/seed/about-wide/1400/400" alt="ACT community"
+          <img src="https://placehold.co/1400x400/1a1a2e/ffffff?text=ACT+Community" alt="ACT community"
             className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
         </div>
       </section>
@@ -148,7 +148,7 @@ export default function About() {
               className="flex items-start gap-4 border border-(--color-muted) rounded-2xl p-4 bg-white hover:shadow-md transition-shadow">
               {/* Photo */}
               <div className="w-20 h-20 shrink-0 rounded-xl overflow-hidden bg-muted">
-                <img src={`https://picsum.photos/seed/${member.name.replace(" ", "")}/200/200`}
+                <img src="https://placehold.co/200x200/2d1b69/ffffff?text=Photo"
                   alt={member.name} className="w-full h-full object-cover" />
               </div>
               {/* Info */}

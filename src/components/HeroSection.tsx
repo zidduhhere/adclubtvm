@@ -5,51 +5,6 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin();
 
-// ── Figma-style cursor ────────────────────────────────────────────────────
-function FigmaCursor() {
-  const cursorRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (window.matchMedia("(pointer: coarse)").matches) return;
-    document.body.style.cursor = "none";
-
-    const move = (e: MouseEvent) => {
-      gsap.to(cursorRef.current, {
-        x: e.clientX,
-        y: e.clientY,
-        duration: 0.12,
-        ease: "power2.out",
-      });
-    };
-
-    window.addEventListener("mousemove", move);
-    return () => {
-      window.removeEventListener("mousemove", move);
-      document.body.style.cursor = "";
-    };
-  }, []);
-
-  return (
-    <div
-      ref={cursorRef}
-      className="fixed top-0 left-0 pointer-events-none z-[9999] hidden md:block"
-      style={{ willChange: "transform" }}
-    >
-      {/* Figma-style arrow cursor in light purple */}
-      <svg width="22" height="28" viewBox="0 0 22 28" fill="none">
-        <path
-          d="M1 1L1 21.5L6.5 16L11 25L15 23.5L10.5 15H17.5L1 1Z"
-          fill="#C8AEED"
-          stroke="white"
-          strokeWidth="1.5"
-          strokeLinejoin="round"
-          strokeLinecap="round"
-        />
-      </svg>
-    </div>
-  );
-}
-
 // ── Interactive eyeballs (pupils follow cursor) ───────────────────────────
 // Exact positions extracted from eye-balls.svg (viewBox 0 0 171 177)
 const EYES = [
@@ -201,8 +156,6 @@ export default function HeroSection() {
 
   return (
     <>
-      <FigmaCursor />
-
       <section
         ref={sectionRef}
         className="w-full bg-white px-5 md:px-8 pt-20 md:pt-24 pb-8"
@@ -226,8 +179,8 @@ export default function HeroSection() {
             {/* Headline + button */}
             <div ref={headlineRef} className="px-8 md:px-10 flex flex-col gap-4 relative z-10">
               <h1
-                className="font-display font-bold text-white leading-[1.05]"
-                style={{ fontSize: "clamp(2.6rem, 5vw, 4.8rem)", letterSpacing: "-0.04em" }}
+                className="font-display font-semibold text-white leading-[1.05]"
+                style={{ fontSize: "clamp(3rem, 6vw, 6rem)", letterSpacing: "-0.04em" }}
               >
                 For the{" "}
                 <img
@@ -244,7 +197,7 @@ export default function HeroSection() {
               <div>
                 <Link
                   to="/events"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-[14px] text-sm font-display font-bold text-white transition-all hover:opacity-90 active:scale-95"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-[14px] text-sm font-display font-bold text-white  hover:opacity-90 active:scale-95 cursor-pointer "
                   style={{ background: "#6B308E", letterSpacing: "-0.02em" }}
                 >
                   Apply Awards

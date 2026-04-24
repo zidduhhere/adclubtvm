@@ -9,7 +9,7 @@ const allCards = [
     title: e.title,
     date: e.date,
     type: e.type,
-    image: e.images?.[0] ?? `https://picsum.photos/seed/ev-${e.id}/600/800`,
+    image: e.images?.[0] ?? `https://placehold.co/600x800/1a1a2e/ffffff?text=Event`,
     real: true,
   })),
   ...upcoming.map((u) => ({
@@ -17,7 +17,7 @@ const allCards = [
     title: u.title,
     date: u.date,
     type: u.type,
-    image: `https://picsum.photos/seed/up-${u.id}/600/800`,
+    image: `https://placehold.co/600x800/2d1b69/ffffff?text=Upcoming`,
     real: false,
   })),
 ];
@@ -30,7 +30,7 @@ while (padded.length < PLACEHOLDER_COUNT) {
     title: `Upcoming Event`,
     date: "2025",
     type: "Coming Soon",
-    image: `https://picsum.photos/seed/ph${i}/600/800`,
+    image: `https://placehold.co/600x800/1a1a2e/ffffff?text=Coming+Soon`,
     real: false,
   });
 }

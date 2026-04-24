@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { motion, useInView, AnimatePresence } from "framer-motion";
-import { useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
 import { events, upcoming } from "../data/events";
 import SectionTag from "../components/SectionTag";
@@ -24,7 +24,7 @@ const flagships = [
     ],
     action: "Learn More",
     href: "/events",
-    image: "https://images.unsplash.com/photo-1528605248644-14dd04022da1?q=80&w=900&auto=format&fit=crop",
+    image: "https://placehold.co/900x506/1a1a2e/ffffff?text=Networking+Evening",
     isApply: false,
   },
   {
@@ -40,7 +40,7 @@ const flagships = [
     ],
     action: "Register Interest",
     href: "/events",
-    image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?q=80&w=900&auto=format&fit=crop",
+    image: "https://placehold.co/900x506/2d1b69/ffffff?text=Industry+Seminar",
     isApply: false,
   },
   {
@@ -56,7 +56,7 @@ const flagships = [
     ],
     action: "Apply Now",
     href: "/events",
-    image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=900&auto=format&fit=crop",
+    image: "https://placehold.co/900x506/f5c518/1a1a2e?text=LOA+Awards",
     isApply: true,
   },
 ];
@@ -67,19 +67,185 @@ const contacts = [
   { label: "Email", value: "adclubtrivandrum@gmail.com", href: "mailto:adclubtrivandrum@gmail.com" },
 ];
 
-function FadeUp({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
+function FadeUp({ children = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  // const inView = useInView(ref, { once: true, margin: "-80px" });
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 28 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >
       {children}
     </motion.div>
+  );
+}
+
+function MajorEventsCarousel() {
+  const allItems = [
+    ...events.map((e) => ({
+      id: e.id,
+      title: e.title,
+      type: e.type,
+      date: e.date,
+      image: e.images?.[0] ?? null,
+      status: null as string | null,
+      href: `/events/${e.id}`,
+      isPast: true,
+    })),
+    ...upcoming.map((u) => ({
+      id: u.id,
+      title: u.title,
+      type: u.type,
+      date: u.date,
+      image: null as string | null,
+      status: u.status,
+      href: "/events",
+      isPast: false,
+    })),
+  ];
+
+  const [activeIdx, setActiveIdx] = useState(0);
+  const [offset, setOffset] = useState(0);
+  const firstCardRef = useRef<HTMLDivElement>(null);
+  const GAP = 20;
+
+  const computeOffset = (idx: number) => {
+    if (!firstCardRef.current) return 0;
+    return idx * (firstCardRef.current.offsetWidth + GAP);
+  };
+
+  const goTo = (idx: number) => {
+    const clamped = Math.max(0, Math.min(allItems.length - 1, idx));
+    setActiveIdx(clamped);
+    setOffset(computeOffset(clamped));
+  };
+
+  useEffect(() => {
+    const handleResize = () => setOffset(computeOffset(activeIdx));
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [activeIdx]);
+
+  return (
+    <section className="bg-white border-b border-muted overflow-hidden pt-14 pb-16">
+
+      {/* ── Header row ── */}
+      <div className="flex items-center justify-between px-6 md:px-16 mb-8">
+        <div className="flex flex-col gap-2">
+          <SectionTag>Events</SectionTag>
+          <h2
+            className="font-display font-bold text-bg-warm leading-tight tracking-tight"
+            style={{ fontSize: "clamp(1.4rem, 3.2vw, 2.4rem)" }}
+          >
+            Major Events
+          </h2>
+        </div>
+
+        {/* Controls */}
+        <div className="flex items-center gap-3">
+          <span className="font-body text-[11px] text-bg-warm/30 tracking-[0.22em] tabular-nums mr-1 hidden sm:block">
+            {String(activeIdx + 1).padStart(2, "0")} / {String(allItems.length).padStart(2, "0")}
+          </span>
+          <button
+            onClick={() => goTo(activeIdx - 1)}
+            disabled={activeIdx === 0}
+            aria-label="Previous"
+            className="w-10 h-10 rounded-full border border-muted text-bg-warm/40 flex items-center justify-center
+                       hover:border-purple hover:text-purple disabled:opacity-20 disabled:cursor-not-allowed
+                       transition-all duration-200 text-sm"
+          >
+            ←
+          </button>
+          <button
+            onClick={() => goTo(activeIdx + 1)}
+            disabled={activeIdx === allItems.length - 1}
+            aria-label="Next"
+            className="w-10 h-10 rounded-full border border-muted text-bg-warm/40 flex items-center justify-center
+                       hover:border-purple hover:text-purple disabled:opacity-20 disabled:cursor-not-allowed
+                       transition-all duration-200 text-sm"
+          >
+            →
+          </button>
+        </div>
+      </div>
+
+      {/* ── Carousel track ── */}
+      <div className="overflow-hidden relative">
+        <motion.div
+          className="flex pl-6 md:pl-16"
+          style={{ gap: GAP }}
+          animate={{ x: -offset }}
+          transition={{ ease: [0.22, 1, 0.36, 1], duration: 0.6 }}
+        >
+          {allItems.map((item, i) => (
+            <div
+              key={item.id}
+              ref={i === 0 ? firstCardRef : undefined}
+              className="shrink-0 w-[76vw] md:w-[38vw] max-w-[500px] h-[300px] md:h-[400px] relative overflow-hidden rounded-xl group"
+            >
+              <Link to={item.href} className="absolute inset-0 z-20" aria-label={item.title} />
+
+              {/* Image / tinted bg */}
+              <div className="absolute inset-0">
+                {item.image ? (
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                ) : (
+                  <div
+                    className="w-full h-full"
+                    style={{ background: `linear-gradient(135deg, #4A2470 0%, #2d1b69 100%)` }}
+                  />
+                )}
+              </div>
+
+              {/* Default: dark gradient scrim */}
+              <div className="absolute inset-0 bg-gradient-to-t from-purple-deep via-purple-deep/20 to-transparent transition-opacity duration-300 group-hover:opacity-0" />
+
+              {/* Hover: solid purple fill */}
+              <div className="absolute inset-0 bg-purple opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+              {/* Text overlay */}
+              <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
+                <p className="font-body text-[9px] tracking-[0.25em] uppercase mb-2 transition-colors duration-300 text-white/35 group-hover:text-yellow/60">
+                  {item.type} · {item.date}
+                  {item.status && ` · ${item.status}`}
+                </p>
+                <h3
+                  className="font-display font-bold tracking-tight leading-tight transition-colors duration-300 text-white group-hover:text-yellow"
+                  style={{ fontSize: "clamp(1rem, 2.2vw, 1.6rem)" }}
+                >
+                  {item.title}
+                </h3>
+                {!item.isPast && (
+                  <span className="inline-flex items-center mt-3 text-[9px] font-body font-semibold tracking-[0.18em] uppercase px-3 py-1 rounded-full transition-all duration-300 bg-yellow/90 text-purple-deep group-hover:bg-white/10 group-hover:text-yellow/70">
+                    Coming Soon
+                  </span>
+                )}
+              </div>
+            </div>
+          ))}
+
+          {/* "View all" end card */}
+          <Link
+            to="/events"
+            className="shrink-0 w-[50vw] md:w-[22vw] max-w-[280px] h-[300px] md:h-[400px] flex flex-col items-center justify-center gap-4
+                       border border-muted rounded-xl mr-6 md:mr-16
+                       hover:border-purple hover:bg-purple/5 transition-all duration-300 group"
+          >
+            <span className="w-11 h-11 rounded-full border border-muted group-hover:border-purple flex items-center justify-center text-bg-warm/30 group-hover:text-purple text-base transition-all duration-300">
+              →
+            </span>
+            <span className="font-body text-[9px] text-bg-warm/30 group-hover:text-purple tracking-[0.28em] uppercase transition-colors duration-300">
+              All Events
+            </span>
+          </Link>
+        </motion.div>
+      </div>
+
+    </section>
   );
 }
 
@@ -142,17 +308,17 @@ export default function Home() {
                 rotationAngle={6}
                 cards={[
                   {
-                    image: events[0]?.images?.[0] ?? "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=800&auto=format&fit=crop",
+                    image: events[0]?.images?.[0] ?? "https://placehold.co/800x600/1a1a2e/ffffff?text=Logo+Launch",
                     title: "Logo Launch — Feb 2025",
                     description: "The founding moment, unveiled by Mohanlal.",
                   },
                   {
-                    image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?q=80&w=800&auto=format&fit=crop",
+                    image: "https://placehold.co/800x600/2d1b69/ffffff?text=Creative+Conversations",
                     title: "Creative Conversations",
                     description: "Where advertising minds come together.",
                   },
                   {
-                    image: "https://images.unsplash.com/photo-1528741254566-d718e868201f?q=80&w=800&auto=format&fit=crop",
+                    image: "https://placehold.co/800x600/1a1a2e/ffffff?text=Building+Community",
                     title: "Building Community",
                     description: "Networking across Kerala's creative industry.",
                   },
@@ -379,73 +545,7 @@ export default function Home() {
       </section>
 
       {/* ── MAJOR EVENTS ─────────────────────────────────────────── */}
-      <section className="px-6 md:px-16 py-24 border-b border-muted">
-        <FadeUp className="flex flex-col gap-3 mb-14">
-          <SectionTag>Events</SectionTag>
-          <h2
-            className="font-display font-bold text-bg-warm leading-tight tracking-tight"
-            style={{ fontSize: "clamp(1.75rem, 4vw, 3rem)" }}
-          >
-            Major Events
-          </h2>
-          <p className="font-body text-sm text-bg-warm/50">
-            Landmark moments that bring the advertising community together.
-          </p>
-        </FadeUp>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {/* Featured — spans 2 cols */}
-          <FadeUp className="md:col-span-2" delay={0}>
-            <Link to={`/events/${events[0]?.id ?? "01"}`} className="block group">
-              <article className="relative rounded-2xl overflow-hidden bg-muted shadow-sm hover:shadow-md transition-shadow h-72 md:h-96">
-                <img
-                  src={events[0]?.images?.[0] ?? "https://picsum.photos/seed/ev0/800/500"}
-                  alt={events[0]?.title ?? "Event"}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-linear-to-t from-bg-warm/90 via-bg-warm/30 to-transparent" />
-                <div className="absolute bottom-0 left-0 p-6">
-                  <p className="font-body text-xs text-white/60 mb-1 tracking-[0.15em] uppercase">
-                    {events[0]?.type} · {events[0]?.date}
-                  </p>
-                  <p className="font-display font-bold text-white text-xl md:text-2xl tracking-tight">
-                    {events[0]?.title ?? "LOGO LAUNCH"}
-                  </p>
-                </div>
-              </article>
-            </Link>
-          </FadeUp>
-
-          {/* Upcoming stacked */}
-          <FadeUp className="flex flex-col gap-5" delay={0.12}>
-            {upcoming.slice(0, 2).map((ev) => (
-              <article
-                key={ev.id}
-                className="flex-1 rounded-2xl overflow-hidden border border-muted bg-white shadow-sm hover:shadow-md transition-shadow p-5 flex flex-col gap-2"
-              >
-                <p className="font-body text-[10px] font-medium text-purple tracking-[0.18em] uppercase">
-                  {ev.type} · {ev.status}
-                </p>
-                <p className="font-display font-bold text-bg-warm text-base tracking-tight">
-                  {ev.title}
-                </p>
-                <p className="font-body text-xs text-bg-warm/50 leading-relaxed line-clamp-3">
-                  {ev.description}
-                </p>
-              </article>
-            ))}
-          </FadeUp>
-        </div>
-
-        <div className="mt-10 flex justify-center">
-          <Link
-            to="/events"
-            className="inline-flex items-center gap-2 border border-purple text-purple text-xs font-body font-medium tracking-[0.15em] uppercase px-6 py-3 rounded-full hover:bg-purple hover:text-white transition-colors"
-          >
-            View All Events →
-          </Link>
-        </div>
-      </section>
+      <MajorEventsCarousel />
 
       {/* ── LOA AWARDS CTA ───────────────────────────────────────── */}
       <FadeUp>
