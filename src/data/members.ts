@@ -13,6 +13,7 @@ export interface MembershipTier {
   perks: string[];
 }
 
+// TODO: replace "#" linkedin/instagram values with real profile URLs before launch
 export const committee: CommitteeMember[] = [
   { name: "Laj Salam", role: "President", linkedin: "#", instagram: "#" },
   { name: "Renjith Mohan", role: "Vice President", linkedin: "#", instagram: "#" },

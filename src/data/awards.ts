@@ -12,6 +12,11 @@ export interface AwardEdition {
   status: "upcoming" | "past";
 }
 
+export interface FAQ {
+  q: string;
+  a: string;
+}
+
 export const awardCategories: AwardCategory[] = [
   { id: "film", name: "Film & TVC", description: "Television commercials and brand films across 15s, 30s, and long-form." },
   { id: "print", name: "Print & Outdoor", description: "Newspapers, magazines, hoardings, transit media, and ambient." },
@@ -34,7 +39,7 @@ export const editions: AwardEdition[] = [
   },
 ];
 
-export const loaFAQ = [
+export const loaFAQ: FAQ[] = [
   {
     q: "Who can enter?",
     a: "Any individual, agency, or brand that produced advertising work for the Kerala market between January 2024 and December 2024 is eligible to enter.",

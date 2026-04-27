@@ -8,6 +8,15 @@ export interface Event {
   images?: string[];
 }
 
+export interface UpcomingEvent {
+  id: string;
+  title: string;
+  date: string;
+  type: string;
+  description: string;
+  status: string;
+}
+
 export const events: Event[] = [
   {
     id: "01",
@@ -30,7 +39,7 @@ export const events: Event[] = [
   },
 ];
 
-export const upcoming = [
+export const upcoming: UpcomingEvent[] = [
   {
     id: "U1",
     title: "NETWORKING EVENING",
