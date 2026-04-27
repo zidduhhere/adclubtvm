@@ -28,25 +28,25 @@ export default function Footer() {
           heading: "Navigate",
           links: [
             { href: "/", label: "Home" },
+            { href: "/about", label: "About" },
             { href: "/events", label: "Events" },
             { href: "/gallery", label: "Gallery" },
-            { href: "/about", label: "About" },
+          ],
+        },
+        {
+          heading: "Programmes",
+          links: [
+            { href: "/living-room", label: "Living Room" },
+            { href: "/awards", label: "LOA Awards" },
+            { href: "/membership", label: "Membership" },
           ],
         },
         {
           heading: "Community",
           links: [
             { href: "/instagram", label: "Instagram Feed" },
-            { href: "https://instagram.com/adclubtvm", label: "Follow Us" },
+            { href: "https://instagram.com/adclubtvm", label: "Follow on Instagram" },
             { href: "https://linkedin.com/company/adclubtvm", label: "LinkedIn" },
-          ],
-        },
-        {
-          heading: "Resources",
-          links: [
-            { href: "/events", label: "Past Events" },
-            { href: "/about", label: "Our Mission" },
-            { href: "/about", label: "Leadership" },
           ],
         },
         {

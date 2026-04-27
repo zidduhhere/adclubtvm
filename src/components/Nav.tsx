@@ -6,9 +6,10 @@ import StaggeredMenu from "./StaggeredMenu";
 const links = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
-  { to: "/events", label: "Activity" },
-  { to: "/gallery", label: "Living Room" },
-  { to: "/instagram", label: "Awards" },
+  { to: "/events", label: "Events" },
+  { to: "/living-room", label: "Living Room" },
+  { to: "/awards", label: "LOA Awards" },
+  { to: "/membership", label: "Membership" },
 ];
 
 const menuItems = links.map((l) => ({
