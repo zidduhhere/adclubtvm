@@ -1,7 +1,6 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { events, upcoming } from "../data/events";
-
-const PLACEHOLDER_COUNT = 9;
 
 const allCards = [
   ...events.map((e) => ({
@@ -22,20 +21,15 @@ const allCards = [
   })),
 ];
 
-const padded = [...allCards];
-while (padded.length < PLACEHOLDER_COUNT) {
-  const i = padded.length;
-  padded.push({
-    id: `PH${i}`,
-    title: `Upcoming Event`,
-    date: "2025",
-    type: "Coming Soon",
-    image: `https://placehold.co/600x800/1a1a2e/ffffff?text=Coming+Soon`,
-    real: false,
-  });
-}
-
 export default function Events() {
+  const [filter, setFilter] = useState<"all" | "past" | "upcoming">("all");
+
+  const displayCards = filter === "past"
+    ? allCards.filter((c) => c.real)
+    : filter === "upcoming"
+    ? allCards.filter((c) => !c.real)
+    : allCards;
+
   return (
     <main className="pt-16 min-h-screen bg-surface">
 
@@ -51,10 +45,27 @@ export default function Events() {
         </p>
       </section>
 
+      {/* ── FILTER TABS ── */}
+      <div className="px-6 md:px-16 py-6 border-b border-(--color-muted) flex gap-3">
+        {(["all", "past", "upcoming"] as const).map((f) => (
+          <button
+            key={f}
+            onClick={() => setFilter(f)}
+            className={`px-5 py-2 rounded-full text-sm font-body font-medium capitalize transition-colors ${
+              filter === f
+                ? "bg-purple text-white"
+                : "border border-(--color-muted) text-bg-warm/60 hover:text-bg-warm"
+            }`}
+          >
+            {f === "all" ? "All Events" : f === "past" ? "Past" : "Upcoming"}
+          </button>
+        ))}
+      </div>
+
       {/* ── EVENTS GRID ────────────────────────────────────────── */}
       <section className="px-6 md:px-16 py-14">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {padded.map((card) => (
+          {displayCards.map((card) => (
             <Link
               key={card.id}
               to={card.real ? `/events/${card.id}` : "#"}

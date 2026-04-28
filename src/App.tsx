@@ -9,6 +9,9 @@ import Gallery from "./pages/Gallery";
 import About from "./pages/About";
 import Instagram from "./pages/Instagram";
 import EventDetail from "./pages/EventDetail";
+import Membership from "./pages/Membership";
+import Awards from "./pages/Awards";
+import LivingRoom from "./pages/LivingRoom";
 import { Banner } from "./components/ui/banner";
 
 const BANNER_H = 44;
@@ -27,7 +30,7 @@ function AppLayout() {
   return (
     <>
       {/* Fixed announcement banner — sits above nav */}
-      <div className="fixed top-0 left-0 right-0 z-[60]">
+      <div className="fixed top-0 left-0 right-0 z-60">
         <Banner
           show={showBanner}
           onHide={() => setShowBanner(false)}
@@ -41,7 +44,7 @@ function AppLayout() {
           action={{
             label: "Apply Now →",
             onClick: () => {
-              navigate("/events");
+              navigate("/awards");
               setShowBanner(false);
             },
           }}
@@ -62,6 +65,9 @@ function AppLayout() {
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/about" element={<About />} />
           <Route path="/instagram" element={<Instagram />} />
+           <Route path="/membership" element={<Membership />} />
+           <Route path="/awards" element={<Awards />} />
+           <Route path="/living-room" element={<LivingRoom />} />
         </Routes>
         <Footer />
       </div>

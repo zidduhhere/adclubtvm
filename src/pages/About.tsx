@@ -1,15 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
-
-const teamMembers = [
-  { name: "Arjun Menon", role: "President", linkedin: "#", instagram: "#" },
-  { name: "Priya Nair", role: "Vice President", linkedin: "#", instagram: "#" },
-  { name: "Rohit Krishnan", role: "Creative Director", linkedin: "#", instagram: "#" },
-  { name: "Sneha Pillai", role: "Head of Events", linkedin: "#", instagram: "#" },
-  { name: "Anil Kumar", role: "Communications Lead", linkedin: "#", instagram: "#" },
-  { name: "Divya Raj", role: "Design Lead", linkedin: "#", instagram: "#" },
-];
+import { committee } from "../data/members";
 
 export default function About() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -37,7 +28,7 @@ export default function About() {
           <div className="flex-55 flex flex-col gap-6">
             <span className="font-body italic text-purple text-sm tracking-wide">About</span>
             <h1 className="font-display font-bold text-bg-warm leading-[1.05] text-[clamp(2.4rem,6vw,4.5rem)] tracking-tight">
-              Advertisement{" "}
+              Advertising{" "}
               <span className="text-coral">Club TVM</span>
             </h1>
             <p className="font-body text-base text-bg-warm/70 leading-relaxed max-w-md">
@@ -143,7 +134,7 @@ export default function About() {
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {teamMembers.map((member) => (
+          {committee.map((member) => (
             <div key={member.name}
               className="flex items-start gap-4 border border-(--color-muted) rounded-2xl p-4 bg-white hover:shadow-md transition-shadow">
               {/* Photo */}

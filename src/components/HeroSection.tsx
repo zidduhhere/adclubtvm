@@ -1,7 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
-import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin();
 
@@ -89,33 +88,6 @@ function InteractiveEyeballs({ containerRef }: { containerRef: React.RefObject<H
   );
 }
 
-// ── Circular spinning badge ───────────────────────────────────────────────
-function CircularBadge() {
-  const svgRef = useRef<SVGSVGElement>(null);
-
-  useGSAP(() => {
-    gsap.to(svgRef.current, {
-      rotation: 360,
-      duration: 16,
-      repeat: -1,
-      ease: "none",
-      transformOrigin: "50% 50%",
-    });
-  }, { scope: svgRef });
-
-  return (
-    <svg ref={svgRef} width="110" height="110" viewBox="0 0 110 110">
-      <defs>
-        <path id="circleArc" d="M 55,11 a 44,44 0 1,1 -0.001,0" />
-      </defs>
-      <text fill="#fff" fontSize="14" fontFamily="Gotham, sans-serif" fontWeight="bold" letterSpacing="2">
-        <textPath href="#circleArc" startOffset="0">
-          ACT CLUB ·{"  "} ACT CLUB ·{"  "} ACT CLUB ·{"  "}
-        </textPath>
-      </text>
-    </svg>
-  );
-}
 
 // ── Decorative circle cluster (pink card) ─────────────────────────────────
 function CircleCluster() {
@@ -135,29 +107,11 @@ function CircleCluster() {
 
 // ── Main hero section ─────────────────────────────────────────────────────
 export default function HeroSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const leftCardRef = useRef<HTMLDivElement>(null);
-  const rightTopRef = useRef<HTMLDivElement>(null);
-  const rightBottomRef = useRef<HTMLDivElement>(null);
-  const headlineRef = useRef<HTMLDivElement>(null);
-  // ref passed to eyeballs so it can map screen → SVG coords
   const eyeContainerRef = useRef<HTMLDivElement>(null);
-
-  useGSAP(
-    () => {
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-      tl.fromTo(leftCardRef.current, { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.85 })
-        .fromTo(rightTopRef.current, { x: 35, opacity: 0 }, { x: 0, opacity: 1, duration: 0.75 }, "-=0.55")
-        .fromTo(rightBottomRef.current, { x: 35, opacity: 0 }, { x: 0, opacity: 1, duration: 0.75 }, "-=0.45")
-        .fromTo(headlineRef.current, { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.65 }, "-=0.75");
-    },
-    { scope: sectionRef }
-  );
 
   return (
     <>
       <section
-        ref={sectionRef}
         className="w-full bg-white px-5 md:px-8 pt-20 md:pt-24 pb-8"
         style={{ minHeight: "100svh" }}
       >
@@ -167,17 +121,11 @@ export default function HeroSection() {
         >
           {/* ── LEFT YELLOW CARD ── */}
           <div
-            ref={leftCardRef}
             className="relative md:flex-[1.85] rounded-3xl overflow-hidden flex flex-col justify-start py-14 md:py-24"
             style={{ background: "#FEC812", minHeight: "min(62svh, 480px)" }}
           >
-            {/* Circular spinning badge */}
-            <div className="absolute top-5 right-10 z-10">
-              <CircularBadge />
-            </div>
-
             {/* Headline + button */}
-            <div ref={headlineRef} className="px-8 md:px-10 flex flex-col gap-4 relative z-10">
+            <div className="px-8 md:px-10 flex flex-col gap-4 relative z-10">
               <h1
                 className="font-display font-semibold text-white leading-[1.05]"
                 style={{ fontSize: "clamp(3rem, 6vw, 6rem)", letterSpacing: "-0.04em" }}
@@ -220,7 +168,6 @@ export default function HeroSection() {
 
             {/* Top — purple "Our Events" card */}
             <div
-              ref={rightTopRef}
               className="relative flex-1 rounded-3xl overflow-hidden flex flex-col justify-end p-5 md:p-8"
               style={{ background: "#6B308E", minHeight: 160 }}
             >
@@ -239,7 +186,6 @@ export default function HeroSection() {
 
             {/* Bottom — pink card */}
             <div
-              ref={rightBottomRef}
               className="relative flex-1 rounded-3xl overflow-hidden flex items-end p-5 md:p-8"
               style={{ background: "#DD85B7", minHeight: 140 }}
             >

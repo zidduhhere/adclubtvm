@@ -8,6 +8,15 @@ export interface Event {
   images?: string[];
 }
 
+export interface UpcomingEvent {
+  id: string;
+  title: string;
+  date: string;
+  type: string;
+  description: string;
+  status: string;
+}
+
 export const events: Event[] = [
   {
     id: "01",
@@ -30,7 +39,7 @@ export const events: Event[] = [
   },
 ];
 
-export const upcoming = [
+export const upcoming: UpcomingEvent[] = [
   {
     id: "U1",
     title: "NETWORKING EVENING",
@@ -41,18 +50,18 @@ export const upcoming = [
   },
   {
     id: "U2",
-    title: "INDUSTRY SEMINAR",
+    title: "LIVING ROOM — SESSION 2",
     date: "2025",
-    type: "Seminar",
-    description: "Knowledge-sharing sessions led by senior practitioners on the evolving landscape of advertising, digital media, and brand communication.",
+    type: "Talk Series",
+    description: "ACT's flagship monthly dialogue returns. A candid conversation on storytelling in the age of social media with a senior creative professional.",
     status: "Coming Soon",
   },
   {
     id: "U3",
-    title: "CREATIVE AWARDS",
-    date: "2025",
+    title: "LOA AWARDS 2025",
+    date: "Late 2025",
     type: "Awards",
-    description: "Recognising outstanding achievement in advertising and marketing communication across Kerala's advertising fraternity.",
-    status: "Coming Soon",
+    description: "The inaugural Love of Advertising Awards — Kerala's first dedicated advertising creative awards, celebrating excellence across film, digital, print, and emerging media.",
+    status: "Applications Open",
   },
 ];
