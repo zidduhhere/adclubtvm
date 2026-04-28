@@ -28,7 +28,7 @@ export default function About() {
           <div className="flex-55 flex flex-col gap-6">
             <span className="font-body italic text-purple text-sm tracking-wide">About</span>
             <h1 className="font-display font-bold text-bg-warm leading-[1.05] text-[clamp(2.4rem,6vw,4.5rem)] tracking-tight">
-              Advertisement{" "}
+              Advertising{" "}
               <span className="text-coral">Club TVM</span>
             </h1>
             <p className="font-body text-base text-bg-warm/70 leading-relaxed max-w-md">

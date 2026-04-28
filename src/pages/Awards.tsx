@@ -1,17 +1,26 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { awardCategories, editions, loaFAQ } from "../data/awards";
+import { awardGroups, editions, loaFAQ, jury } from "../data/awards";
 import SectionTag from "../components/SectionTag";
-import { ChevronDown } from "lucide-react";
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
-  visible: (i: number) => ({ opacity: 1, y: 0, transition: { delay: i * 0.07, duration: 0.5, ease: "easeOut" as const } }),
-};
+import { ChevronDown, Search } from "lucide-react";
 
 export default function Awards() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [query, setQuery] = useState("");
   const upcoming = editions.find((e) => e.status === "upcoming");
+
+  const filtered = query.trim()
+    ? awardGroups
+        .map((g) => ({
+          ...g,
+          categories: g.categories.filter((c) =>
+            c.name.toLowerCase().includes(query.toLowerCase()) ||
+            g.name.toLowerCase().includes(query.toLowerCase())
+          ),
+        }))
+        .filter((g) => g.categories.length > 0)
+    : awardGroups;
+
+  const totalCategories = awardGroups.reduce((s, g) => s + g.categories.length, 0);
 
   return (
     <main className="pt-16 min-h-screen bg-surface">
@@ -81,31 +90,82 @@ export default function Awards() {
 
       {/* ── CATEGORIES ── */}
       <section className="px-6 md:px-16 py-20 border-b border-(--color-muted)">
-        <SectionTag>Award Categories</SectionTag>
-        <h2 className="font-display font-bold text-bg-warm text-[clamp(1.8rem,4vw,3rem)] tracking-tight mt-3 mb-12">
-          Nine categories of excellence
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+          <div>
+            <SectionTag>Award Categories</SectionTag>
+            <h2 className="font-display font-bold text-bg-warm text-[clamp(1.8rem,4vw,3rem)] tracking-tight mt-3">
+              {totalCategories} categories across {awardGroups.length} disciplines
+            </h2>
+          </div>
+
+          {/* Search */}
+          <div className="relative w-full md:w-80">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-bg-warm/40" />
+            <input
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search categories…"
+              className="w-full pl-11 pr-4 py-3 rounded-full border border-(--color-muted) bg-white text-sm font-body text-bg-warm placeholder:text-bg-warm/35 focus:outline-none focus:border-purple transition-colors"
+            />
+          </div>
+        </div>
+
+        {filtered.length === 0 ? (
+          <p className="font-body text-sm text-bg-warm/50 py-10 text-center">No categories match "{query}".</p>
+        ) : (
+          <div className="flex flex-col gap-10">
+            {filtered.map((group) => (
+              <div key={group.id}>
+                <h3 className="font-display font-bold text-bg-warm text-base tracking-tight mb-4 flex items-center gap-3">
+                  <span className="w-6 h-0.5 bg-yellow inline-block" />
+                  {group.name}
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+                  {group.categories.map((cat) => (
+                    <div
+                      key={cat.id}
+                      className="px-4 py-3 rounded-xl border border-(--color-muted) bg-white text-sm font-body text-bg-warm/80 hover:border-purple hover:text-bg-warm transition-colors"
+                    >
+                      {cat.name}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
+
+      {/* ── JURY ── */}
+      <section className="px-6 md:px-16 py-20 border-b border-(--color-muted) bg-bg-warm">
+        <SectionTag color="coral">The Jury</SectionTag>
+        <h2 className="font-display font-bold text-white text-[clamp(1.8rem,4vw,3rem)] tracking-tight mt-3 mb-12">
+          Confirmed judges
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
-          {awardCategories.map((cat, i) => (
-            <motion.div
-              key={cat.id}
-              custom={i}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeUp}
-              className="flex flex-col gap-3 p-6 rounded-2xl border border-(--color-muted) bg-white hover:shadow-md transition-shadow group"
+          {jury.map((judge) => (
+            <div
+              key={judge.name}
+              className={`flex flex-col gap-2 p-6 rounded-2xl border ${judge.isChair ? "border-yellow bg-yellow/10" : "border-white/10 bg-white/5"}`}
             >
-              <div className="w-8 h-1 rounded bg-yellow group-hover:w-12 transition-all duration-300" />
-              <p className="font-display font-bold text-bg-warm text-base tracking-tight">{cat.name}</p>
-              <p className="font-body text-sm text-bg-warm/60 leading-relaxed">{cat.description}</p>
-            </motion.div>
+              {judge.isChair && (
+                <span className="self-start text-[10px] font-body font-medium tracking-[0.2em] uppercase text-yellow border border-yellow px-2.5 py-1 rounded-full mb-1">
+                  Jury Chair
+                </span>
+              )}
+              <p className="font-display font-bold text-white text-lg tracking-tight">{judge.name}</p>
+              <p className="font-body text-sm text-white/60">{judge.role}, {judge.company}</p>
+              <span className="self-start text-[10px] font-body font-medium tracking-[0.15em] uppercase text-white/40 border border-white/15 px-2 py-0.5 rounded-full">
+                {judge.discipline}
+              </span>
+            </div>
           ))}
         </div>
       </section>
 
       {/* ── HOW TO ENTER ── */}
-      <section className="px-6 md:px-16 py-20 border-b border-(--color-muted) bg-surface">
+      <section className="px-6 md:px-16 py-20 border-b border-(--color-muted)">
         <SectionTag>How to Enter</SectionTag>
         <h2 className="font-display font-bold text-bg-warm text-[clamp(1.8rem,4vw,3rem)] tracking-tight mt-3 mb-12">
           Entry details
