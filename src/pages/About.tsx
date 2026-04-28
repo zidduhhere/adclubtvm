@@ -1,15 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
-
-const teamMembers = [
-  { name: "Arjun Menon", role: "President", linkedin: "#", instagram: "#" },
-  { name: "Priya Nair", role: "Vice President", linkedin: "#", instagram: "#" },
-  { name: "Rohit Krishnan", role: "Creative Director", linkedin: "#", instagram: "#" },
-  { name: "Sneha Pillai", role: "Head of Events", linkedin: "#", instagram: "#" },
-  { name: "Anil Kumar", role: "Communications Lead", linkedin: "#", instagram: "#" },
-  { name: "Divya Raj", role: "Design Lead", linkedin: "#", instagram: "#" },
-];
+import { committee } from "../data/members";
 
 export default function About() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -143,7 +134,7 @@ export default function About() {
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {teamMembers.map((member) => (
+          {committee.map((member) => (
             <div key={member.name}
               className="flex items-start gap-4 border border-(--color-muted) rounded-2xl p-4 bg-white hover:shadow-md transition-shadow">
               {/* Photo */}

@@ -267,6 +267,135 @@ export default function Home() {
         </div>
       </div>
 
+      {/* ── CLUB INTRO ── */}
+      <section className="px-6 md:px-16 py-20 border-b border-(--color-muted)">
+        <div className="flex flex-col md:flex-row gap-12 md:gap-20 items-center">
+          <div className="flex-1 flex flex-col gap-6">
+            <SectionTag>Who We Are</SectionTag>
+            <h2 className="font-display font-bold text-bg-warm text-[clamp(1.8rem,4vw,3rem)] tracking-tight leading-[1.1]">
+              Kerala's premier<br />
+              <span className="text-purple">advertising community</span>
+            </h2>
+            <p className="font-body text-base text-bg-warm/65 leading-relaxed max-w-md">
+              Advertising Club Trivandrum (ACT) is an exclusive platform established to bring together professionals from the advertising and media industries in Kerala's capital city — fostering innovation, collaboration, and professional excellence.
+            </p>
+            <Link
+              to="/about"
+              className="self-start inline-flex items-center gap-2 px-6 py-3 text-sm font-body font-medium text-white bg-purple rounded-full transition-opacity hover:opacity-85"
+            >
+              Learn More About ACT →
+            </Link>
+          </div>
+          <div className="flex-1 w-full grid grid-cols-2 gap-3">
+            {[
+              { value: "50+", label: "Members" },
+              { value: "2024", label: "Founded" },
+              { value: "3+", label: "Events" },
+              { value: "1", label: "Flagship Award" },
+            ].map((stat) => (
+              <div key={stat.label} className="p-6 rounded-2xl border border-(--color-muted) bg-white text-center">
+                <p className="font-display font-bold text-bg-warm text-4xl tracking-tight">{stat.value}</p>
+                <p className="font-body text-xs text-purple uppercase tracking-[0.15em] mt-1">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── QUICK LINKS ── */}
+      <section className="px-6 md:px-16 py-20 border-b border-(--color-muted) bg-surface">
+        <SectionTag>Explore ACT</SectionTag>
+        <h2 className="font-display font-bold text-bg-warm text-[clamp(1.8rem,4vw,3rem)] tracking-tight mt-3 mb-12">
+          What we do
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
+          {[
+            {
+              title: "About Us",
+              desc: "Learn about our mission, story, and the team driving Kerala's advertising community.",
+              href: "/about",
+              cta: "Our Story",
+              bg: "bg-purple-deep",
+              textColor: "text-white",
+            },
+            {
+              title: "Membership",
+              desc: "Join ACT and connect with Trivandrum's top advertising and media professionals.",
+              href: "/membership",
+              cta: "Join Now",
+              bg: "bg-yellow",
+              textColor: "text-bg-warm",
+            },
+            {
+              title: "LOA Awards",
+              desc: "Kerala's first dedicated advertising awards. Submit your best work for recognition.",
+              href: "/awards",
+              cta: "Apply Now",
+              bg: "bg-coral",
+              textColor: "text-white",
+            },
+            {
+              title: "Living Room",
+              desc: "Monthly dialogue series where industry veterans share unfiltered insights.",
+              href: "/living-room",
+              cta: "Learn More",
+              bg: "bg-purple",
+              textColor: "text-white",
+            },
+          ].map((card, i) => (
+            <motion.div
+              key={card.title}
+              custom={i}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08, duration: 0.5 }}
+              className={`flex flex-col justify-between gap-8 p-7 rounded-2xl ${card.bg} min-h-[220px]`}
+            >
+              <div className="flex flex-col gap-3">
+                <p className={`font-display font-bold text-xl tracking-tight ${card.textColor}`}>{card.title}</p>
+                <p className={`font-body text-sm leading-relaxed ${card.textColor} opacity-75`}>{card.desc}</p>
+              </div>
+              <Link
+                to={card.href}
+                className={`self-start text-sm font-body font-medium ${card.textColor} opacity-85 hover:opacity-100 transition-opacity`}
+              >
+                {card.cta} →
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── UPCOMING EVENT TEASER ── */}
+      <section className="px-6 md:px-16 py-16 border-b border-(--color-muted) bg-bg-warm">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex flex-col gap-2">
+            <SectionTag color="coral">What's Next</SectionTag>
+            <h2 className="font-display font-bold text-white text-[clamp(1.4rem,3.5vw,2.5rem)] tracking-tight mt-2">
+              LOA Awards 2025 — <span className="text-yellow">Applications Open</span>
+            </h2>
+            <p className="font-body text-sm text-white/60 max-w-lg leading-relaxed">
+              Kerala's first dedicated advertising awards are now accepting entries across nine categories — film, digital, print, design, and more. Open to all agencies and brands that worked in the Kerala market.
+            </p>
+          </div>
+          <div className="flex flex-col gap-3 shrink-0">
+            <Link
+              to="/awards"
+              className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-body font-medium text-bg-warm bg-yellow rounded-full transition-opacity hover:opacity-85 whitespace-nowrap"
+            >
+              Submit Entry →
+            </Link>
+            <Link
+              to="/events"
+              className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-body font-medium text-white border border-white/25 rounded-full transition-colors hover:border-white/50 whitespace-nowrap"
+            >
+              View All Events
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ── ABOUT ────────────────────────────────────────────────── */}
       <section className="border-b border-muted">
 
