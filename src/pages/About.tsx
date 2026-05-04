@@ -16,36 +16,34 @@ export default function About() {
   }
 
   return (
-    <main className="pt-16 min-h-screen bg-surface">
+    <main className="pt-16 min-h-screen bg-white">
 
       {/* ── HERO ─────────────────────────────────────────────── */}
-      <section className="relative px-6 md:px-16 pt-16 pb-20 border-b border-(--color-muted) overflow-hidden">
-        <img src="/eye-balls.svg" alt="" aria-hidden="true"
-          className="absolute right-0 top-0 w-40 md:w-56 opacity-10 pointer-events-none select-none" />
-
-        <div className="flex flex-col md:flex-row gap-12 md:gap-20 items-center">
-          {/* Left */}
-          <div className="flex-55 flex flex-col gap-6">
-            <span className="font-body italic text-purple text-sm tracking-wide">About</span>
-            <h1 className="font-display font-bold text-bg-warm leading-[1.05] text-[clamp(2.4rem,6vw,4.5rem)] tracking-tight">
+      <section
+        className="w-full bg-white border-b border-(--color-muted)"
+        style={{ minHeight: "92svh", display: "flex", flexDirection: "column" }}
+      >
+        <div className="flex-1 flex items-center justify-center px-6 md:px-16">
+          <div className="max-w-3xl w-full py-20 md:py-16 flex flex-col items-center text-center gap-6">
+            <span className="font-body text-[10px] tracking-[0.35em] uppercase text-purple">About</span>
+            <h1 className="font-display font-bold text-bg-warm leading-[1.02] tracking-tight text-[clamp(3.5rem,8.5vw,6rem)]">
               Advertising{" "}
-              <span className="text-coral">Club TVM</span>
+              <span style={{ color: "#FEC812" }}>Club TVM</span>
             </h1>
-            <p className="font-body text-base text-bg-warm/70 leading-relaxed max-w-md">
+            <p className="font-body text-base text-bg-warm/60 leading-relaxed max-w-md">
               A vibrant community of advertising and media professionals in Kerala's capital — fostering innovation, collaboration, and professional excellence.
             </p>
-            <Link to="/about"
-              className="self-start inline-flex items-center gap-2 px-7 py-3.5 text-sm font-body font-medium tracking-wide text-white bg-coral rounded-full transition-opacity hover:opacity-85">
+            <Link to="/membership"
+              className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-body font-medium tracking-wide text-white bg-purple rounded-full transition-opacity hover:opacity-85">
               Join with Us
             </Link>
           </div>
-
-          {/* Right */}
-          <div className="flex-45 w-full">
-            <div className="w-full aspect-video rounded-3xl overflow-hidden shadow-md bg-muted">
-              <img src="https://placehold.co/800x700/1a1a2e/ffffff?text=About+ACT" alt="About ACT"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
-            </div>
+        </div>
+        <div className="border-t border-(--color-muted) overflow-hidden py-4">
+          <div className="flex whitespace-nowrap">
+            <span className="marquee-track inline-flex gap-0 font-display font-bold text-sm tracking-[0.2em] text-purple uppercase">
+              {"EVENTS · AWARDS · NETWORKING · SEMINARS · TRIVANDRUM · KERALA · CREATIVITY · ADVERTISING · ".repeat(6)}
+            </span>
           </div>
         </div>
       </section>
@@ -64,8 +62,8 @@ export default function About() {
       <section className="px-6 md:px-16 py-16 border-b border-(--color-muted)">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {["about-a", "about-b", "about-c"].map((seed) => (
-            <div key={seed} className="aspect-video rounded-2xl overflow-hidden shadow-sm bg-muted">
-              <img src="https://placehold.co/700x525/2d1b69/ffffff?text=Photo" alt=""
+            <div key={seed} className="rounded-2xl overflow-hidden shadow-sm bg-muted" style={{ width: "400px", height: "400px", maxWidth: "100%" }}>
+              <img src="https://placehold.co/400x400/2d1b69/ffffff?text=Photo" alt=""
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
             </div>
           ))}
@@ -133,23 +131,18 @@ export default function About() {
           Core Team
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
           {committee.map((member) => (
-            <div key={member.name}
-              className="flex items-start gap-4 border border-(--color-muted) rounded-2xl p-4 bg-white hover:shadow-md transition-shadow">
-              {/* Photo */}
-              <div className="w-20 h-20 shrink-0 rounded-xl overflow-hidden bg-muted">
-                <img src="https://placehold.co/200x200/2d1b69/ffffff?text=Photo"
+            <div key={member.name} className="flex flex-col gap-3">
+              {/* Photo — square, no rounded corners */}
+              <div className="bg-muted overflow-hidden" style={{ aspectRatio: "1/1" }}>
+                <img src="https://placehold.co/400x400/2d1b69/ffffff?text=Photo"
                   alt={member.name} className="w-full h-full object-cover" />
               </div>
               {/* Info */}
-              <div className="flex flex-col justify-between h-full gap-2 py-0.5">
-                <div className="flex flex-col gap-1 text-xs font-body">
-                  <a href={member.linkedin} className="text-purple hover:underline">LinkedIn</a>
-                  <a href={member.instagram} className="text-purple hover:underline">Instagram</a>
-                  <span className="text-bg-warm/50">{member.role}</span>
-                </div>
-                <p className="font-display font-bold text-bg-warm text-sm tracking-tight">{member.name}</p>
+              <div className="flex flex-col gap-0.5">
+                <p className="font-display font-bold text-bg-warm text-base tracking-tight">{member.name}</p>
+                <p className="font-body italic text-sm text-bg-warm/55">{member.role}</p>
               </div>
             </div>
           ))}

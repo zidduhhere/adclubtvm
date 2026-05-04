@@ -7,8 +7,6 @@ import SectionTag from "../components/SectionTag";
 import { StackedCardsInteraction } from "../components/ui/stacked-cards-interaction";
 import HeroSection from "../components/HeroSection";
 
-const marqueeText =
-  "EVENTS · AWARDS · NETWORKING · SEMINARS · TRIVANDRUM · KERALA · CREATIVITY · ADVERTISING · ";
 
 const flagships = [
   {
@@ -258,15 +256,6 @@ export default function Home() {
       {/* ── HERO ─────────────────────────────────────────────────── */}
       <HeroSection />
 
-      {/* ── MARQUEE ──────────────────────────────────────────────── */}
-      <div className="border-b border-muted overflow-hidden py-4 bg-surface">
-        <div className="flex whitespace-nowrap">
-          <span className="marquee-track inline-flex gap-0 font-display font-bold text-sm tracking-[0.2em] text-purple uppercase">
-            {marqueeText.repeat(6)}
-          </span>
-        </div>
-      </div>
-
       {/* ── CLUB INTRO ── */}
       <section className="px-6 md:px-16 py-20 border-b border-(--color-muted)">
         <div className="flex flex-col md:flex-row gap-12 md:gap-20 items-center">
@@ -303,7 +292,7 @@ export default function Home() {
       </section>
 
       {/* ── QUICK LINKS ── */}
-      <section className="px-6 md:px-16 py-20 border-b border-(--color-muted) bg-surface">
+      <section className="px-6 md:px-16 py-20 border-b border-(--color-muted) bg-white">
         <SectionTag>Explore ACT</SectionTag>
         <h2 className="font-display font-bold text-bg-warm text-[clamp(1.8rem,4vw,3rem)] tracking-tight mt-3 mb-12">
           What we do
@@ -315,7 +304,7 @@ export default function Home() {
               desc: "Learn about our mission, story, and the team driving Kerala's advertising community.",
               href: "/about",
               cta: "Our Story",
-              bg: "bg-purple-deep",
+              bg: "bg-purple",
               textColor: "text-white",
             },
             {
@@ -331,16 +320,16 @@ export default function Home() {
               desc: "Kerala's first dedicated advertising awards. Submit your best work for recognition.",
               href: "/awards",
               cta: "Apply Now",
-              bg: "bg-coral",
-              textColor: "text-white",
+              bg: "bg-white border border-muted",
+              textColor: "text-bg-warm",
             },
             {
               title: "Living Room",
               desc: "Monthly dialogue series where industry veterans share unfiltered insights.",
               href: "/living-room",
               cta: "Learn More",
-              bg: "bg-purple",
-              textColor: "text-white",
+              bg: "bg-white border border-muted",
+              textColor: "text-bg-warm",
             },
           ].map((card, i) => (
             <motion.div
@@ -368,14 +357,14 @@ export default function Home() {
       </section>
 
       {/* ── UPCOMING EVENT TEASER ── */}
-      <section className="px-6 md:px-16 py-16 border-b border-(--color-muted) bg-bg-warm">
+      <section className="px-6 md:px-16 py-16 border-b border-(--color-muted) bg-white">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex flex-col gap-2">
-            <SectionTag color="coral">What's Next</SectionTag>
-            <h2 className="font-display font-bold text-white text-[clamp(1.4rem,3.5vw,2.5rem)] tracking-tight mt-2">
-              LOA Awards 2025 — <span className="text-yellow">Applications Open</span>
+            <SectionTag>What's Next</SectionTag>
+            <h2 className="font-display font-bold text-bg-warm text-[clamp(1.4rem,3.5vw,2.5rem)] tracking-tight mt-2">
+              LOA Awards 2025 — <span className="text-purple">Applications Open</span>
             </h2>
-            <p className="font-body text-sm text-white/60 max-w-lg leading-relaxed">
+            <p className="font-body text-sm text-bg-warm/60 max-w-lg leading-relaxed">
               Kerala's first dedicated advertising awards are now accepting entries across nine categories — film, digital, print, design, and more. Open to all agencies and brands that worked in the Kerala market.
             </p>
           </div>
@@ -388,7 +377,7 @@ export default function Home() {
             </Link>
             <Link
               to="/events"
-              className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-body font-medium text-white border border-white/25 rounded-full transition-colors hover:border-white/50 whitespace-nowrap"
+              className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-body font-medium text-bg-warm border border-muted rounded-full transition-colors hover:border-purple whitespace-nowrap"
             >
               View All Events
             </Link>
@@ -399,32 +388,32 @@ export default function Home() {
       {/* ── ABOUT ────────────────────────────────────────────────── */}
       <section className="border-b border-muted">
 
-        {/* ── DARK ZONE: deep purple ── */}
-        <div className="bg-purple-deep">
+        {/* ── MANIFESTO ZONE ── */}
+        <div className="bg-white">
 
           {/* Two-column: text left, stacked cards right */}
           <div className="px-6 md:px-16 pt-20 pb-14 flex flex-col md:flex-row gap-16 md:gap-10 items-center">
 
             {/* Left — manifesto + body */}
             <FadeUp className="flex-1 flex flex-col gap-7 md:max-w-[48%]">
-              <p className="font-body text-[10px] font-semibold text-white/35 tracking-[0.3em] uppercase">
+              <p className="font-body text-[10px] font-semibold text-bg-warm/35 tracking-[0.3em] uppercase">
                 Est. 2025 · Trivandrum, Kerala
               </p>
               <h2
-                className="font-display font-bold text-white leading-[1.04] tracking-tight"
+                className="font-display font-bold text-bg-warm leading-[1.04] tracking-tight"
                 style={{ fontSize: "clamp(2.25rem, 5vw, 4rem)" }}
               >
                 A gathering place for Kerala's advertising minds.
               </h2>
-              <p className="font-body text-base text-white/55 leading-relaxed">
+              <p className="font-body text-base text-bg-warm/55 leading-relaxed">
                 Advertising Club Trivandrum was born from a collective vision — a permanent home for the capital city's creative community, where craft meets connection and ambition finds its people.
               </p>
-              <p className="font-body text-sm text-white/35 leading-relaxed">
+              <p className="font-body text-sm text-bg-warm/40 leading-relaxed">
                 We connect creatives, strategists, and media professionals to elevate the standards of advertising across Kerala through events, awards, and shared ambition.
               </p>
               <Link
                 to="/about"
-                className="self-start inline-flex items-center gap-2 font-body text-sm font-medium text-yellow hover:text-yellow/80 transition-colors"
+                className="self-start inline-flex items-center gap-2 font-body text-sm font-medium text-purple hover:text-purple/70 transition-colors"
               >
                 Learn more about us →
               </Link>
@@ -454,25 +443,25 @@ export default function Home() {
                 ]}
               />
               {/* Stats anchored below the cards */}
-              <div className="flex gap-10 border-t border-white/10 pt-6 w-full justify-center">
+              <div className="flex gap-10 border-t border-muted pt-6 w-full justify-center">
                 {[
                   { num: "2025", label: "Founded" },
                   { num: "3", label: "Programmes" },
                   { num: "TVM", label: "Home City" },
                 ].map(({ num, label }) => (
                   <div key={label} className="flex flex-col items-center gap-1">
-                    <p className="font-display font-bold text-white text-xl">{num}</p>
-                    <p className="font-body text-[9px] text-white/35 tracking-[0.2em] uppercase">{label}</p>
+                    <p className="font-display font-bold text-bg-warm text-xl">{num}</p>
+                    <p className="font-body text-[9px] text-bg-warm/35 tracking-[0.2em] uppercase">{label}</p>
                   </div>
                 ))}
               </div>
             </FadeUp>
           </div>
 
-          {/* Who's in the room — still on dark */}
-          <div className="border-t border-white/10 px-6 md:px-16 py-7">
+          {/* Who's in the room */}
+          <div className="border-t border-muted px-6 md:px-16 py-7">
             <FadeUp className="flex flex-col md:flex-row md:items-baseline gap-4 md:gap-14">
-              <p className="font-body text-[9px] font-semibold text-white/25 tracking-[0.28em] uppercase shrink-0">
+              <p className="font-body text-[9px] font-semibold text-bg-warm/25 tracking-[0.28em] uppercase shrink-0">
                 Who's in the room
               </p>
               <div className="flex flex-wrap gap-y-1.5">
@@ -481,10 +470,10 @@ export default function Home() {
                   "Copywriters", "Art Directors", "Digital Marketers",
                   "Photographers", "PR Professionals", "Campaign Managers",
                 ].map((role, i, arr) => (
-                  <span key={role} className="font-body text-sm text-white/50 font-medium">
+                  <span key={role} className="font-body text-sm text-bg-warm/50 font-medium">
                     {role}
                     {i < arr.length - 1 && (
-                      <span className="text-yellow/30 mx-2.5">·</span>
+                      <span className="text-purple/25 mx-2.5">·</span>
                     )}
                   </span>
                 ))}
@@ -493,8 +482,8 @@ export default function Home() {
           </div>
         </div>
 
-        {/* ── CREAM ZONE: three pillars ── */}
-        <div className="bg-surface px-6 md:px-16 pt-16 pb-20">
+        {/* ── THREE PILLARS ── */}
+        <div className="bg-white px-6 md:px-16 pt-16 pb-20 border-t border-muted">
           <p className="font-body text-[9px] font-semibold text-bg-warm/30 tracking-[0.28em] uppercase mb-14">
             What drives us
           </p>
@@ -594,7 +583,7 @@ export default function Home() {
                       {tag}
                     </span>
                     {isApply && (
-                      <span className="hidden md:inline font-body text-[11px] font-medium text-coral tracking-wide">
+                      <span className="hidden md:inline font-body text-[11px] font-medium text-purple tracking-wide">
                         {date}
                       </span>
                     )}

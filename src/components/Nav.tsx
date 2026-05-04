@@ -102,7 +102,7 @@ export default function Nav() {
           colors={["#E8D5F5", "#6B308E"]}
           accentColor="#FEC812"
           menuButtonColor="#231F20"
-          openMenuButtonColor="#ffffff"
+          openMenuButtonColor="#231F20"
           changeMenuColorOnOpen={true}
           closeOnClickAway={true}
         />
