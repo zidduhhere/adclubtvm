@@ -28,6 +28,7 @@ export interface Judge {
   role: string;
   company: string;
   isChair?: boolean;
+  photo?: string;
 }
 
 export const awardGroups: AwardGroup[] = [
@@ -141,13 +142,13 @@ export const awardGroups: AwardGroup[] = [
 ];
 
 export const jury: Judge[] = [
-  { name: "Bobby Pawar", discipline: "Copy", role: "Former Chairman", company: "Havas", isChair: true },
-  { name: "Senthil Kumar", discipline: "Copy", role: "CCO", company: "VML" },
-  { name: "PK Anil Kumar", discipline: "Copy", role: "Director – Creative Excellence", company: "McCann" },
-  { name: "Sagar Jadhav", discipline: "Art", role: "ECD", company: "Ogilvy" },
-  { name: "Krishnanunni", discipline: "Creative", role: "Creative Head", company: "Ather" },
-  { name: "Swarup BR", discipline: "Copy & Strategy", role: "Creative Director", company: "Stark" },
-  { name: "Pooja Manek", discipline: "Copy", role: "Founding Member", company: "Talented" },
+  { name: "Bobby Pawar", discipline: "Copy", role: "Former Chairman", company: "Havas", isChair: true, photo: "https://placehold.co/300x300/1a1a2e/ffffff?text=BP" },
+  { name: "Senthil Kumar", discipline: "Copy", role: "CCO", company: "VML", photo: "https://placehold.co/300x300/2d1b69/ffffff?text=SK" },
+  { name: "PK Anil Kumar", discipline: "Copy", role: "Director – Creative Excellence", company: "McCann", photo: "https://placehold.co/300x300/1a1a2e/ffffff?text=PK" },
+  { name: "Sagar Jadhav", discipline: "Art", role: "ECD", company: "Ogilvy", photo: "https://placehold.co/300x300/2d1b69/ffffff?text=SJ" },
+  { name: "Krishnanunni", discipline: "Creative", role: "Creative Head", company: "Ather", photo: "https://placehold.co/300x300/1a1a2e/ffffff?text=KN" },
+  { name: "Swarup BR", discipline: "Copy & Strategy", role: "Creative Director", company: "Stark", photo: "https://placehold.co/300x300/2d1b69/ffffff?text=SB" },
+  { name: "Pooja Manek", discipline: "Copy", role: "Founding Member", company: "Talented", photo: "https://placehold.co/300x300/1a1a2e/ffffff?text=PM" },
 ];
 
 export const editions: AwardEdition[] = [

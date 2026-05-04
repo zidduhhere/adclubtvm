@@ -14,21 +14,31 @@ export default function LivingRoom() {
   const past = sessions.filter((s) => s.status === "past");
 
   return (
-    <main className="pt-16 min-h-screen bg-surface">
+    <main className="pt-16 min-h-screen bg-white">
 
       {/* ── HERO ── */}
-      <section className="relative px-6 md:px-16 pt-16 pb-20 border-b border-(--color-muted) overflow-hidden">
-        <img src="/spiral-asset-1.svg" alt="" aria-hidden="true"
-          className="absolute right-8 top-8 w-48 opacity-10 pointer-events-none select-none" />
-        <div className="relative z-10 max-w-3xl">
+      <section
+        className="w-full bg-white px-6 md:px-16 border-b border-(--color-muted)"
+        style={{ minHeight: "92svh", display: "flex", flexDirection: "column" }}
+      >
+        <div className="flex-1 flex items-center justify-center px-6 md:px-16">
+          <div className="max-w-3xl w-full py-20 md:py-16 flex flex-col items-center text-center gap-6">
           <SectionTag>Flagship Programme</SectionTag>
-          <h1 className="font-display font-bold text-bg-warm leading-[1.05] text-[clamp(2.8rem,7vw,5.5rem)] tracking-tight mt-4">
+          <h1 className="font-display font-bold text-bg-warm leading-[1.02] tracking-tight text-[clamp(3.5rem,8.5vw,6rem)]">
             The Living{" "}
-            <span className="text-coral">Room</span>
+            <span style={{ color: "#FEC812" }}>Room</span>
           </h1>
-          <p className="font-body text-bg-warm/65 text-base leading-relaxed mt-5 max-w-xl">
+          <p className="font-body text-bg-warm/60 text-base leading-relaxed max-w-xl">
             {livingRoomDescription}
           </p>
+        </div>
+        </div>
+        <div className="border-t border-(--color-muted) overflow-hidden py-4">
+          <div className="flex whitespace-nowrap">
+            <span className="marquee-track inline-flex gap-0 font-display font-bold text-sm tracking-[0.2em] text-purple uppercase">
+              {"EVENTS · AWARDS · NETWORKING · SEMINARS · TRIVANDRUM · KERALA · CREATIVITY · ADVERTISING · ".repeat(6)}
+            </span>
+          </div>
         </div>
       </section>
 

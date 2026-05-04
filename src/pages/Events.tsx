@@ -31,18 +31,31 @@ export default function Events() {
     : allCards;
 
   return (
-    <main className="pt-16 min-h-screen bg-surface">
+    <main className="pt-16 min-h-screen bg-white">
 
       {/* ── HEADER ─────────────────────────────────────────────── */}
-      <section className="relative px-6 md:px-16 pt-14 pb-10 border-b border-(--color-muted) overflow-hidden">
-        <img src="/Group.svg" alt="" aria-hidden="true"
-          className="absolute right-0 top-0 h-full opacity-8 pointer-events-none select-none" />
-        <h1 className="font-display font-bold text-bg-warm text-[clamp(3.5rem,10vw,6rem)] leading-none tracking-tight">
-          Events
-        </h1>
-        <p className="font-body text-sm text-bg-warm/60 mt-3 max-w-md">
-          Landmark moments that bring Kerala's advertising community together.
-        </p>
+      <section
+        className="w-full bg-white px-6 md:px-16 border-b border-(--color-muted)"
+        style={{ minHeight: "92svh", display: "flex", flexDirection: "column" }}
+      >
+        <div className="flex-1 flex items-center justify-center px-6 md:px-16">
+          <div className="max-w-3xl w-full py-16 flex flex-col items-center text-center gap-5">
+            <span className="font-body text-[10px] tracking-[0.35em] uppercase text-purple">ACT</span>
+            <h1 className="font-display font-bold text-bg-warm text-[clamp(3.5rem,8.5vw,6rem)] leading-[1.02] tracking-tight">
+              Events
+            </h1>
+            <p className="font-body text-sm text-bg-warm/55 max-w-md">
+              Landmark moments that bring Kerala's advertising community together.
+            </p>
+          </div>
+        </div>
+        <div className="border-t border-(--color-muted) overflow-hidden py-4">
+          <div className="flex whitespace-nowrap">
+            <span className="marquee-track inline-flex gap-0 font-display font-bold text-sm tracking-[0.2em] text-purple uppercase">
+              {"EVENTS · AWARDS · NETWORKING · SEMINARS · TRIVANDRUM · KERALA · CREATIVITY · ADVERTISING · ".repeat(6)}
+            </span>
+          </div>
+        </div>
       </section>
 
       {/* ── FILTER TABS ── */}
@@ -64,15 +77,15 @@ export default function Events() {
 
       {/* ── EVENTS GRID ────────────────────────────────────────── */}
       <section className="px-6 md:px-16 py-14">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-6">
           {displayCards.map((card) => (
             <Link
               key={card.id}
               to={card.real ? `/events/${card.id}` : "#"}
               className="group flex flex-col rounded-2xl overflow-hidden border border-(--color-muted) bg-white hover:shadow-md transition-shadow"
             >
-              {/* Image — tall portrait */}
-              <div className="relative overflow-hidden h-[180px] md:h-[200px] bg-muted">
+              {/* Image — 9:16 portrait */}
+              <div className="relative overflow-hidden bg-muted" style={{ aspectRatio: "9/16", height: "30em" }}>
                 <img src={card.image} alt={card.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 {!card.real && (

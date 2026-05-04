@@ -10,7 +10,7 @@ export default function SectionTag({ children, color = "purple" }: SectionTagPro
       : "border-purple text-purple";
   return (
     <span
-      className={`inline-flex items-center self-start border ${cls} text-xs tracking-[0.2em] uppercase font-body font-medium px-4 py-1.5 rounded-full`}
+      className={`inline-flex items-center w-fit border ${cls} text-xs tracking-[0.2em] uppercase font-body font-medium px-4 py-1.5 rounded-full`}
     >
       {children}
     </span>
