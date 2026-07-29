@@ -13,6 +13,8 @@ import Membership from "./pages/Membership";
 import Awards from "./pages/Awards";
 import LivingRoom from "./pages/LivingRoom";
 import { Banner } from "./components/ui/banner";
+import MaintenanceOverlay from "./components/MaintenanceOverlay";
+import { MAINTENANCE_MODE } from "./config/maintenance";
 
 const BANNER_H = 44;
 
@@ -76,6 +78,10 @@ function AppLayout() {
 }
 
 export default function App() {
+  if (MAINTENANCE_MODE) {
+    return <MaintenanceOverlay />;
+  }
+
   return (
     <BrowserRouter>
       <AppLayout />

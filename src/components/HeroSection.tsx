@@ -14,14 +14,29 @@ export default function HeroSection() {
           <p className="font-body text-[10px] tracking-[0.35em] uppercase text-purple mb-10">
             Advertising Club Trivandrum
           </p>
-          <h1
-            className="font-display font-bold text-bg-warm leading-[1.02] tracking-tight"
-            style={{ fontSize: "clamp(3.5rem, 8.5vw, 6rem)" }}
-          >
-            For the{" "}
-            <span style={{ color: "#FEC812" }}>love</span> of
-            Advertising.
-          </h1>
+          <div className="relative inline-block text-left my-4">
+            <img
+              src="/love-asset-4.svg"
+              alt=""
+              className="absolute z-0 pointer-events-none"
+              style={{
+                width: "50%",
+                maxWidth: "none",
+                top: "50%",
+                left: "45%",
+                transform: "translate(-50%, -50%)",
+              }}
+            />
+            <h1
+              className="font-display font-bold text-purple leading-[1] tracking-tight relative z-10"
+              style={{ fontSize: "clamp(3.5rem, 6vw, 6.5rem)" }}
+            >
+              <div className="block">For</div>
+              <div className="block">the</div>
+              <div className="block">Love of</div>
+              <div className="block">Advertising.</div>
+            </h1>
+          </div>
           <p className="font-body text-base text-bg-warm/50 mt-8 max-w-sm leading-relaxed text-center">
             Kerala's premier community for advertising and media professionals — based in Trivandrum.
           </p>
