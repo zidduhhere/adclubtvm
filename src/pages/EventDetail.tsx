@@ -5,9 +5,7 @@ export default function EventDetail() {
   const { id } = useParams<{ id: string }>();
   const event = events.find((e) => e.id === id) ?? events[0];
 
-  const galleryImages = event.images ?? Array.from({ length: 8 }, (_, i) =>
-    `https://placehold.co/600x800/1a1a2e/ffffff?text=Photo+${i + 1}`
-  );
+  const galleryImages = event.images ?? [];
 
   return (
     <main className="pt-16 min-h-screen bg-surface">
@@ -22,12 +20,14 @@ export default function EventDetail() {
       </div>
 
       {/* ── HERO IMAGE ─────────────────────────────────────────── */}
-      <section className="px-6 md:px-16 pt-6">
-        <div className="w-full h-[200px] md:h-[280px] rounded-3xl overflow-hidden shadow-md bg-muted">
-          <img src={galleryImages[0] ?? `https://placehold.co/1400x500/1a1a2e/ffffff?text=Event+Hero`}
-            alt={event.title} className="w-full h-full object-cover" />
-        </div>
-      </section>
+      {galleryImages.length > 0 && (
+        <section className="px-6 md:px-16 pt-6">
+          <div className="w-full h-[200px] md:h-[280px] rounded-3xl overflow-hidden shadow-md bg-muted">
+            <img src={galleryImages[0]}
+              alt={event.title} className="w-full h-full object-cover" />
+          </div>
+        </section>
+      )}
 
       {/* ── TITLE BAR ──────────────────────────────────────────── */}
       <section className="px-6 md:px-16 mt-6">
@@ -65,9 +65,8 @@ export default function EventDetail() {
 
         <div className="flex flex-col md:flex-row gap-10 md:gap-14 items-start">
           {/* Portrait */}
-          <div className="w-full md:w-48 shrink-0 h-[200px] md:h-[240px] rounded-2xl overflow-hidden shadow-sm bg-muted">
-            <img src="https://placehold.co/400x600/2d1b69/ffffff?text=Speaker" alt="Speaker"
-              className="w-full h-full object-cover" />
+          <div className="w-full md:w-48 shrink-0 h-[200px] md:h-[240px] rounded-2xl overflow-hidden shadow-sm bg-muted flex items-center justify-center">
+            <span className="font-display text-bg-warm/30 uppercase text-xs tracking-widest font-bold">Photo Unavailable</span>
           </div>
 
           {/* Bio */}
@@ -97,41 +96,43 @@ export default function EventDetail() {
       </section>
 
       {/* ── EVENT GALLERY ──────────────────────────────────────── */}
-      <section className="px-6 md:px-16 py-20 border-b border-(--color-muted)">
-        <h2 className="font-body italic text-purple text-xl mb-10 tracking-wide">
-          Event Gallery
-        </h2>
+      {galleryImages.length > 0 && (
+        <section className="px-6 md:px-16 py-20 border-b border-(--color-muted)">
+          <h2 className="font-body italic text-purple text-xl mb-10 tracking-wide">
+            Event Gallery
+          </h2>
 
-        <div className="grid grid-cols-3 gap-3">
-          {/* Row 1: tall | stacked-2 | tall */}
-          <div className="row-span-2 rounded-2xl overflow-hidden shadow-sm" style={{ height: "280px", backgroundColor: "var(--color-muted)" }}>
-            <img src={galleryImages[0]} alt="Gallery" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
-          </div>
-          <div className="rounded-2xl overflow-hidden shadow-sm" style={{ height: "135px", backgroundColor: "var(--color-muted)" }}>
-            <img src={galleryImages[1]} alt="Gallery" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
-          </div>
-          <div className="row-span-2 rounded-2xl overflow-hidden shadow-sm" style={{ height: "280px", backgroundColor: "var(--color-muted)" }}>
-            <img src={galleryImages[2]} alt="Gallery" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
-          </div>
-          <div className="rounded-2xl overflow-hidden shadow-sm" style={{ height: "135px", backgroundColor: "var(--color-muted)" }}>
-            <img src={galleryImages[3]} alt="Gallery" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
-          </div>
+          <div className="grid grid-cols-3 gap-3">
+            {/* Row 1: tall | stacked-2 | tall */}
+            <div className="row-span-2 rounded-2xl overflow-hidden shadow-sm" style={{ height: "280px", backgroundColor: "var(--color-muted)" }}>
+              <img src={galleryImages[0]} alt="Gallery" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+            </div>
+            <div className="rounded-2xl overflow-hidden shadow-sm" style={{ height: "135px", backgroundColor: "var(--color-muted)" }}>
+              <img src={galleryImages[1]} alt="Gallery" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+            </div>
+            <div className="row-span-2 rounded-2xl overflow-hidden shadow-sm" style={{ height: "280px", backgroundColor: "var(--color-muted)" }}>
+              <img src={galleryImages[2]} alt="Gallery" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+            </div>
+            <div className="rounded-2xl overflow-hidden shadow-sm" style={{ height: "135px", backgroundColor: "var(--color-muted)" }}>
+              <img src={galleryImages[3]} alt="Gallery" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+            </div>
 
-          {/* Row 2: tall | stacked-2 | tall */}
-          <div className="row-span-2 rounded-2xl overflow-hidden shadow-sm" style={{ height: "280px", backgroundColor: "var(--color-muted)" }}>
-            <img src={galleryImages[4]} alt="Gallery" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+            {/* Row 2: tall | stacked-2 | tall */}
+            <div className="row-span-2 rounded-2xl overflow-hidden shadow-sm" style={{ height: "280px", backgroundColor: "var(--color-muted)" }}>
+              <img src={galleryImages[4]} alt="Gallery" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+            </div>
+            <div className="rounded-2xl overflow-hidden shadow-sm" style={{ height: "135px", backgroundColor: "var(--color-muted)" }}>
+              <img src={galleryImages[5]} alt="Gallery" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+            </div>
+            <div className="row-span-2 rounded-2xl overflow-hidden shadow-sm" style={{ height: "280px", backgroundColor: "var(--color-muted)" }}>
+              <img src={galleryImages[6]} alt="Gallery" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+            </div>
+            <div className="rounded-2xl overflow-hidden shadow-sm" style={{ height: "135px", backgroundColor: "var(--color-muted)" }}>
+              <img src={galleryImages[7] ?? galleryImages[0]} alt="Gallery" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+            </div>
           </div>
-          <div className="rounded-2xl overflow-hidden shadow-sm" style={{ height: "135px", backgroundColor: "var(--color-muted)" }}>
-            <img src={galleryImages[5]} alt="Gallery" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
-          </div>
-          <div className="row-span-2 rounded-2xl overflow-hidden shadow-sm" style={{ height: "280px", backgroundColor: "var(--color-muted)" }}>
-            <img src={galleryImages[6]} alt="Gallery" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
-          </div>
-          <div className="rounded-2xl overflow-hidden shadow-sm" style={{ height: "135px", backgroundColor: "var(--color-muted)" }}>
-            <img src={galleryImages[7] ?? galleryImages[0]} alt="Gallery" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* ── ADDONS ─────────────────────────────────────────────── */}
       <section className="px-6 md:px-16 py-20">

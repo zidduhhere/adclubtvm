@@ -56,7 +56,9 @@ export default function Awards() {
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               <a
-                href="mailto:adclubtrivandrum@gmail.com?subject=LOA%20Awards%202025%20Entry"
+                href="https://loaawards.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-body font-medium text-bg-warm bg-yellow rounded-full transition-opacity hover:opacity-85"
               >
                 Submit Entry →
@@ -93,7 +95,9 @@ export default function Awards() {
               </p>
             </div>
             <a
-              href="mailto:adclubtrivandrum@gmail.com?subject=LOA%20Awards%202025%20Entry"
+              href="https://loaawards.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="shrink-0 inline-flex items-center gap-2 px-6 py-3 text-sm font-body font-medium text-white bg-purple rounded-full transition-opacity hover:opacity-85"
             >
               Applications Open — Enter Now →
@@ -238,7 +242,9 @@ export default function Awards() {
           Entries must be for advertising work produced for the Kerala market between January 2024 and December 2024. Multiple entries per category are permitted. Deadline to be announced.
         </p>
         <a
-          href="mailto:adclubtrivandrum@gmail.com?subject=LOA%20Awards%202025%20Entry"
+          href="https://loaawards.com"
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-flex items-center gap-2 mt-6 px-7 py-3.5 text-sm font-body font-medium text-white bg-purple rounded-full transition-opacity hover:opacity-85"
         >
           Submit Your Entry →

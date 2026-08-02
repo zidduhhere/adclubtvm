@@ -1,8 +1,9 @@
 export interface CommitteeMember {
   name: string;
   role: string;
-  linkedin: string;
-  instagram: string;
+  company: string;
+  image?: string;
+  group: "Office Bearers" | "Managing Committee" | "Advisory Board";
 }
 
 export interface MembershipTier {
@@ -13,14 +14,25 @@ export interface MembershipTier {
   perks: string[];
 }
 
-// TODO: replace "#" linkedin/instagram values with real profile URLs before launch
 export const committee: CommitteeMember[] = [
-  { name: "Laj Salam", role: "President", linkedin: "#", instagram: "#" },
-  { name: "Renjith Mohan", role: "Vice President", linkedin: "#", instagram: "#" },
-  { name: "Anitha Krishnan", role: "Secretary", linkedin: "#", instagram: "#" },
-  { name: "Deepak Nair", role: "Treasurer", linkedin: "#", instagram: "#" },
-  { name: "Priya Suresh", role: "Creative Director", linkedin: "#", instagram: "#" },
-  { name: "Arun Pillai", role: "Head of Events", linkedin: "#", instagram: "#" },
+  { name: "Laj Salam", role: "President", company: "PlainSpeak", image: "/images/Laj.jpeg", group: "Office Bearers" },
+  { name: "B. Sunil", role: "Vice President", company: "Kairali TV", image: "/images/Sunil.jpeg", group: "Office Bearers" },
+  { name: "Vishnu Vijay", role: "Secretary", company: "Mathrubhumi Daily", image: "/images/Vishnu.jpeg", group: "Office Bearers" },
+  { name: "Manikantan R. K.", role: "Treasurer", company: "Mangalam Daily", image: "/images/Manikandan.jpeg", group: "Office Bearers" },
+  { name: "Thomas George", role: "Joint Secretary", company: "Stark Communications", image: "/images/Thomas.jpeg", group: "Office Bearers" },
+
+  { name: "Krishnanunni M. R.", role: "Member", company: "The Hindu", image: "/images/Unni.jpeg", group: "Managing Committee" },
+  { name: "Krishna Kumar R.", role: "Member", company: "Malayala Manorama Daily", image: "/images/Krishnakumar.jpeg", group: "Managing Committee" },
+  { name: "Santhosh Kumar G.", role: "Member", company: "Mathrubhumi News TV", image: "/images/Santhosh.jpeg", group: "Managing Committee" },
+  { name: "Pradeep Prabhakar", role: "Member", company: "News Malayalam 24x7", image: "/images/Pradeep.jpeg", group: "Managing Committee" },
+  { name: "Geetha G. Nair", role: "Member", company: "Hues Advertising & Marketing", image: "/images/Geetha.jpeg", group: "Managing Committee" },
+  { name: "Thanseer T. J.", role: "Member", company: "Adworld Advertising", image: "/images/Thanseer.jpeg", group: "Managing Committee" },
+  { name: "Pratheesh S. S.", role: "Member", company: "Club FM 94.3", image: "/images/Pratheesh.jpeg", group: "Managing Committee" },
+
+  { name: "Koshy Abraham", role: "Member", company: "Malayala Manorama", image: "/images/Koshy.jpeg", group: "Advisory Board" },
+  { name: "K. K. Joshy", role: "Member", company: "The Hindu", image: "/images/Joshy.jpeg", group: "Advisory Board" },
+  { name: "R. Reghunath", role: "Member", company: "MediaMate", image: "/images/Reghunath.jpeg", group: "Advisory Board" },
+  { name: "Roy V. Mathew", role: "Member", company: "Stark Communications", image: "/images/Roy.jpeg", group: "Advisory Board" },
 ];
 
 export const membershipTiers: MembershipTier[] = [

@@ -131,21 +131,48 @@ export default function About() {
           Core Team
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-          {committee.map((member) => (
-            <div key={member.name} className="flex flex-col gap-3">
-              {/* Photo — square, no rounded corners */}
-              <div className="bg-muted overflow-hidden" style={{ aspectRatio: "1/1" }}>
-                <img src="https://placehold.co/400x400/2d1b69/ffffff?text=Photo"
-                  alt={member.name} className="w-full h-full object-cover" />
+        <div className="flex flex-col gap-20">
+          {(["Office Bearers", "Managing Committee", "Advisory Board"] as const).map((group) => {
+            const groupMembers = committee.filter((m) => m.group === group);
+            if (groupMembers.length === 0) return null;
+
+            return (
+              <div key={group} className="flex flex-col gap-8">
+                <h3 className="font-display font-bold text-purple text-[clamp(1.5rem,3vw,2rem)] border-b border-muted pb-3">
+                  {group}
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                  {groupMembers.map((member) => (
+                    <div key={member.name} className="flex flex-col gap-3 group">
+                      {/* Photo */}
+                      <div className="bg-muted flex items-center justify-center overflow-hidden w-full aspect-square relative">
+                        {member.image ? (
+                          <img 
+                            src={member.image} 
+                            alt={member.name} 
+                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                          />
+                        ) : (
+                          <span className="font-display text-bg-warm/30 uppercase text-[10px] tracking-widest font-bold text-center px-4">
+                            Photo Unavailable
+                          </span>
+                        )}
+                        <div className="absolute inset-0 bg-purple/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      </div>
+                      {/* Info */}
+                      <div className="flex flex-col gap-0.5">
+                        <p className="font-display font-bold text-bg-warm text-lg tracking-tight">{member.name}</p>
+                        {member.role !== "Member" && (
+                          <p className="font-body text-sm font-semibold text-purple tracking-wide">{member.role}</p>
+                        )}
+                        <p className="font-body text-sm text-bg-warm/60 leading-snug">{member.company}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
-              {/* Info */}
-              <div className="flex flex-col gap-0.5">
-                <p className="font-display font-bold text-bg-warm text-base tracking-tight">{member.name}</p>
-                <p className="font-body italic text-sm text-bg-warm/55">{member.role}</p>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 

@@ -358,18 +358,35 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
             <ul className="sm-panel-list list-none m-0 p-0 flex flex-col gap-1" role="list" data-numbering={displayItemNumbering || undefined}>
               {items.length ? items.map((it, idx) => (
                 <li className="sm-panel-itemWrap relative overflow-hidden leading-none" key={it.label + idx}>
-                  <Link
-                    className="sm-panel-item relative text-black font-semibold cursor-pointer leading-none uppercase inline-block no-underline pr-[1.4em]"
-                    to={it.link}
-                    aria-label={it.ariaLabel}
-                    data-index={idx + 1}
-                    onClick={closeMenu}
-                    style={{ fontSize: 'clamp(2.4rem, 9vw, 4rem)', letterSpacing: '-0.04em' }}
-                  >
-                    <span className="sm-panel-itemLabel inline-block will-change-transform" style={{ transformOrigin: '50% 100%' }}>
-                      {it.label}
-                    </span>
-                  </Link>
+                  {it.link.startsWith('http') ? (
+                    <a
+                      className="sm-panel-item relative text-black font-semibold cursor-pointer leading-none uppercase inline-block no-underline pr-[1.4em]"
+                      href={it.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={it.ariaLabel}
+                      data-index={idx + 1}
+                      onClick={closeMenu}
+                      style={{ fontSize: 'clamp(2.4rem, 9vw, 4rem)', letterSpacing: '-0.04em' }}
+                    >
+                      <span className="sm-panel-itemLabel inline-block will-change-transform" style={{ transformOrigin: '50% 100%' }}>
+                        {it.label}
+                      </span>
+                    </a>
+                  ) : (
+                    <Link
+                      className="sm-panel-item relative text-black font-semibold cursor-pointer leading-none uppercase inline-block no-underline pr-[1.4em]"
+                      to={it.link}
+                      aria-label={it.ariaLabel}
+                      data-index={idx + 1}
+                      onClick={closeMenu}
+                      style={{ fontSize: 'clamp(2.4rem, 9vw, 4rem)', letterSpacing: '-0.04em' }}
+                    >
+                      <span className="sm-panel-itemLabel inline-block will-change-transform" style={{ transformOrigin: '50% 100%' }}>
+                        {it.label}
+                      </span>
+                    </Link>
+                  )}
                 </li>
               )) : null}
             </ul>

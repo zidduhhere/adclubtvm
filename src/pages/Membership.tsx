@@ -172,20 +172,25 @@ export default function Membership() {
               variants={fadeUp}
               className="flex items-start gap-4 border border-(--color-muted) rounded-2xl p-4 bg-white hover:shadow-md transition-shadow"
             >
-              <div className="w-20 h-20 shrink-0 rounded-xl overflow-hidden bg-muted">
-                <img
-                  src="https://placehold.co/200x200/6B308E/ffffff?text=Photo"
-                  alt={member.name}
-                  className="w-full h-full object-cover"
-                />
+              <div className="w-20 h-20 shrink-0 rounded-xl overflow-hidden bg-muted flex items-center justify-center">
+                {member.image ? (
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <span className="font-display text-bg-warm/30 uppercase text-[8px] tracking-widest font-bold text-center px-1">
+                    Photo
+                  </span>
+                )}
               </div>
-              <div className="flex flex-col gap-1.5 py-0.5">
+              <div className="flex flex-col gap-1 py-0.5">
                 <p className="font-display font-bold text-bg-warm text-sm tracking-tight">{member.name}</p>
-                <span className="text-xs font-body text-purple">{member.role}</span>
-                <div className="flex gap-3 text-xs font-body mt-1">
-                  <a href={member.linkedin} className="text-purple/70 hover:text-purple transition-colors">LinkedIn</a>
-                  <a href={member.instagram} className="text-purple/70 hover:text-purple transition-colors">Instagram</a>
-                </div>
+                {member.role !== "Member" && (
+                  <span className="text-[11px] font-body text-purple font-medium tracking-wide uppercase">{member.role}</span>
+                )}
+                <span className="text-[12px] font-body text-bg-warm/60 leading-snug">{member.company}</span>
               </div>
             </motion.div>
           ))}

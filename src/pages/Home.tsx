@@ -22,7 +22,7 @@ const flagships = [
     ],
     action: "Learn More",
     href: "/events",
-    image: "https://placehold.co/900x506/1a1a2e/ffffff?text=Networking+Evening",
+    image: "",
     isApply: false,
   },
   {
@@ -38,7 +38,7 @@ const flagships = [
     ],
     action: "Register Interest",
     href: "/events",
-    image: "https://placehold.co/900x506/2d1b69/ffffff?text=Industry+Seminar",
+    image: "",
     isApply: false,
   },
   {
@@ -53,8 +53,8 @@ const flagships = [
       "Jury of national and regional industry leaders",
     ],
     action: "Apply Now",
-    href: "/events",
-    image: "https://placehold.co/900x506/f5c518/1a1a2e?text=LOA+Awards",
+    href: "https://loaawards.com",
+    image: "",
     isApply: true,
   },
 ];
@@ -318,7 +318,7 @@ export default function Home() {
             {
               title: "LOA Awards",
               desc: "Kerala's first dedicated advertising awards. Submit your best work for recognition.",
-              href: "/awards",
+              href: "https://loaawards.com",
               cta: "Apply Now",
               bg: "bg-white border border-muted",
               textColor: "text-bg-warm",
@@ -345,12 +345,23 @@ export default function Home() {
                 <p className={`font-display font-bold text-xl tracking-tight ${card.textColor}`}>{card.title}</p>
                 <p className={`font-body text-sm leading-relaxed ${card.textColor} opacity-75`}>{card.desc}</p>
               </div>
-              <Link
-                to={card.href}
-                className={`self-start text-sm font-body font-medium ${card.textColor} opacity-85 hover:opacity-100 transition-opacity`}
-              >
-                {card.cta} →
-              </Link>
+              {card.href.startsWith("http") ? (
+                <a
+                  href={card.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`self-start text-sm font-body font-medium ${card.textColor} opacity-85 hover:opacity-100 transition-opacity`}
+                >
+                  {card.cta} →
+                </a>
+              ) : (
+                <Link
+                  to={card.href}
+                  className={`self-start text-sm font-body font-medium ${card.textColor} opacity-85 hover:opacity-100 transition-opacity`}
+                >
+                  {card.cta} →
+                </Link>
+              )}
             </motion.div>
           ))}
         </div>
@@ -369,12 +380,14 @@ export default function Home() {
             </p>
           </div>
           <div className="flex flex-col gap-3 shrink-0">
-            <Link
-              to="/awards"
+            <a
+              href="https://loaawards.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-body font-medium text-bg-warm bg-yellow rounded-full transition-opacity hover:opacity-85 whitespace-nowrap"
             >
               Submit Entry →
-            </Link>
+            </a>
             <Link
               to="/events"
               className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-body font-medium text-bg-warm border border-muted rounded-full transition-colors hover:border-purple whitespace-nowrap"
@@ -628,27 +641,46 @@ export default function Home() {
                             ))}
                           </ul>
                           <div className="pt-2">
-                            <Link
-                              to={href}
-                              className={`inline-flex items-center gap-2.5 px-7 py-3 text-sm font-body font-medium rounded-full transition-colors ${
-                                isApply
-                                  ? "bg-purple text-white hover:bg-purple-light"
-                                  : "border border-purple text-purple hover:bg-purple hover:text-white"
-                              }`}
-                            >
-                              {action} →
-                            </Link>
+                            {href.startsWith("http") ? (
+                              <a
+                                href={href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={`inline-flex items-center gap-2.5 px-7 py-3 text-sm font-body font-medium rounded-full transition-colors ${
+                                  isApply
+                                    ? "bg-purple text-white hover:bg-purple-light"
+                                    : "border border-purple text-purple hover:bg-purple hover:text-white"
+                                }`}
+                              >
+                                {action} →
+                              </a>
+                            ) : (
+                              <Link
+                                to={href}
+                                className={`inline-flex items-center gap-2.5 px-7 py-3 text-sm font-body font-medium rounded-full transition-colors ${
+                                  isApply
+                                    ? "bg-purple text-white hover:bg-purple-light"
+                                    : "border border-purple text-purple hover:bg-purple hover:text-white"
+                                }`}
+                              >
+                                {action} →
+                              </Link>
+                            )}
                           </div>
                         </div>
 
                         {/* Right: event image */}
                         <div className="flex-1 md:max-w-[44%]">
-                          <div className="w-full rounded-2xl overflow-hidden aspect-video bg-muted">
-                            <img
-                              src={image}
-                              alt={title}
-                              className="w-full h-full object-cover"
-                            />
+                          <div className="w-full rounded-2xl overflow-hidden aspect-video bg-muted flex items-center justify-center">
+                            {image ? (
+                              <img
+                                src={image}
+                                alt={title}
+                                className="w-full h-full object-cover"
+                              />
+                            ) : (
+                              <span className="font-display text-bg-warm/30 uppercase text-xs tracking-widest font-bold">Image Coming Soon</span>
+                            )}
                           </div>
                         </div>
                       </div>
@@ -683,12 +715,14 @@ export default function Home() {
               communication across Kerala's advertising fraternity.
             </p>
           </div>
-          <Link
-            to="/events"
+          <a
+            href="https://loaawards.com"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2.5 px-8 py-4 text-sm font-body font-bold tracking-wide text-bg-warm bg-yellow rounded-full hover:bg-yellow/90 transition-colors shrink-0"
           >
             Apply Now →
-          </Link>
+          </a>
         </section>
       </FadeUp>
 

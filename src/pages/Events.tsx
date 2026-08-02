@@ -8,7 +8,7 @@ const allCards = [
     title: e.title,
     date: e.date,
     type: e.type,
-    image: e.images?.[0] ?? `https://placehold.co/600x800/1a1a2e/ffffff?text=Event`,
+    image: e.images?.[0] ?? "",
     real: true,
   })),
   ...upcoming.map((u) => ({
@@ -16,7 +16,7 @@ const allCards = [
     title: u.title,
     date: u.date,
     type: u.type,
-    image: `https://placehold.co/600x800/2d1b69/ffffff?text=Upcoming`,
+    image: "",
     real: false,
   })),
 ];
@@ -86,8 +86,10 @@ export default function Events() {
             >
               {/* Image — 9:16 portrait */}
               <div className="relative overflow-hidden bg-muted" style={{ aspectRatio: "9/16", height: "30em" }}>
-                <img src={card.image} alt={card.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                {card.image && (
+                  <img src={card.image} alt={card.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                )}
                 {!card.real && (
                   <div className="absolute inset-0 flex items-center justify-center bg-white/20">
                     <span className="text-xs font-body font-medium tracking-[0.2em] uppercase px-3 py-1.5 rounded-full border border-purple text-purple bg-white/80">

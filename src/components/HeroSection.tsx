@@ -41,12 +41,14 @@ export default function HeroSection() {
             Kerala's premier community for advertising and media professionals — based in Trivandrum.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4 mt-10">
-            <Link
-              to="/events"
+            <a
+              href="https://loaawards.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-body font-medium text-white bg-purple hover:opacity-85 transition-opacity"
             >
               Apply for Awards →
-            </Link>
+            </a>
             <Link
               to="/about"
               className="text-sm font-body text-bg-warm/45 hover:text-bg-warm transition-colors"

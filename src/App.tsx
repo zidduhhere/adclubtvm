@@ -46,7 +46,7 @@ function AppLayout() {
           action={{
             label: "Apply Now →",
             onClick: () => {
-              navigate("/awards");
+              window.open("https://loaawards.com", "_blank", "noopener,noreferrer");
               setShowBanner(false);
             },
           }}

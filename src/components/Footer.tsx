@@ -37,7 +37,7 @@ export default function Footer() {
           heading: "Programmes",
           links: [
             { href: "/living-room", label: "Living Room" },
-            { href: "/awards", label: "LOA Awards" },
+            { href: "https://loaawards.com", label: "LOA Awards" },
             { href: "/membership", label: "Membership" },
           ],
         },

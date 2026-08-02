@@ -8,7 +8,7 @@ const links = [
   { to: "/about", label: "About" },
   { to: "/events", label: "Events" },
   { to: "/living-room", label: "Living Room" },
-  { to: "/awards", label: "LOA Awards" },
+  { to: "https://loaawards.com", label: "LOA Awards" },
   { to: "/membership", label: "Membership" },
 ];
 
