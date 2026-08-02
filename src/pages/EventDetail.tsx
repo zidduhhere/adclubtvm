@@ -22,9 +22,9 @@ export default function EventDetail() {
       {/* ── HERO IMAGE ─────────────────────────────────────────── */}
       {galleryImages.length > 0 && (
         <section className="px-6 md:px-16 pt-6">
-          <div className="w-full h-[200px] md:h-[280px] rounded-3xl overflow-hidden shadow-md bg-muted">
+          <div className="w-full rounded-3xl overflow-hidden shadow-md bg-muted flex justify-center bg-bg-warm">
             <img src={galleryImages[0]}
-              alt={event.title} className="w-full h-full object-cover" />
+              alt={event.title} className="w-full h-auto max-h-[70vh] object-contain object-center" />
           </div>
         </section>
       )}
