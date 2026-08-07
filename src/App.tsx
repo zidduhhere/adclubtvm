@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, } from "react-router-dom";
 import { Trophy } from "lucide-react";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
@@ -20,7 +20,7 @@ const BANNER_H = 44;
 
 function AppLayout() {
   const [showBanner, setShowBanner] = useState(true);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     document.documentElement.style.setProperty(
@@ -67,9 +67,9 @@ function AppLayout() {
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/about" element={<About />} />
           <Route path="/instagram" element={<Instagram />} />
-           <Route path="/membership" element={<Membership />} />
-           <Route path="/awards" element={<Awards />} />
-           <Route path="/living-room" element={<LivingRoom />} />
+          <Route path="/membership" element={<Membership />} />
+          <Route path="/awards" element={<Awards />} />
+          <Route path="/living-room" element={<LivingRoom />} />
         </Routes>
         <Footer />
       </div>
