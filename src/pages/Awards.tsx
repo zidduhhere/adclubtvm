@@ -28,7 +28,7 @@ export default function Awards() {
 
       {/* ── HERO ── */}
       <section
-        className="w-full bg-white border-b border-(--color-muted) overflow-hidden relative"
+        className="w-full bg-bg-warm border-b border-white/10 overflow-hidden relative bg-grid-pattern-dark"
         style={{ minHeight: "92svh", display: "flex", flexDirection: "column" }}
       >
         <div
@@ -36,7 +36,7 @@ export default function Awards() {
           aria-hidden="true"
         >
           <span
-            className="font-display font-bold text-purple/[0.04] leading-none"
+            className="font-display font-bold text-white/[0.02] leading-none"
             style={{ fontSize: "clamp(12rem, 35vw, 28rem)", letterSpacing: "-0.06em" }}
           >
             LOA
@@ -45,13 +45,13 @@ export default function Awards() {
 
         <div className="relative z-10 flex-1 flex items-center justify-center px-6 md:px-16">
           <div className="max-w-3xl w-full py-20 md:py-16 flex flex-col items-center text-center gap-6">
-            <SectionTag>LOA Awards 2025</SectionTag>
-            <h1 className="font-display font-bold text-bg-warm leading-[1.02] tracking-tight text-[clamp(3.5rem,8.5vw,6rem)]">
+            <SectionTag color="yellow">LOA Awards 2025</SectionTag>
+            <h1 className="font-display font-bold text-white leading-[1.02] tracking-tight text-[clamp(3.5rem,8.5vw,6rem)]">
               Love of{" "}
               <span style={{ color: "#FEC812" }}>Advertising</span>{" "}
               Awards
             </h1>
-            <p className="font-body text-bg-warm/60 text-base leading-relaxed max-w-xl">
+            <p className="font-body text-white/60 text-base leading-relaxed max-w-xl">
               Kerala's first dedicated advertising creative awards — recognising emerging formats and evolving forms of communication. Judged by senior professionals from outside Kerala for complete impartiality.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
@@ -65,7 +65,7 @@ export default function Awards() {
               </a>
               <a
                 href="mailto:adclubtrivandrum@gmail.com?subject=LOA%20Awards%20Sponsorship"
-                className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-body font-medium text-bg-warm border border-muted rounded-full transition-colors hover:border-purple"
+                className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-body font-medium text-white border border-white/20 rounded-full transition-colors hover:border-yellow hover:text-yellow"
               >
                 Sponsor an Award
               </a>
@@ -73,9 +73,9 @@ export default function Awards() {
           </div>
         </div>
 
-        <div className="relative z-10 border-t border-(--color-muted) overflow-hidden py-4">
+        <div className="relative z-10 border-t border-white/10 overflow-hidden py-4">
           <div className="flex whitespace-nowrap">
-            <span className="marquee-track inline-flex gap-0 font-display font-bold text-sm tracking-[0.2em] text-purple uppercase">
+            <span className="marquee-track inline-flex gap-0 font-display font-bold text-sm tracking-[0.2em] text-yellow uppercase opacity-80">
               {"EVENTS · AWARDS · NETWORKING · SEMINARS · TRIVANDRUM · KERALA · CREATIVITY · ADVERTISING · ".repeat(6)}
             </span>
           </div>

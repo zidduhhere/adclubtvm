@@ -181,3 +181,17 @@ html::-webkit-scrollbar {
 .marquee-track {
   animation: marquee 30s linear infinite;
 }
+
+.bg-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(205, 199, 211, 0.3) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(205, 199, 211, 0.3) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.bg-grid-pattern-dark {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 40px 40px;
+}

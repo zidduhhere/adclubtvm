@@ -20,12 +20,19 @@ export default function About() {
 
       {/* ── HERO ─────────────────────────────────────────────── */}
       <section
-        className="w-full bg-white border-b border-(--color-muted)"
+        className="w-full bg-white border-b border-(--color-muted) relative overflow-hidden bg-grid-pattern"
         style={{ minHeight: "92svh", display: "flex", flexDirection: "column" }}
       >
-        <div className="flex-1 flex items-center justify-center px-6 md:px-16">
+        {/* Typographic Watermark */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none opacity-[0.03]">
+          <span className="font-display font-bold text-bg-warm leading-none" style={{ fontSize: "clamp(10rem, 30vw, 25rem)", letterSpacing: "-0.05em" }}>
+            ACT
+          </span>
+        </div>
+
+        <div className="relative z-10 flex-1 flex items-center justify-center px-6 md:px-16">
           <div className="max-w-3xl w-full py-20 md:py-16 flex flex-col items-center text-center gap-6">
-            <span className="font-body text-[10px] tracking-[0.35em] uppercase text-purple">About</span>
+            <span className="font-body text-[10px] tracking-[0.35em] uppercase text-purple bg-white/80 px-4 py-1.5 rounded-full border border-purple/20">About</span>
             <h1 className="font-display font-bold text-bg-warm leading-[1.02] tracking-tight text-[clamp(3.5rem,8.5vw,6rem)]">
               Advertising{" "}
               <span style={{ color: "#FEC812" }}>Club TVM</span>

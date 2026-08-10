@@ -5,13 +5,19 @@ const marqueeText = "EVENTS · AWARDS · NETWORKING · SEMINARS · TRIVANDRUM ·
 export default function HeroSection() {
   return (
     <section
-      className="w-full bg-white border-b border-muted"
+      className="w-full bg-white border-b border-muted relative overflow-hidden bg-grid-pattern"
       style={{ minHeight: "92svh", display: "flex", flexDirection: "column" }}
     >
+      {/* Floating assets */}
+      <img src="/aseset-5-starburst.svg" alt="" aria-hidden="true" 
+        className="absolute top-12 left-10 w-24 md:w-32 opacity-80 animate-[spin_30s_linear_infinite] pointer-events-none" />
+      <img src="/eye-balls.svg" alt="" aria-hidden="true" 
+        className="absolute bottom-32 right-12 w-28 md:w-40 opacity-70 pointer-events-none" />
+
       {/* Centered content */}
-      <div className="flex-1 flex items-center justify-center px-6 md:px-16">
+      <div className="relative z-10 flex-1 flex items-center justify-center px-6 md:px-16">
         <div className="max-w-3xl w-full py-20 md:py-0 flex flex-col items-center text-center">
-          <p className="font-body text-[10px] tracking-[0.35em] uppercase text-purple mb-10">
+          <p className="font-body text-[10px] tracking-[0.35em] uppercase text-purple mb-10 bg-white/80 px-4 py-1.5 rounded-full border border-purple/20">
             Advertising Club Trivandrum
           </p>
           <div className="relative inline-block text-left my-4">

@@ -1,12 +1,14 @@
 interface SectionTagProps {
   children: React.ReactNode;
-  color?: "purple" | "coral";
+  color?: "purple" | "coral" | "yellow";
 }
 
 export default function SectionTag({ children, color = "purple" }: SectionTagProps) {
   const cls =
     color === "coral"
       ? "border-coral text-coral"
+      : color === "yellow"
+      ? "border-yellow text-yellow"
       : "border-purple text-purple";
   return (
     <span

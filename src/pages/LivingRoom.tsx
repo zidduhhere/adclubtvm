@@ -18,10 +18,16 @@ export default function LivingRoom() {
 
       {/* ── HERO ── */}
       <section
-        className="w-full bg-white px-6 md:px-16 border-b border-(--color-muted)"
+        className="w-full bg-white border-b border-(--color-muted) relative overflow-hidden bg-grid-pattern"
         style={{ minHeight: "92svh", display: "flex", flexDirection: "column" }}
       >
-        <div className="flex-1 flex items-center justify-center px-6 md:px-16">
+        {/* Assets */}
+        <img src="/heart-vector.svg" alt="" aria-hidden="true" 
+          className="absolute top-32 left-16 md:left-32 w-16 md:w-20 opacity-40 -rotate-12 pointer-events-none" />
+        <img src="/cursor.svg" alt="" aria-hidden="true" 
+          className="absolute bottom-40 right-20 md:right-40 w-12 opacity-50 rotate-45 pointer-events-none" />
+
+        <div className="relative z-10 flex-1 flex items-center justify-center px-6 md:px-16">
           <div className="max-w-3xl w-full py-20 md:py-16 flex flex-col items-center text-center gap-6">
           <SectionTag>Flagship Programme</SectionTag>
           <h1 className="font-display font-bold text-bg-warm leading-[1.02] tracking-tight text-[clamp(3.5rem,8.5vw,6rem)]">

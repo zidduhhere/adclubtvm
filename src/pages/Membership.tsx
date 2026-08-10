@@ -20,10 +20,13 @@ export default function Membership() {
 
       {/* ── HERO ── */}
       <section
-        className="w-full bg-white px-6 md:px-16 border-b border-(--color-muted)"
+        className="w-full bg-white border-b border-(--color-muted) relative overflow-hidden bg-grid-pattern"
         style={{ minHeight: "92svh", display: "flex", flexDirection: "column" }}
       >
-        <div className="flex-1 flex items-center justify-center px-6 md:px-16">
+        <img src="/love-asset-3.svg" alt="" aria-hidden="true" 
+          className="absolute right-0 top-1/2 -translate-y-1/2 w-[40rem] opacity-[0.03] pointer-events-none translate-x-1/4" />
+        
+        <div className="relative z-10 flex-1 flex items-center justify-center px-6 md:px-16">
           <div className="max-w-3xl w-full py-20 md:py-16 flex flex-col items-center text-center gap-6">
           <SectionTag>Membership</SectionTag>
           <h1 className="font-display font-bold text-bg-warm leading-[1.02] tracking-tight text-[clamp(3.5rem,8.5vw,6rem)]">

@@ -1,63 +1,13 @@
 import { Link } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
-import { ChevronDown } from "lucide-react";
 import { events, upcoming } from "../data/events";
 import SectionTag from "../components/SectionTag";
 import { StackedCardsInteraction } from "../components/ui/stacked-cards-interaction";
 import HeroSection from "../components/HeroSection";
 
 
-const flagships = [
-  {
-    num: "01",
-    title: "Networking Evening",
-    tag: "Networking",
-    desc: "An exclusive gathering for advertising and media professionals across Trivandrum — connecting talent, agencies, and brands under one roof in an informal, high-energy setting.",
-    date: "Coming 2025",
-    highlights: [
-      "Open to all creative professionals",
-      "Curated cross-industry guest list",
-      "Informal mixers and panel moments",
-    ],
-    action: "Learn More",
-    href: "/events",
-    image: "",
-    isApply: false,
-  },
-  {
-    num: "02",
-    title: "Industry Seminar",
-    tag: "Knowledge",
-    desc: "Talks and workshops led by senior practitioners on the evolving landscape of advertising, digital media, and brand communication — grounded in real Kerala market insight.",
-    date: "Coming 2025",
-    highlights: [
-      "Senior industry voices on stage",
-      "Live case study breakdowns",
-      "Open Q&A and peer discussions",
-    ],
-    action: "Register Interest",
-    href: "/events",
-    image: "",
-    isApply: false,
-  },
-  {
-    num: "03",
-    title: "LOA Awards",
-    tag: "Awards",
-    desc: "Kerala's premier recognition for advertising excellence — honouring outstanding work across every discipline of advertising and marketing communication, judged by industry veterans.",
-    date: "Applications Open",
-    highlights: [
-      "Open to all Kerala-based agencies and brands",
-      "20+ award categories across disciplines",
-      "Jury of national and regional industry leaders",
-    ],
-    action: "Apply Now",
-    href: "https://loaawards.com",
-    image: "",
-    isApply: true,
-  },
-];
+
 
 const contacts = [
   { label: "Instagram", value: "@adclubtvm", href: "https://instagram.com/adclubtvm" },
@@ -248,8 +198,6 @@ function MajorEventsCarousel() {
 }
 
 export default function Home() {
-  const [activeFlagship, setActiveFlagship] = useState<number>(2);
-
   return (
     <main className="min-h-screen overflow-x-hidden">
 
@@ -495,204 +443,10 @@ export default function Home() {
           </div>
         </div>
 
-        {/* ── THREE PILLARS ── */}
-        <div className="bg-white px-6 md:px-16 pt-16 pb-20 border-t border-muted">
-          <p className="font-body text-[9px] font-semibold text-bg-warm/30 tracking-[0.28em] uppercase mb-14">
-            What drives us
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-0 divide-y md:divide-y-0 md:divide-x divide-muted">
-            {[
-              {
-                num: "01",
-                title: "Community",
-                desc: "Building lasting connections across Kerala's creative industry — a network that grows stronger with every gathering.",
-              },
-              {
-                num: "02",
-                title: "Craft",
-                desc: "Elevating advertising standards through shared knowledge, peer critique, and industry-led learning.",
-              },
-              {
-                num: "03",
-                title: "Commerce",
-                desc: "Bridging great creative work with real business outcomes — because advertising that doesn't sell is just art.",
-              },
-            ].map(({ num, title, desc }, i) => (
-              <FadeUp
-                key={num}
-                delay={i * 0.09}
-                className="relative flex flex-col gap-4 py-10 md:py-0 px-0 md:px-10 first:md:pl-0 last:md:pr-0 overflow-hidden"
-              >
-                {/* Watermark number */}
-                <span
-                  className="absolute -top-4 right-0 font-display font-bold text-purple/6 select-none pointer-events-none leading-none"
-                  style={{ fontSize: "clamp(6rem, 12vw, 9rem)" }}
-                  aria-hidden
-                >
-                  {num}
-                </span>
-                <span className="font-body text-[10px] font-medium text-purple tracking-[0.22em] uppercase">{num}</span>
-                <h3
-                  className="font-display font-bold text-bg-warm tracking-tight leading-tight"
-                  style={{ fontSize: "clamp(1.5rem, 3vw, 2.25rem)" }}
-                >
-                  {title}
-                </h3>
-                <p className="font-body text-sm text-bg-warm/50 leading-relaxed">{desc}</p>
-              </FadeUp>
-            ))}
-          </div>
-        </div>
+
 
       </section>
 
-      {/* ── FLAGSHIP PROGRAMMES ──────────────────────────────────── */}
-      <section className="px-6 md:px-16 py-24 border-b border-muted">
-        <FadeUp className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
-          <div className="flex flex-col gap-3">
-            <SectionTag>Programmes</SectionTag>
-            <h2
-              className="font-display font-bold text-bg-warm leading-tight tracking-tight"
-              style={{ fontSize: "clamp(1.75rem, 4vw, 3rem)" }}
-            >
-              Our Flagship Programmes
-            </h2>
-          </div>
-          <p className="font-body text-sm text-bg-warm/45 max-w-xs md:text-right">
-            Click any programme to explore details and take action.
-          </p>
-        </FadeUp>
-
-        <div className="flex flex-col border-t border-muted">
-          {flagships.map(({ num, title, tag, desc, date, highlights, action, href, image, isApply }, i) => {
-            const isActive = activeFlagship === i;
-            return (
-              <div key={num} className="border-b border-muted">
-
-                {/* Row header */}
-                <button
-                  className="w-full flex items-center justify-between py-6 text-left group cursor-pointer"
-                  onClick={() => setActiveFlagship(isActive ? -1 : i)}
-                >
-                  <div className="flex items-center gap-5 md:gap-8">
-                    <span className="font-body text-xs font-medium text-purple/60 tracking-[0.22em] w-6 shrink-0">
-                      {num}
-                    </span>
-                    <h3
-                      className={`font-display font-bold tracking-tight leading-tight transition-colors ${
-                        isActive ? "text-purple" : "text-bg-warm group-hover:text-purple"
-                      }`}
-                      style={{ fontSize: "clamp(1.2rem, 2.5vw, 1.65rem)" }}
-                    >
-                      {title}
-                    </h3>
-                    <span
-                      className={`hidden md:inline-flex items-center text-[10px] font-body font-semibold tracking-[0.18em] uppercase px-3 py-1 rounded-full ${
-                        isApply
-                          ? "bg-yellow text-bg-warm"
-                          : "bg-purple/8 text-purple"
-                      }`}
-                    >
-                      {tag}
-                    </span>
-                    {isApply && (
-                      <span className="hidden md:inline font-body text-[11px] font-medium text-purple tracking-wide">
-                        {date}
-                      </span>
-                    )}
-                  </div>
-
-                  <motion.div
-                    animate={{ rotate: isActive ? 180 : 0 }}
-                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                    className={`shrink-0 transition-colors ${isActive ? "text-purple" : "text-bg-warm/25 group-hover:text-purple/40"}`}
-                  >
-                    <ChevronDown className="w-5 h-5" />
-                  </motion.div>
-                </button>
-
-                {/* Expandable panel */}
-                <AnimatePresence initial={false}>
-                  {isActive && (
-                    <motion.div
-                      key="panel"
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                      className="overflow-hidden"
-                    >
-                      <div
-                        className={`pb-10 pt-2 flex flex-col md:flex-row gap-8 md:gap-12 ${
-                          isApply ? "rounded-2xl bg-yellow/5 -mx-6 md:-mx-16 px-6 md:px-16" : ""
-                        }`}
-                      >
-                        {/* Left: description + highlights + CTA */}
-                        <div className="flex-1 flex flex-col gap-5">
-                          <p className="font-body text-base text-bg-warm/65 leading-relaxed max-w-lg">
-                            {desc}
-                          </p>
-                          <ul className="flex flex-col gap-2.5">
-                            {highlights.map((h) => (
-                              <li key={h} className="flex items-start gap-3">
-                                <span className="w-1.5 h-1.5 rounded-full bg-purple shrink-0 mt-[0.4em]" />
-                                <span className="font-body text-sm text-bg-warm/55">{h}</span>
-                              </li>
-                            ))}
-                          </ul>
-                          <div className="pt-2">
-                            {href.startsWith("http") ? (
-                              <a
-                                href={href}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className={`inline-flex items-center gap-2.5 px-7 py-3 text-sm font-body font-medium rounded-full transition-colors ${
-                                  isApply
-                                    ? "bg-purple text-white hover:bg-purple-light"
-                                    : "border border-purple text-purple hover:bg-purple hover:text-white"
-                                }`}
-                              >
-                                {action} →
-                              </a>
-                            ) : (
-                              <Link
-                                to={href}
-                                className={`inline-flex items-center gap-2.5 px-7 py-3 text-sm font-body font-medium rounded-full transition-colors ${
-                                  isApply
-                                    ? "bg-purple text-white hover:bg-purple-light"
-                                    : "border border-purple text-purple hover:bg-purple hover:text-white"
-                                }`}
-                              >
-                                {action} →
-                              </Link>
-                            )}
-                          </div>
-                        </div>
-
-                        {/* Right: event image */}
-                        <div className="flex-1 md:max-w-[44%]">
-                          <div className="w-full rounded-2xl overflow-hidden aspect-video bg-muted flex items-center justify-center">
-                            {image ? (
-                              <img
-                                src={image}
-                                alt={title}
-                                className="w-full h-full object-cover"
-                              />
-                            ) : (
-                              <span className="font-display text-bg-warm/30 uppercase text-xs tracking-widest font-bold">Image Coming Soon</span>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-
-              </div>
-            );
-          })}
-        </div>
-      </section>
 
       {/* ── MAJOR EVENTS ─────────────────────────────────────────── */}
       <MajorEventsCarousel />
