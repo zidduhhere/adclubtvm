@@ -51,25 +51,29 @@ export default function Nav() {
           top: "var(--banner-h, 0px)",
           background: scrolled ? "rgba(255,255,255,0.85)" : "transparent",
           backdropFilter: scrolled ? "blur(12px)" : "none",
+          boxShadow: scrolled ? "0 4px 20px rgba(0,0,0,0.05)" : "none",
           borderBottom: scrolled ? "1px solid rgba(0,0,0,0.06)" : "none",
         }}
       >
-        <nav className="relative flex items-center px-6 md:px-10 h-14">
+        <nav className="relative flex items-center justify-between px-6 md:px-10 h-20">
           <NavLink to="/" className="flex items-center hover:opacity-75 transition-opacity">
-            <img src="/logo.svg" alt="Advertising Club Trivandrum" className="h-7 w-auto" />
+            <img src="/logo.svg" alt="Advertising Club Trivandrum" className="h-14 w-auto" />
           </NavLink>
 
-          <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-7">
+          <div className="flex items-center gap-7">
             {links.map((link) => (
               <NavLink
                 key={link.to}
                 to={link.to}
                 end={link.to === "/"}
-                className={({ isActive }) =>
-                  `text-[15px] font-display font-medium tracking-[-0.03em] transition-colors duration-200 ${
-                    isActive ? "text-[#6B308E]" : "text-[#b0b0b0] hover:text-[#231F20]"
-                  }`
-                }
+                className={({ isActive }) => {
+                  if (link.label === "Membership") {
+                    return "text-[14px] font-display font-bold uppercase tracking-widest transition-all duration-200 bg-purple text-white px-6 py-2.5 rounded-full hover:bg-black hover:-translate-y-0.5 shadow-sm";
+                  }
+                  return `text-[15px] font-display font-bold uppercase tracking-widest transition-colors duration-200 ${
+                    isActive ? "text-purple" : "text-black/70 hover:text-black"
+                  }`;
+                }}
               >
                 {link.label}
               </NavLink>

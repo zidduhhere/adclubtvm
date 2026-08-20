@@ -1,522 +1,340 @@
-import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
-import { events, upcoming } from "../data/events";
-import SectionTag from "../components/SectionTag";
-import { StackedCardsInteraction } from "../components/ui/stacked-cards-interaction";
-import HeroSection from "../components/HeroSection";
+import { Link } from 'react-router-dom';
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { upcoming } from "../data/events";
 
+gsap.registerPlugin(ScrollTrigger);
 
+function FadeUp({ children = null, className = "", delay = 0 }: { children?: React.ReactNode; delay?: number; className?: string }) {
+  const comp = useRef<HTMLDivElement>(null);
+  
+  useGSAP(() => {
+    gsap.fromTo(
+      comp.current,
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        delay,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: comp.current,
+          start: "top 85%",
+          toggleActions: "play none none reverse",
+        }
+      }
+    );
+  }, { scope: comp });
 
-
-const contacts = [
-  { label: "Instagram", value: "@adclubtvm", href: "https://instagram.com/adclubtvm" },
-  { label: "LinkedIn", value: "Advertising Club Trivandrum", href: "https://linkedin.com/company/adclubtvm" },
-  { label: "Email", value: "adclubtrivandrum@gmail.com", href: "mailto:adclubtrivandrum@gmail.com" },
-];
-
-function FadeUp({ children = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
-  const ref = useRef(null);
-  // const inView = useInView(ref, { once: true, margin: "-80px" });
   return (
-    <motion.div
-      ref={ref}
-      className={className}
-    >
+    <div ref={comp} className={className}>
       {children}
-    </motion.div>
-  );
-}
-
-function MajorEventsCarousel() {
-  const allItems = [
-    ...events.map((e) => ({
-      id: e.id,
-      title: e.title,
-      type: e.type,
-      date: e.date,
-      image: e.images?.[0] ?? null,
-      status: null as string | null,
-      href: `/events/${e.id}`,
-      isPast: true,
-    })),
-    ...upcoming.map((u) => ({
-      id: u.id,
-      title: u.title,
-      type: u.type,
-      date: u.date,
-      image: null as string | null,
-      status: u.status,
-      href: "/events",
-      isPast: false,
-    })),
-  ];
-
-  const [activeIdx, setActiveIdx] = useState(0);
-  const [offset, setOffset] = useState(0);
-  const firstCardRef = useRef<HTMLDivElement>(null);
-  const GAP = 20;
-
-  const computeOffset = (idx: number) => {
-    if (!firstCardRef.current) return 0;
-    return idx * (firstCardRef.current.offsetWidth + GAP);
-  };
-
-  const goTo = (idx: number) => {
-    const clamped = Math.max(0, Math.min(allItems.length - 1, idx));
-    setActiveIdx(clamped);
-    setOffset(computeOffset(clamped));
-  };
-
-  useEffect(() => {
-    const handleResize = () => setOffset(computeOffset(activeIdx));
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [activeIdx]);
-
-  return (
-    <section className="bg-white border-b border-muted overflow-hidden pt-14 pb-16">
-
-      {/* ── Header row ── */}
-      <div className="flex items-center justify-between px-6 md:px-16 mb-8">
-        <div className="flex flex-col gap-2">
-          <SectionTag>Events</SectionTag>
-          <h2
-            className="font-display font-bold text-bg-warm leading-tight tracking-tight"
-            style={{ fontSize: "clamp(1.4rem, 3.2vw, 2.4rem)" }}
-          >
-            Major Events
-          </h2>
-        </div>
-
-        {/* Controls */}
-        <div className="flex items-center gap-3">
-          <span className="font-body text-[11px] text-bg-warm/30 tracking-[0.22em] tabular-nums mr-1 hidden sm:block">
-            {String(activeIdx + 1).padStart(2, "0")} / {String(allItems.length).padStart(2, "0")}
-          </span>
-          <button
-            onClick={() => goTo(activeIdx - 1)}
-            disabled={activeIdx === 0}
-            aria-label="Previous"
-            className="w-10 h-10 rounded-full border border-muted text-bg-warm/40 flex items-center justify-center
-                       hover:border-purple hover:text-purple disabled:opacity-20 disabled:cursor-not-allowed
-                       transition-all duration-200 text-sm"
-          >
-            ←
-          </button>
-          <button
-            onClick={() => goTo(activeIdx + 1)}
-            disabled={activeIdx === allItems.length - 1}
-            aria-label="Next"
-            className="w-10 h-10 rounded-full border border-muted text-bg-warm/40 flex items-center justify-center
-                       hover:border-purple hover:text-purple disabled:opacity-20 disabled:cursor-not-allowed
-                       transition-all duration-200 text-sm"
-          >
-            →
-          </button>
-        </div>
-      </div>
-
-      {/* ── Carousel track ── */}
-      <div className="overflow-hidden relative">
-        <motion.div
-          className="flex pl-6 md:pl-16"
-          style={{ gap: GAP }}
-          animate={{ x: -offset }}
-          transition={{ ease: [0.22, 1, 0.36, 1], duration: 0.6 }}
-        >
-          {allItems.map((item, i) => (
-            <div
-              key={item.id}
-              ref={i === 0 ? firstCardRef : undefined}
-              className="shrink-0 w-[76vw] md:w-[38vw] max-w-[500px] h-[300px] md:h-[400px] relative overflow-hidden rounded-xl group"
-            >
-              <Link to={item.href} className="absolute inset-0 z-20" aria-label={item.title} />
-
-              {/* Image / tinted bg */}
-              <div className="absolute inset-0">
-                {item.image ? (
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                ) : (
-                  <div
-                    className="w-full h-full"
-                    style={{ background: `linear-gradient(135deg, #4A2470 0%, #2d1b69 100%)` }}
-                  />
-                )}
-              </div>
-
-              {/* Default: dark gradient scrim */}
-              <div className="absolute inset-0 bg-gradient-to-t from-purple-deep via-purple-deep/20 to-transparent transition-opacity duration-300 group-hover:opacity-0" />
-
-              {/* Hover: solid purple fill */}
-              <div className="absolute inset-0 bg-purple opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-
-              {/* Text overlay */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
-                <p className="font-body text-[9px] tracking-[0.25em] uppercase mb-2 transition-colors duration-300 text-white/35 group-hover:text-yellow/60">
-                  {item.type} · {item.date}
-                  {item.status && ` · ${item.status}`}
-                </p>
-                <h3
-                  className="font-display font-bold tracking-tight leading-tight transition-colors duration-300 text-white group-hover:text-yellow"
-                  style={{ fontSize: "clamp(1rem, 2.2vw, 1.6rem)" }}
-                >
-                  {item.title}
-                </h3>
-                {!item.isPast && (
-                  <span className="inline-flex items-center mt-3 text-[9px] font-body font-semibold tracking-[0.18em] uppercase px-3 py-1 rounded-full transition-all duration-300 bg-yellow/90 text-purple-deep group-hover:bg-white/10 group-hover:text-yellow/70">
-                    Coming Soon
-                  </span>
-                )}
-              </div>
-            </div>
-          ))}
-
-          {/* "View all" end card */}
-          <Link
-            to="/events"
-            className="shrink-0 w-[50vw] md:w-[22vw] max-w-[280px] h-[300px] md:h-[400px] flex flex-col items-center justify-center gap-4
-                       border border-muted rounded-xl mr-6 md:mr-16
-                       hover:border-purple hover:bg-purple/5 transition-all duration-300 group"
-          >
-            <span className="w-11 h-11 rounded-full border border-muted group-hover:border-purple flex items-center justify-center text-bg-warm/30 group-hover:text-purple text-base transition-all duration-300">
-              →
-            </span>
-            <span className="font-body text-[9px] text-bg-warm/30 group-hover:text-purple tracking-[0.28em] uppercase transition-colors duration-300">
-              All Events
-            </span>
-          </Link>
-        </motion.div>
-      </div>
-
-    </section>
+    </div>
   );
 }
 
 export default function Home() {
+  const container = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    // Parallax background elements
+    gsap.to(".parallax-bg", {
+      yPercent: 30,
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".hero-section",
+        start: "top top",
+        end: "bottom top",
+        scrub: true
+      }
+    });
+    
+    gsap.to(".parallax-fast", {
+      yPercent: -20,
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".hero-section",
+        start: "top top",
+        end: "bottom top",
+        scrub: true
+      }
+    });
+
+    gsap.to(".parallax-mid", {
+      yPercent: 30,
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".mid-section",
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true
+      }
+    });
+
+    // Hero Text Stagger Intro
+    gsap.fromTo(".hero-text", 
+      { opacity: 0, y: 60 },
+      { opacity: 1, y: 0, duration: 1.2, stagger: 0.15, ease: "power4.out", delay: 0.1 }
+    );
+  }, { scope: container });
+
   return (
-    <main className="min-h-screen overflow-x-hidden">
+    <main ref={container} className="min-h-screen bg-white text-black overflow-x-hidden font-body selection:bg-yellow selection:text-black pt-20">
+      
+      {/* ── 1. HERO HEADER ── */}
+      <section className="hero-section min-h-screen px-6 md:px-16 pt-32 pb-24 relative flex flex-col items-center justify-center text-center">
+        {/* Wavy lines / Grid Backgrounds from Figma */}
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
+          
+          {/* Top Subtle Wavy Lines Accent */}
+          <svg viewBox="0 0 1440 100" className="parallax-bg absolute top-20 left-0 w-full h-auto opacity-[0.15] stroke-black fill-none" preserveAspectRatio="none" style={{ strokeWidth: "1.5px" }}>
+            <path d="M0,30 Q180,-10 360,30 T720,30 T1080,30 T1440,30" />
+            <path d="M0,50 Q180,10 360,50 T720,50 T1080,50 T1440,50" />
+            <path d="M0,70 Q180,30 360,70 T720,70 T1080,70 T1440,70" />
+          </svg>
 
-      {/* ── HERO ─────────────────────────────────────────────────── */}
-      <HeroSection />
-
-      {/* ── CLUB INTRO ── */}
-      <section className="px-6 md:px-16 py-20 border-b border-(--color-muted)">
-        <div className="flex flex-col md:flex-row gap-12 md:gap-20 items-center">
-          <div className="flex-1 flex flex-col gap-6">
-            <SectionTag>Who We Are</SectionTag>
-            <h2 className="font-display font-bold text-bg-warm text-[clamp(1.8rem,4vw,3rem)] tracking-tight leading-[1.1]">
-              Kerala's premier<br />
-              <span className="text-purple">advertising community</span>
-            </h2>
-            <p className="font-body text-base text-bg-warm/65 leading-relaxed max-w-md">
-              Advertising Club Trivandrum (ACT) is an exclusive platform established to bring together professionals from the advertising and media industries in Kerala's capital city — fostering innovation, collaboration, and professional excellence.
-            </p>
-            <Link
-              to="/about"
-              className="self-start inline-flex items-center gap-2 px-6 py-3 text-sm font-body font-medium text-white bg-purple rounded-full transition-opacity hover:opacity-85"
-            >
-              Learn More About ACT →
-            </Link>
+          {/* Left Grid */}
+          <img src="/SVG/grid.svg" alt="" className="parallax-fast absolute top-4 left-0 h-[60%] md:h-[70%] object-contain -ml-[5%] lg:-ml-[10%]" />
+          {/* Right Grid */}
+          <img src="/SVG/grid-2.svg" alt="" className="parallax-fast absolute top-4 right-0 h-[40%] md:h-[50%] object-contain -mr-[5%] lg:-mr-[10%]" />
+          {/* Bottom Right Grid */}
+          <img src="/SVG/grid-3.svg" alt="" className="parallax-bg absolute bottom-32 right-0 h-[30%] md:h-[40%] object-contain -mr-[5%] lg:-mr-[10%]" />
+        </div>
+        
+        <div className="max-w-7xl mx-auto flex flex-col gap-6 relative z-10 w-full">
+          <div className="relative w-full flex justify-center">
+            {/* Love Hero Background Graphic */}
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[90%] md:h-[110%] flex items-center justify-center pointer-events-none -z-10">
+              <img 
+                src="/SVG/love-hero.svg" 
+                alt="" 
+                className="parallax-bg h-full w-auto max-w-none object-contain opacity-90" 
+              />
+            </div>
+            <h1 className="font-display font-bold leading-[1.1] tracking-tighter w-full" style={{ fontSize: "clamp(3rem, 9vw, 8rem)" }}>
+              <span className="hero-text inline-block">For the</span> <br />
+              <span className="hero-text text-purple inline-block">Love of</span> <br />
+              <span className="hero-text inline-block">Advertising.</span>
+            </h1>
           </div>
-          <div className="flex-1 w-full grid grid-cols-2 gap-3">
-            {[
-              { value: "50+", label: "Members" },
-              { value: "2024", label: "Founded" },
-              { value: "3+", label: "Events" },
-              { value: "1", label: "Flagship Award" },
-            ].map((stat) => (
-              <div key={stat.label} className="p-6 rounded-2xl border border-(--color-muted) bg-white text-center">
-                <p className="font-display font-bold text-bg-warm text-4xl tracking-tight">{stat.value}</p>
-                <p className="font-body text-xs text-purple uppercase tracking-[0.15em] mt-1">{stat.label}</p>
+        </div>
+      </section>
+
+      {/* ── 2. HIGHLIGHT CARD (LOA AWARDS) ── */}
+      <section className="mid-section relative z-0 px-4 md:px-16 pb-24">
+        {/* Background Grid 4 behind the highlight card */}
+        <div className="absolute top-1/2 left-0 -translate-y-1/2 w-full h-[80%] flex items-center justify-start pointer-events-none z-0">
+          <img src="/SVG/grid-4.svg" alt="" className="parallax-mid h-full max-w-none object-contain" />
+        </div>
+        
+        <FadeUp delay={0.1} className="relative z-10">
+          <div className="max-w-7xl mx-auto bg-yellow text-black rounded-[2rem] p-8 md:p-16 flex flex-col md:flex-row items-center justify-between gap-10 relative overflow-hidden">
+            <div className="flex flex-col gap-4 relative z-10 w-full md:w-1/2">
+              <h2 className="font-display font-bold text-5xl md:text-7xl leading-[0.9] tracking-tight uppercase">
+                Keep it <br />
+                <span className="text-purple-deep">Simple</span> <br />
+                Silly.
+              </h2>
+              <div className="mt-8 flex flex-col sm:flex-row items-center gap-4">
+                <a 
+                  href="https://loaawards.com" 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="bg-black text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:bg-black/80 transition-colors w-full sm:w-auto text-center flex items-center justify-center gap-3"
+                >
+                  Explore More <ArrowRight className="w-4 h-4" />
+                </a>
               </div>
+            </div>
+            
+            <div className="w-full md:w-1/2 flex justify-center items-center relative z-10">
+              <div className="w-64 h-64 bg-coral rounded-full flex items-center justify-center border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] relative group">
+                <span className="font-display font-bold text-black text-2xl rotate-[-15deg] group-hover:scale-110 transition-transform cursor-pointer">LOA AWARDS 2025</span>
+              </div>
+            </div>
+
+            <div className="absolute bottom-0 left-0 right-0 bg-black text-white py-3 px-6 flex justify-between items-center text-xs md:text-sm font-bold uppercase tracking-widest">
+              <span>Applications Open</span>
+              <span className="text-yellow">Submit your best work</span>
+            </div>
+          </div>
+        </FadeUp>
+      </section>
+
+      {/* ── 3. INTRODUCTION PARAGRAPH ── */}
+      <section className="px-6 md:px-16 py-20">
+        <FadeUp className="max-w-5xl mx-auto">
+          <p className="font-display font-medium text-2xl md:text-4xl leading-snug tracking-tight text-black/90">
+            <span className="text-purple font-bold">Advertising Club Trivandrum (ACT)</span> is an exclusive platform established to bring together professionals from the advertising and media industries in Kerala's capital city. We foster <span className="text-magenta font-bold">innovation, collaboration, and professional excellence.</span>
+          </p>
+        </FadeUp>
+      </section>
+
+      {/* ── 4. WHO WE ARE (DNA) ── */}
+      <section className="px-6 md:px-16 py-12">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-6">
+          <FadeUp className="w-full md:w-1/2 h-[400px] md:h-[600px] rounded-3xl overflow-hidden relative" delay={0.1}>
+            <img 
+              src="https://placehold.co/800x1200/F0EBE3/000000?text=ACT+Community" 
+              alt="ACT Community" 
+              className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+            />
+          </FadeUp>
+          <FadeUp className="w-full md:w-1/2 bg-[#F8F9FA] border border-black/5 p-10 md:p-16 rounded-3xl flex flex-col justify-center" delay={0.2}>
+            <h3 className="font-display font-bold text-4xl md:text-5xl uppercase tracking-tight mb-8">
+              Advertising <span className="text-purple">DNA</span>
+            </h3>
+            <div className="space-y-6 text-black/80 font-body text-lg leading-relaxed">
+              <p>
+                Our advertising and creative community in Trivandrum powers through a year-round calendar of marketing and advertising events, setting the standard for what's next globally.
+              </p>
+              <p>
+                We connect creatives, strategists, and media professionals to elevate the standards of advertising across Kerala through <span className="text-magenta font-bold">events, awards, and shared ambition.</span>
+              </p>
+            </div>
+          </FadeUp>
+        </div>
+      </section>
+
+      {/* ── 5. WHAT WE DO (CAREER DRIVEN) ── */}
+      <section className="px-6 md:px-16 py-12">
+        <div className="max-w-7xl mx-auto flex flex-col-reverse md:flex-row gap-6">
+          <FadeUp className="w-full md:w-1/2 bg-[#F8F9FA] border border-black/5 p-10 md:p-16 rounded-3xl flex flex-col justify-center" delay={0.1}>
+            <h3 className="font-display font-bold text-4xl md:text-5xl uppercase tracking-tight leading-[1.1] mb-8">
+              <span className="text-purple">Career-Driven</span> <br />
+              Advertising <br />
+              Education <br />
+              For Tomorrow's <br />
+              Trailblazers
+            </h3>
+            <p className="text-black/80 font-body text-lg leading-relaxed mb-10">
+              Through our <span className="text-magenta font-bold">Living Room dialogue series</span>, professionals can upskill, sharpen expertise, and stay ahead of industry trends. We make advertising future-focussed education in Kerala more accessible and impactful.
+            </p>
+            <Link 
+              to="/living-room" 
+              className="inline-flex items-center gap-3 bg-black text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:bg-black/80 transition-colors self-start"
+            >
+              Learn More <ArrowRight className="w-4 h-4" />
+            </Link>
+          </FadeUp>
+          <FadeUp className="w-full md:w-1/2 h-[400px] md:h-[auto] rounded-3xl overflow-hidden relative" delay={0.2}>
+            <img 
+              src="https://placehold.co/800x1200/CDC7D3/000000?text=Living+Room+Series" 
+              alt="Living Room" 
+              className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+            />
+          </FadeUp>
+        </div>
+      </section>
+
+      {/* ── 6. WHY ACT? (MANIFESTO) ── */}
+      <section className="px-6 md:px-16 py-32 text-center flex flex-col items-center justify-center">
+        <FadeUp className="max-w-4xl flex flex-col items-center">
+          <h2 className="font-display font-bold text-4xl md:text-6xl uppercase tracking-tight mb-4">
+            <span className="text-purple">Why</span> ACT?
+          </h2>
+          <p className="font-body text-xl font-bold uppercase tracking-widest text-black/60 mb-12">
+            Don't just attend events, join the movement.
+          </p>
+          <p className="font-body text-xl md:text-2xl leading-relaxed text-black/90">
+            Be part of a community that defines advertising in India, right here in Trivandrum, where creativity thrives, careers accelerate, and bold ideas find their stage. This is more than a calendar of events; it's a movement that keeps the pulse of advertising alive and future-ready.
+          </p>
+        </FadeUp>
+      </section>
+
+      {/* ── 7. SCROLLING MARQUEE ── */}
+      <section className="py-6 bg-yellow text-black border-y-4 border-black overflow-hidden flex whitespace-nowrap relative">
+        <div className="animate-marquee flex items-center font-display font-bold text-4xl md:text-5xl uppercase tracking-tighter">
+          <span className="mx-6">✦ EDUCATE </span>
+          <span className="mx-6">✦ ENGAGE </span>
+          <span className="mx-6">✦ LOA AWARDS 2025 </span>
+          <span className="mx-6">✦ INSPIRE </span>
+          <span className="mx-6">✦ EDUCATE </span>
+          <span className="mx-6">✦ ENGAGE </span>
+          <span className="mx-6">✦ LOA AWARDS 2025 </span>
+          <span className="mx-6">✦ INSPIRE </span>
+        </div>
+      </section>
+
+      {/* ── 8. MEMBERSHIP CTA ── */}
+      <section className="px-6 md:px-16 py-12">
+        <FadeUp>
+          <div className="max-w-7xl mx-auto bg-[#F8F9FA] border border-black/10 rounded-[2rem] overflow-hidden flex flex-col md:flex-row">
+            <div className="w-full md:w-1/2 p-10 md:p-16 flex flex-col justify-center border-b md:border-b-0 md:border-r border-black/10">
+              <div className="inline-block border border-black/20 rounded-full px-4 py-1 text-xs uppercase tracking-widest mb-8 self-start text-black/60">
+                Membership
+              </div>
+              <h2 className="font-display font-bold text-4xl md:text-6xl uppercase tracking-tight leading-[1.05] mb-8">
+                Don't Just Disrupt, <br />
+                <span className="text-purple">Do it with Distinction.</span>
+              </h2>
+              <p className="font-body text-black/70 leading-relaxed mb-10">
+                Because this is where Kerala's advertising story is written every day. At ACT, you don't just watch the industry evolve, you're part of the movement that drives it.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link to="/membership" className="bg-black text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:bg-black/80 transition-colors flex items-center justify-center gap-3 text-center">
+                  Become a Member <ArrowRight className="w-4 h-4" />
+                </Link>
+                <Link to="/about" className="bg-transparent border-2 border-black/20 text-black px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:bg-black/5 transition-colors flex items-center justify-center gap-3 text-center">
+                  Begin Your Journey <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+            <div className="w-full md:w-1/2 h-[400px] md:h-auto">
+              <img 
+                src="https://placehold.co/800x1000/F0EBE3/000000?text=ACT+Members" 
+                alt="ACT Members" 
+                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+              />
+            </div>
+          </div>
+        </FadeUp>
+      </section>
+
+      {/* ── 9. UPCOMING EVENTS ── */}
+      <section className="px-6 md:px-16 pt-24 pb-32">
+        <div className="max-w-5xl mx-auto">
+          <FadeUp className="text-center mb-16">
+            <h2 className="font-display font-bold text-4xl md:text-5xl uppercase tracking-tight">
+              Stay Ahead of the Curve By <br />
+              Participating In Our <br />
+              <span className="text-purple-light italic border-b-4 border-yellow pb-2 inline-block mt-2">Upcoming Events</span>
+            </h2>
+          </FadeUp>
+          
+          <div className="flex flex-col border-t border-black/10">
+            {upcoming.map((u, idx) => (
+              <FadeUp key={u.id} delay={idx * 0.1}>
+                <Link to="/events" className="flex flex-col md:flex-row items-start md:items-center justify-between py-10 border-b border-black/10 group hover:bg-black/5 transition-colors px-4 -mx-4 rounded-lg">
+                  <div className="flex gap-8 items-center w-full md:w-auto">
+                    <div className="bg-black text-white p-4 text-center rounded w-24 shrink-0">
+                      <span className="block text-[10px] font-bold tracking-widest uppercase mb-1">{u.date.split(" ")[0]}</span>
+                      <span className="block font-display font-bold text-3xl">{u.date.split(" ")[1]}</span>
+                      <span className="block text-[10px] font-bold tracking-widest uppercase mt-1">{u.date.split(" ")[2]}</span>
+                    </div>
+                    <div>
+                      <h3 className="font-display font-bold text-xl md:text-2xl group-hover:text-purple transition-colors max-w-2xl">
+                        {u.title}
+                      </h3>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-6 mt-6 md:mt-0 w-full md:w-auto justify-between md:justify-end">
+                    <span className="border border-black/20 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-black/60">
+                      {u.type}
+                    </span>
+                    <div className="w-12 h-12 rounded-full bg-yellow text-black flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                      <ArrowUpRight className="w-6 h-6" />
+                    </div>
+                  </div>
+                </Link>
+              </FadeUp>
             ))}
           </div>
         </div>
-      </section>
-
-      {/* ── QUICK LINKS ── */}
-      <section className="px-6 md:px-16 py-20 border-b border-(--color-muted) bg-white">
-        <SectionTag>Explore ACT</SectionTag>
-        <h2 className="font-display font-bold text-bg-warm text-[clamp(1.8rem,4vw,3rem)] tracking-tight mt-3 mb-12">
-          What we do
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
-          {[
-            {
-              title: "About Us",
-              desc: "Learn about our mission, story, and the team driving Kerala's advertising community.",
-              href: "/about",
-              cta: "Our Story",
-              bg: "bg-purple",
-              textColor: "text-white",
-            },
-            {
-              title: "Membership",
-              desc: "Join ACT and connect with Trivandrum's top advertising and media professionals.",
-              href: "/membership",
-              cta: "Join Now",
-              bg: "bg-yellow",
-              textColor: "text-bg-warm",
-            },
-            {
-              title: "LOA Awards",
-              desc: "Kerala's first dedicated advertising awards. Submit your best work for recognition.",
-              href: "https://loaawards.com",
-              cta: "Apply Now",
-              bg: "bg-white border border-muted",
-              textColor: "text-bg-warm",
-            },
-            {
-              title: "Living Room",
-              desc: "Monthly dialogue series where industry veterans share unfiltered insights.",
-              href: "/living-room",
-              cta: "Learn More",
-              bg: "bg-white border border-muted",
-              textColor: "text-bg-warm",
-            },
-          ].map((card, i) => (
-            <motion.div
-              key={card.title}
-              custom={i}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08, duration: 0.5 }}
-              className={`flex flex-col justify-between gap-8 p-7 rounded-2xl ${card.bg} min-h-[220px]`}
-            >
-              <div className="flex flex-col gap-3">
-                <p className={`font-display font-bold text-xl tracking-tight ${card.textColor}`}>{card.title}</p>
-                <p className={`font-body text-sm leading-relaxed ${card.textColor} opacity-75`}>{card.desc}</p>
-              </div>
-              {card.href.startsWith("http") ? (
-                <a
-                  href={card.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`self-start text-sm font-body font-medium ${card.textColor} opacity-85 hover:opacity-100 transition-opacity`}
-                >
-                  {card.cta} →
-                </a>
-              ) : (
-                <Link
-                  to={card.href}
-                  className={`self-start text-sm font-body font-medium ${card.textColor} opacity-85 hover:opacity-100 transition-opacity`}
-                >
-                  {card.cta} →
-                </Link>
-              )}
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── UPCOMING EVENT TEASER ── */}
-      <section className="px-6 md:px-16 py-16 border-b border-(--color-muted) bg-white">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex flex-col gap-2">
-            <SectionTag>What's Next</SectionTag>
-            <h2 className="font-display font-bold text-bg-warm text-[clamp(1.4rem,3.5vw,2.5rem)] tracking-tight mt-2">
-              LOA Awards 2025 — <span className="text-purple">Applications Open</span>
-            </h2>
-            <p className="font-body text-sm text-bg-warm/60 max-w-lg leading-relaxed">
-              Kerala's first dedicated advertising awards are now accepting entries across nine categories — film, digital, print, design, and more. Open to all agencies and brands that worked in the Kerala market.
-            </p>
-          </div>
-          <div className="flex flex-col gap-3 shrink-0">
-            <a
-              href="https://loaawards.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-body font-medium text-bg-warm bg-yellow rounded-full transition-opacity hover:opacity-85 whitespace-nowrap"
-            >
-              Submit Entry →
-            </a>
-            <Link
-              to="/events"
-              className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-body font-medium text-bg-warm border border-muted rounded-full transition-colors hover:border-purple whitespace-nowrap"
-            >
-              View All Events
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ── ABOUT ────────────────────────────────────────────────── */}
-      <section className="border-b border-muted">
-
-        {/* ── MANIFESTO ZONE ── */}
-        <div className="bg-white">
-
-          {/* Two-column: text left, stacked cards right */}
-          <div className="px-6 md:px-16 pt-20 pb-14 flex flex-col md:flex-row gap-16 md:gap-10 items-center">
-
-            {/* Left — manifesto + body */}
-            <FadeUp className="flex-1 flex flex-col gap-7 md:max-w-[48%]">
-              <p className="font-body text-[10px] font-semibold text-bg-warm/35 tracking-[0.3em] uppercase">
-                Est. 2025 · Trivandrum, Kerala
-              </p>
-              <h2
-                className="font-display font-bold text-bg-warm leading-[1.04] tracking-tight"
-                style={{ fontSize: "clamp(2.25rem, 5vw, 4rem)" }}
-              >
-                A gathering place for Kerala's advertising minds.
-              </h2>
-              <p className="font-body text-base text-bg-warm/55 leading-relaxed">
-                Advertising Club Trivandrum was born from a collective vision — a permanent home for the capital city's creative community, where craft meets connection and ambition finds its people.
-              </p>
-              <p className="font-body text-sm text-bg-warm/40 leading-relaxed">
-                We connect creatives, strategists, and media professionals to elevate the standards of advertising across Kerala through events, awards, and shared ambition.
-              </p>
-              <Link
-                to="/about"
-                className="self-start inline-flex items-center gap-2 font-body text-sm font-medium text-purple hover:text-purple/70 transition-colors"
-              >
-                Learn more about us →
-              </Link>
-            </FadeUp>
-
-            {/* Right — stacked cards + stats */}
-            <FadeUp className="flex-1 flex flex-col items-center gap-8" delay={0.15}>
-              <StackedCardsInteraction
-                spreadDistance={45}
-                rotationAngle={6}
-                cards={[
-                  {
-                    image: events[0]?.images?.[0] ?? "https://placehold.co/800x600/1a1a2e/ffffff?text=Logo+Launch",
-                    title: "Logo Launch — Feb 2025",
-                    description: "The founding moment, unveiled by Mohanlal.",
-                  },
-                  {
-                    image: "https://placehold.co/800x600/2d1b69/ffffff?text=Creative+Conversations",
-                    title: "Creative Conversations",
-                    description: "Where advertising minds come together.",
-                  },
-                  {
-                    image: "https://placehold.co/800x600/1a1a2e/ffffff?text=Building+Community",
-                    title: "Building Community",
-                    description: "Networking across Kerala's creative industry.",
-                  },
-                ]}
-              />
-              {/* Stats anchored below the cards */}
-              <div className="flex gap-10 border-t border-muted pt-6 w-full justify-center">
-                {[
-                  { num: "2025", label: "Founded" },
-                  { num: "3", label: "Programmes" },
-                  { num: "TVM", label: "Home City" },
-                ].map(({ num, label }) => (
-                  <div key={label} className="flex flex-col items-center gap-1">
-                    <p className="font-display font-bold text-bg-warm text-xl">{num}</p>
-                    <p className="font-body text-[9px] text-bg-warm/35 tracking-[0.2em] uppercase">{label}</p>
-                  </div>
-                ))}
-              </div>
-            </FadeUp>
-          </div>
-
-          {/* Who's in the room */}
-          <div className="border-t border-muted px-6 md:px-16 py-7">
-            <FadeUp className="flex flex-col md:flex-row md:items-baseline gap-4 md:gap-14">
-              <p className="font-body text-[9px] font-semibold text-bg-warm/25 tracking-[0.28em] uppercase shrink-0">
-                Who's in the room
-              </p>
-              <div className="flex flex-wrap gap-y-1.5">
-                {[
-                  "Creative Directors", "Brand Strategists", "Media Planners",
-                  "Copywriters", "Art Directors", "Digital Marketers",
-                  "Photographers", "PR Professionals", "Campaign Managers",
-                ].map((role, i, arr) => (
-                  <span key={role} className="font-body text-sm text-bg-warm/50 font-medium">
-                    {role}
-                    {i < arr.length - 1 && (
-                      <span className="text-purple/25 mx-2.5">·</span>
-                    )}
-                  </span>
-                ))}
-              </div>
-            </FadeUp>
-          </div>
-        </div>
-
-
-
-      </section>
-
-
-      {/* ── MAJOR EVENTS ─────────────────────────────────────────── */}
-      <MajorEventsCarousel />
-
-      {/* ── LOA AWARDS CTA ───────────────────────────────────────── */}
-      <FadeUp>
-        <section className="mx-6 md:mx-16 my-24 rounded-3xl bg-purple px-10 py-16 md:py-20 flex flex-col md:flex-row items-center justify-between gap-8">
-          <div className="flex flex-col gap-4 max-w-lg">
-            <p className="font-body text-xs font-medium text-white/60 tracking-[0.2em] uppercase">
-              Annual Awards · 2025
-            </p>
-            <h2
-              className="font-display font-bold text-white leading-tight tracking-tight"
-              style={{ fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)" }}
-            >
-              The LOA Awards Are Coming
-            </h2>
-            <p className="font-body text-base text-white/70 leading-relaxed">
-              Recognising outstanding achievement in advertising and marketing
-              communication across Kerala's advertising fraternity.
-            </p>
-          </div>
-          <a
-            href="https://loaawards.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2.5 px-8 py-4 text-sm font-body font-bold tracking-wide text-bg-warm bg-yellow rounded-full hover:bg-yellow/90 transition-colors shrink-0"
-          >
-            Apply Now →
-          </a>
-        </section>
-      </FadeUp>
-
-      {/* ── CONTACT ──────────────────────────────────────────────── */}
-      <section className="px-6 md:px-16 py-24">
-        <FadeUp className="flex flex-col gap-3 mb-12">
-          <SectionTag>Get In Touch</SectionTag>
-          <h2
-            className="font-display font-bold text-bg-warm leading-tight tracking-tight"
-            style={{ fontSize: "clamp(1.75rem, 4vw, 3rem)" }}
-          >
-            Contact Us
-          </h2>
-          <p className="font-body text-base text-bg-warm/60 max-w-md leading-relaxed">
-            Have a question or want to collaborate? We'd love to hear from you.
-          </p>
-        </FadeUp>
-
-        <ul className="flex flex-col gap-7">
-          {contacts.map(({ label, value, href }, i) => (
-            <FadeUp key={label} delay={i * 0.07}>
-              <li className="flex items-center gap-5">
-                <span className="w-2 h-2 rounded-full bg-purple shrink-0 mt-0.5" />
-                <div>
-                  <p className="text-xs font-body font-medium text-purple tracking-[0.15em] uppercase mb-0.5">
-                    {label}
-                  </p>
-                  <a
-                    href={href}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="font-body text-bg-warm font-medium hover:text-purple transition-colors"
-                  >
-                    {value}
-                  </a>
-                </div>
-              </li>
-            </FadeUp>
-          ))}
-        </ul>
       </section>
 
     </main>

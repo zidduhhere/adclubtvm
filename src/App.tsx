@@ -12,58 +12,24 @@ import EventDetail from "./pages/EventDetail";
 import Membership from "./pages/Membership";
 import Awards from "./pages/Awards";
 import LivingRoom from "./pages/LivingRoom";
-import { Banner } from "./components/ui/banner";
 import MaintenanceOverlay from "./components/MaintenanceOverlay";
 import { MAINTENANCE_MODE } from "./config/maintenance";
 
-const BANNER_H = 44;
-
 function AppLayout() {
-  const [showBanner, setShowBanner] = useState(true);
   const { pathname } = useLocation();
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
 
-  useEffect(() => {
-    document.documentElement.style.setProperty(
-      "--banner-h",
-      showBanner ? `${BANNER_H}px` : "0px"
-    );
-  }, [showBanner]);
-
   return (
     <>
-      {/* Fixed announcement banner — sits above nav */}
-      <div className="fixed top-0 left-0 right-0 z-60">
-        <Banner
-          show={showBanner}
-          onHide={() => setShowBanner(false)}
-          icon={<Trophy className="h-4 w-4 text-yellow" />}
-          title={
-            <>
-              <span className="font-semibold text-white">LOA Awards 2025</span>{" "}
-              — Applications are now open. Don't miss your chance to shine.
-            </>
-          }
-          action={{
-            label: "Apply Now →",
-            onClick: () => {
-              window.open("https://loaawards.com", "_blank", "noopener,noreferrer");
-              setShowBanner(false);
-            },
-          }}
-        />
-      </div>
-
-      {/* Nav is offset by banner height via CSS var */}
-      <div style={{ marginTop: showBanner ? BANNER_H : 0 }}>
+      <div className="relative">
         <Nav />
       </div>
 
       {/* Content — pages already have pt-16 for the nav */}
-      <div style={{ marginTop: showBanner ? BANNER_H : 0 }}>
+      <div>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/events" element={<Events />} />
