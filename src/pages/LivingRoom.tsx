@@ -13,7 +13,7 @@ const fadeUp = {
   visible: (i: number) => ({ opacity: 1, y: 0, transition: { delay: i * 0.1, duration: 0.5, ease: "easeOut" as const } }),
 };
 
-const livingRoomDescription = "An intimate monthly dialogue series where senior advertising professionals from across Kerala share unfiltered stories, hard lessons, and the truths behind their careers — in a living room setting, away from the conference stage.";
+const livingRoomDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.";
 
 export default function LivingRoom() {
   const upcoming = sessions.find((s) => s.status === "upcoming");
@@ -212,7 +212,7 @@ export default function LivingRoom() {
             Want to share your story?
           </h2>
           <p className="font-body text-bg-warm/65 text-base leading-relaxed mb-8">
-            The Living Room is always looking for voices from Kerala's advertising and media industry. If you have a story, a lesson, or a perspective worth sharing with a room full of peers, we'd love to hear from you.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
           </p>
           <a
             href="mailto:adclubtrivandrum@gmail.com?subject=Living%20Room%20Speaker%20Proposal"

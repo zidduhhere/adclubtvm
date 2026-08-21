@@ -9,10 +9,10 @@ import SectionTag from "../components/SectionTag";
 gsap.registerPlugin(ScrollTrigger);
 
 const benefits = [
-  { icon: "🤝", title: "Networking", desc: "Connect with Trivandrum's top advertising and media professionals at exclusive ACT events." },
-  { icon: "🎓", title: "Skill Development", desc: "Access workshops, seminars, and Living Room sessions led by senior industry practitioners." },
-  { icon: "🏆", title: "LOA Awards", desc: "Free or discounted entries to the Love of Advertising Awards for ACT members." },
-  { icon: "📰", title: "Industry Intel", desc: "Monthly newsletter with Kerala ad industry news, job postings, and opportunities." },
+  { icon: "🤝", title: "Networking", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore." },
+  { icon: "🎓", title: "Skill Development", desc: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo." },
+  { icon: "🏆", title: "LOA Awards", desc: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur." },
+  { icon: "📰", title: "Industry Intel", desc: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim." },
 ];
 
 const fadeUp = {
@@ -116,7 +116,7 @@ export default function Membership() {
           </h1>
 
           <p className="hero-text font-body text-xl md:text-2xl text-black/70 max-w-2xl leading-relaxed mt-4">
-            ACT membership is an invitation to be part of a growing community of advertising professionals — from seasoned creatives to emerging talent — united by a passion for the craft.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
           </p>
 
           <a
@@ -204,9 +204,9 @@ export default function Membership() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
-            { step: "01", title: "Email Us", desc: "Send your application to adclubtrivandrum@gmail.com with your name, role, company, and membership category." },
-            { step: "02", title: "Review", desc: "The ACT committee reviews applications within 5 working days. You may be invited for a brief introductory call." },
-            { step: "03", title: "Welcome!", desc: "Once approved, you'll receive your membership confirmation and details on your first ACT event." },
+            { step: "01", title: "Email Us", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore." },
+            { step: "02", title: "Review", desc: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." },
+            { step: "03", title: "Welcome!", desc: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur." },
           ].map((s, i) => (
             <motion.div
               key={s.step}

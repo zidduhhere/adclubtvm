@@ -415,7 +415,7 @@ export default function Instagram() {
           </h1>
 
           <p className="hero-text font-body text-xl md:text-2xl text-black/70 max-w-2xl leading-relaxed mt-4">
-            A curated feed from the Ad Club Trivandrum community — workshops, award nights, behind-the-scenes, and everything in between.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
         </div>
       </section>

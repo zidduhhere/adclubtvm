@@ -132,7 +132,7 @@ export default function Events() {
             </h1>
           </div>
           <p className="hero-text font-body text-xl md:text-2xl text-black/60 max-w-2xl mx-auto mt-6">
-            Landmark moments that bring Kerala's advertising community together.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
         </div>
       </section>

@@ -114,7 +114,7 @@ export default function About() {
           </h1>
 
           <p className="hero-text font-body text-xl md:text-2xl text-black/70 max-w-2xl leading-relaxed mt-4">
-            A vibrant community of advertising and media professionals in Kerala's capital — fostering innovation, collaboration, and professional excellence.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
           </p>
 
           <Link
@@ -157,9 +157,9 @@ export default function About() {
         </h2>
         <div className="max-w-3xl flex flex-col gap-5">
           {[
-            "Advertising Club Trivandrum (ACT) was established with the mission of bringing together the most creative and passionate advertising minds in Kerala's capital. We believe that collaboration between professionals, agencies, and brands is the cornerstone of a thriving industry ecosystem.",
-            "Our objective is to foster continuous learning and professional growth through curated events, seminars, and networking sessions. We aim to elevate the standards of advertising, marketing communication, and media in Trivandrum and across Kerala.",
-            "By building bridges between emerging talent and industry veterans, ACT serves as a platform for mentorship, recognition, and collective advancement — celebrating outstanding creative work through initiatives like the LOA Awards.",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris.",
+            "Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero.",
+            "Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa.",
           ].map((text, i) => (
             <p key={i} className="font-body text-base text-bg-warm/70 leading-relaxed">{text}</p>
           ))}
@@ -191,9 +191,9 @@ export default function About() {
         </h2>
         <div className="max-w-3xl flex flex-col gap-5">
           {[
-            "ACT began as a conversation among a handful of advertising professionals who recognised a gap — Trivandrum, despite its rich creative talent, lacked a dedicated professional network for the advertising industry. That conversation became a movement.",
-            "In 2024, Advertising Club Trivandrum was officially launched, with its logo unveiled by none other than Mohanlal — a defining moment that signalled the industry's support for this new community. Since then, we've grown rapidly, with members spanning agencies, brands, digital studios, and media houses.",
-            "Our story is still being written — one event, one connection, and one campaign at a time. Every member who joins ACT adds a new chapter to this collective narrative of passion for the craft.",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris.",
+            "Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero.",
+            "Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa.",
           ].map((text, i) => (
             <p key={i} className="font-body text-base text-bg-warm/70 leading-relaxed">{text}</p>
           ))}

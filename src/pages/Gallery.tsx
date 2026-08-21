@@ -112,8 +112,7 @@ export default function Gallery() {
           </h1>
 
           <p className="hero-text font-body text-xl md:text-2xl text-black/70 max-w-2xl leading-relaxed mt-4">
-            {allPhotos.length} photographs across {events.length}{" "}
-            {events.length === 1 ? "event" : "events"}
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
         </div>
       </section>
