@@ -1,13 +1,19 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import { awardGroups, editions, loaFAQ, jury } from "../data/awards";
 import SectionTag from "../components/SectionTag";
 import { ChevronDown, Search } from "lucide-react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Awards() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [query, setQuery] = useState("");
   const upcoming = editions.find((e) => e.status === "upcoming");
+  const container = useRef<HTMLDivElement>(null);
 
   const filtered = query.trim()
     ? awardGroups
@@ -23,61 +29,117 @@ export default function Awards() {
 
   const totalCategories = awardGroups.reduce((s, g) => s + g.categories.length, 0);
 
+  useGSAP(
+    () => {
+      // Parallax background elements
+      gsap.to(".parallax-bg", {
+        yPercent: 30,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".hero-section",
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+
+      gsap.to(".parallax-fast", {
+        yPercent: -20,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".hero-section",
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+
+      // Hero Text Stagger Intro
+      gsap.fromTo(
+        ".hero-text",
+        { opacity: 0, y: 60 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          stagger: 0.15,
+          ease: "power4.out",
+          delay: 0.1,
+        },
+      );
+    },
+    { scope: container },
+  );
+
   return (
-    <main className="pt-16 min-h-screen bg-white">
-
-      {/* ── HERO ── */}
-      <section
-        className="w-full bg-bg-warm border-b border-white/10 overflow-hidden relative bg-grid-pattern-dark"
-        style={{ minHeight: "92svh", display: "flex", flexDirection: "column" }}
-      >
-        <div
-          className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden"
-          aria-hidden="true"
-        >
-          <span
-            className="font-display font-bold text-white/[0.02] leading-none"
-            style={{ fontSize: "clamp(12rem, 35vw, 28rem)", letterSpacing: "-0.06em" }}
+    <main
+      ref={container}
+      className="min-h-screen bg-white text-black overflow-x-hidden font-body selection:bg-yellow selection:text-black pt-20"
+    >
+      {/* ── 1. HERO HEADER ── */}
+      <section className="hero-section min-h-screen px-6 md:px-16 pt-32 pb-24 relative flex flex-col items-center justify-center text-center">
+        {/* Wavy lines / Grid Backgrounds from Figma */}
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
+          <svg
+            viewBox="0 0 1440 100"
+            className="parallax-bg absolute top-20 left-0 w-full h-auto opacity-[0.15] stroke-black fill-none"
+            preserveAspectRatio="none"
+            style={{ strokeWidth: "1.5px" }}
           >
-            LOA
-          </span>
+            <path d="M0,30 Q180,-10 360,30 T720,30 T1080,30 T1440,30" />
+            <path d="M0,50 Q180,10 360,50 T720,50 T1080,50 T1440,50" />
+            <path d="M0,70 Q180,30 360,70 T720,70 T1080,70 T1440,70" />
+          </svg>
+
+          {/* Left Grid */}
+          <img
+            src="/SVG/grid.svg"
+            alt=""
+            className="parallax-fast absolute top-4 left-0 h-[60%] md:h-[70%] object-contain -ml-[5%] lg:-ml-[10%]"
+          />
+          {/* Right Grid */}
+          <img
+            src="/SVG/grid-2.svg"
+            alt=""
+            className="parallax-fast absolute top-4 right-0 h-[40%] md:h-[50%] object-contain -mr-[5%] lg:-mr-[10%]"
+          />
+          {/* Bottom Right Grid */}
+          <img
+            src="/SVG/grid-3.svg"
+            alt=""
+            className="parallax-fast absolute bottom-0 right-0 h-[40%] md:h-[50%] object-contain -mr-[5%] lg:-mr-[10%]"
+          />
         </div>
 
-        <div className="relative z-10 flex-1 flex items-center justify-center px-6 md:px-16">
-          <div className="max-w-3xl w-full py-20 md:py-16 flex flex-col items-center text-center gap-6">
-            <SectionTag color="yellow">LOA Awards 2025</SectionTag>
-            <h1 className="font-display font-bold text-white leading-[1.02] tracking-tight text-[clamp(3.5rem,8.5vw,6rem)]">
-              Love of{" "}
-              <span style={{ color: "#FEC812" }}>Advertising</span>{" "}
-              Awards
-            </h1>
-            <p className="font-body text-white/60 text-base leading-relaxed max-w-xl">
-              Kerala's first dedicated advertising creative awards — recognising emerging formats and evolving forms of communication. Judged by senior professionals from outside Kerala for complete impartiality.
-            </p>
-            <div className="flex flex-wrap justify-center gap-3">
-              <a
-                href="https://loaawards.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-body font-medium text-bg-warm bg-yellow rounded-full transition-opacity hover:opacity-85"
-              >
-                Submit Entry →
-              </a>
-              <a
-                href="mailto:adclubtrivandrum@gmail.com?subject=LOA%20Awards%20Sponsorship"
-                className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-body font-medium text-white border border-white/20 rounded-full transition-colors hover:border-yellow hover:text-yellow"
-              >
-                Sponsor an Award
-              </a>
-            </div>
+        <div className="relative z-10 max-w-5xl flex flex-col items-center gap-8">
+          <div className="hero-text inline-block border-2 border-black/20 rounded-full px-6 py-2 text-xs font-bold uppercase tracking-widest text-black/60 shadow-sm">
+            LOA Awards 2025
           </div>
-        </div>
 
-        <div className="relative z-10 border-t border-white/10 overflow-hidden py-4">
-          <div className="flex whitespace-nowrap">
-            <span className="marquee-track inline-flex gap-0 font-display font-bold text-sm tracking-[0.2em] text-yellow uppercase opacity-80">
-              {"EVENTS · AWARDS · NETWORKING · SEMINARS · TRIVANDRUM · KERALA · CREATIVITY · ADVERTISING · ".repeat(6)}
-            </span>
+          <h1 className="hero-text font-display font-bold text-[clamp(3.5rem,8.5vw,6rem)] leading-[0.9] tracking-tight uppercase">
+            Love of <br />
+            <span className="text-yellow">Advertising</span> Awards
+          </h1>
+
+          <p className="hero-text font-body text-xl md:text-2xl text-black/70 max-w-2xl leading-relaxed mt-4">
+            Kerala's first dedicated advertising creative awards — recognising emerging formats and evolving forms of communication. Judged by senior professionals from outside Kerala for complete impartiality.
+          </p>
+
+          <div className="hero-text mt-6 flex flex-wrap justify-center gap-4">
+            <a
+              href="https://loaawards.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-yellow text-black px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:-translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all"
+            >
+              Submit Entry →
+            </a>
+            <a
+              href="mailto:adclubtrivandrum@gmail.com?subject=LOA%20Awards%20Sponsorship"
+              className="inline-flex items-center gap-2 bg-transparent border-2 border-black/20 text-black px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:bg-black/5 hover:-translate-y-1 transition-all"
+            >
+              Sponsor an Award
+            </a>
           </div>
         </div>
       </section>

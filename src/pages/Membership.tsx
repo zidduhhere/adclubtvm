@@ -1,6 +1,12 @@
+import { useRef } from "react";
 import { motion } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import { membershipTiers, committee } from "../data/members";
 import SectionTag from "../components/SectionTag";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const benefits = [
   { icon: "🤝", title: "Networking", desc: "Connect with Trivandrum's top advertising and media professionals at exclusive ACT events." },
@@ -15,41 +21,110 @@ const fadeUp = {
 };
 
 export default function Membership() {
-  return (
-    <main className="pt-16 min-h-screen bg-white">
+  const container = useRef<HTMLDivElement>(null);
 
-      {/* ── HERO ── */}
-      <section
-        className="w-full bg-white border-b border-(--color-muted) relative overflow-hidden bg-grid-pattern"
-        style={{ minHeight: "92svh", display: "flex", flexDirection: "column" }}
-      >
-        <img src="/love-asset-3.svg" alt="" aria-hidden="true" 
-          className="absolute right-0 top-1/2 -translate-y-1/2 w-[40rem] opacity-[0.03] pointer-events-none translate-x-1/4" />
-        
-        <div className="relative z-10 flex-1 flex items-center justify-center px-6 md:px-16">
-          <div className="max-w-3xl w-full py-20 md:py-16 flex flex-col items-center text-center gap-6">
-          <SectionTag>Membership</SectionTag>
-          <h1 className="font-display font-bold text-bg-warm leading-[1.02] tracking-tight text-[clamp(3.5rem,8.5vw,6rem)]">
-            Join Kerala's{" "}
-            <span style={{ color: "#FEC812" }}>Ad Fraternity</span>
+  useGSAP(
+    () => {
+      // Parallax background elements
+      gsap.to(".parallax-bg", {
+        yPercent: 30,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".hero-section",
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+
+      gsap.to(".parallax-fast", {
+        yPercent: -20,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".hero-section",
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+
+      // Hero Text Stagger Intro
+      gsap.fromTo(
+        ".hero-text",
+        { opacity: 0, y: 60 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          stagger: 0.15,
+          ease: "power4.out",
+          delay: 0.1,
+        },
+      );
+    },
+    { scope: container },
+  );
+
+  return (
+    <main
+      ref={container}
+      className="min-h-screen bg-white text-black overflow-x-hidden font-body selection:bg-yellow selection:text-black pt-20"
+    >
+      {/* ── 1. HERO HEADER ── */}
+      <section className="hero-section min-h-screen px-6 md:px-16 pt-32 pb-24 relative flex flex-col items-center justify-center text-center">
+        {/* Wavy lines / Grid Backgrounds from Figma */}
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
+          <svg
+            viewBox="0 0 1440 100"
+            className="parallax-bg absolute top-20 left-0 w-full h-auto opacity-[0.15] stroke-black fill-none"
+            preserveAspectRatio="none"
+            style={{ strokeWidth: "1.5px" }}
+          >
+            <path d="M0,30 Q180,-10 360,30 T720,30 T1080,30 T1440,30" />
+            <path d="M0,50 Q180,10 360,50 T720,50 T1080,50 T1440,50" />
+            <path d="M0,70 Q180,30 360,70 T720,70 T1080,70 T1440,70" />
+          </svg>
+
+          {/* Left Grid */}
+          <img
+            src="/SVG/grid.svg"
+            alt=""
+            className="parallax-fast absolute top-4 left-0 h-[60%] md:h-[70%] object-contain -ml-[5%] lg:-ml-[10%]"
+          />
+          {/* Right Grid */}
+          <img
+            src="/SVG/grid-2.svg"
+            alt=""
+            className="parallax-fast absolute top-4 right-0 h-[40%] md:h-[50%] object-contain -mr-[5%] lg:-mr-[10%]"
+          />
+          {/* Bottom Right Grid */}
+          <img
+            src="/SVG/grid-3.svg"
+            alt=""
+            className="parallax-fast absolute bottom-0 right-0 h-[40%] md:h-[50%] object-contain -mr-[5%] lg:-mr-[10%]"
+          />
+        </div>
+
+        <div className="relative z-10 max-w-5xl flex flex-col items-center gap-8">
+          <div className="hero-text inline-block border-2 border-black/20 rounded-full px-6 py-2 text-xs font-bold uppercase tracking-widest text-black/60 shadow-sm">
+            Membership
+          </div>
+
+          <h1 className="hero-text font-display font-bold text-[clamp(3.5rem,8.5vw,6rem)] leading-[0.9] tracking-tight uppercase">
+            Join Kerala's <br />
+            <span className="text-yellow">Ad Fraternity</span>
           </h1>
-          <p className="font-body text-bg-warm/60 text-base leading-relaxed max-w-xl">
+
+          <p className="hero-text font-body text-xl md:text-2xl text-black/70 max-w-2xl leading-relaxed mt-4">
             ACT membership is an invitation to be part of a growing community of advertising professionals — from seasoned creatives to emerging talent — united by a passion for the craft.
           </p>
+
           <a
             href="mailto:adclubtrivandrum@gmail.com?subject=Membership%20Application"
-            className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-body font-medium tracking-wide text-white bg-purple rounded-full transition-opacity hover:opacity-85"
+            className="hero-text mt-6 inline-flex items-center gap-3 bg-purple text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:-translate-y-1 hover:shadow-xl transition-all"
           >
             Apply for Membership →
           </a>
-        </div>
-        </div>
-        <div className="border-t border-(--color-muted) overflow-hidden py-4">
-          <div className="flex whitespace-nowrap">
-            <span className="marquee-track inline-flex gap-0 font-display font-bold text-sm tracking-[0.2em] text-purple uppercase">
-              {"EVENTS · AWARDS · NETWORKING · SEMINARS · TRIVANDRUM · KERALA · CREATIVITY · ADVERTISING · ".repeat(6)}
-            </span>
-          </div>
         </div>
       </section>
 

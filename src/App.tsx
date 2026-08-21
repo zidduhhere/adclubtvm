@@ -7,7 +7,6 @@ import Events from "./pages/Events";
 import Gallery from "./pages/Gallery";
 import About from "./pages/About";
 import Instagram from "./pages/Instagram";
-import EventDetail from "./pages/EventDetail";
 import Membership from "./pages/Membership";
 import Awards from "./pages/Awards";
 import LivingRoom from "./pages/LivingRoom";
@@ -32,7 +31,6 @@ function AppLayout() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/events" element={<Events />} />
-          <Route path="/events/:id" element={<EventDetail />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/about" element={<About />} />
           <Route path="/instagram" element={<Instagram />} />
