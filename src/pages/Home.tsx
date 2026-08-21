@@ -301,49 +301,49 @@ export default function Home() {
         <div className="w-[110%] -ml-[5%] -rotate-2 bg-gradient-to-r from-purple/5 via-purple/10 to-purple/5 py-8 border-y border-purple/10 flex whitespace-nowrap shadow-sm backdrop-blur-sm relative">
           <div className="animate-marquee flex items-center font-display font-medium italic text-4xl md:text-5xl tracking-wide text-purple">
             <span className="mx-8 flex items-center gap-8">
-              Educate{" "}
+              Lorem{" "}
               <span className="text-yellow text-3xl not-italic opacity-80">
                 ♥
               </span>
             </span>
             <span className="mx-8 flex items-center gap-8">
-              Engage{" "}
+              Lorem{" "}
               <span className="text-yellow text-3xl not-italic opacity-80">
                 ♥
               </span>
             </span>
             <span className="mx-8 flex items-center gap-8">
-              LOA Awards 2025{" "}
+              Lorem{" "}
               <span className="text-yellow text-3xl not-italic opacity-80">
                 ♥
               </span>
             </span>
             <span className="mx-8 flex items-center gap-8">
-              Inspire{" "}
+              Lorem{" "}
               <span className="text-yellow text-3xl not-italic opacity-80">
                 ♥
               </span>
             </span>
             <span className="mx-8 flex items-center gap-8">
-              Educate{" "}
+              Lorem{" "}
               <span className="text-yellow text-3xl not-italic opacity-80">
                 ♥
               </span>
             </span>
             <span className="mx-8 flex items-center gap-8">
-              Engage{" "}
+              Lorem{" "}
               <span className="text-yellow text-3xl not-italic opacity-80">
                 ♥
               </span>
             </span>
             <span className="mx-8 flex items-center gap-8">
-              LOA Awards 2025{" "}
+              Lorem{" "}
               <span className="text-yellow text-3xl not-italic opacity-80">
                 ♥
               </span>
             </span>
             <span className="mx-8 flex items-center gap-8">
-              Inspire{" "}
+              Lorem{" "}
               <span className="text-yellow text-3xl not-italic opacity-80">
                 ♥
               </span>
