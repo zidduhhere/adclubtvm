@@ -1,11 +1,17 @@
 import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { committee } from "../data/members";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 28 },
+  visible: (i: number) => ({ opacity: 1, y: 0, transition: { delay: i * 0.08, duration: 0.5, ease: "easeOut" as const } }),
+};
 
 export default function About() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -23,27 +29,31 @@ export default function About() {
 
   useGSAP(
     () => {
-      // Parallax background elements
-      gsap.to(".parallax-bg", {
-        yPercent: 30,
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".hero-section",
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
+      let mm = gsap.matchMedia();
 
-      gsap.to(".parallax-fast", {
-        yPercent: -20,
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".hero-section",
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-        },
+      mm.add("(min-width: 768px)", () => {
+        // Parallax background elements
+        gsap.to(".parallax-bg", {
+          yPercent: 30,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".hero-section",
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+
+        gsap.to(".parallax-fast", {
+          yPercent: -20,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".hero-section",
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
       });
 
       // Hero Text Stagger Intro
@@ -63,6 +73,13 @@ export default function About() {
     { scope: container },
   );
 
+  const objectives = [
+    "To create a vibrant network for professionals to exchange ideas, share knowledge, and stay updated on industry trends.",
+    "To organize workshops, seminars, and events aimed at enhancing skills and promoting creative excellence.",
+    "To recognize and celebrate achievements in advertising and marketing communication.",
+    "To inspire and foster new talents to the advertising & media industry in the region.",
+  ];
+
   return (
     <main
       ref={container}
@@ -71,7 +88,7 @@ export default function About() {
       {/* ── 1. HERO HEADER ── */}
       <section className="hero-section min-h-screen px-6 md:px-16 pt-32 pb-24 relative flex flex-col items-center justify-center text-center">
         {/* Wavy lines / Grid Backgrounds from Figma */}
-        <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
+        <div className="hidden md:block absolute top-0 left-0 w-full h-full pointer-events-none z-0">
           <svg
             viewBox="0 0 1440 100"
             className="parallax-bg absolute top-20 left-0 w-full h-auto opacity-[0.15] stroke-black fill-none"
@@ -105,7 +122,7 @@ export default function About() {
 
         <div className="relative z-10 max-w-5xl flex flex-col items-center gap-8">
           <div className="hero-text inline-block border-2 border-black/20 rounded-full px-6 py-2 text-xs font-bold uppercase tracking-widest text-black/60 shadow-sm">
-            About
+            About Us
           </div>
 
           <h1 className="hero-text font-display font-bold text-[clamp(3.5rem,8.5vw,6rem)] leading-[0.9] tracking-tight uppercase">
@@ -114,181 +131,275 @@ export default function About() {
           </h1>
 
           <p className="hero-text font-body text-xl md:text-2xl text-black/70 max-w-2xl leading-relaxed mt-4">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+            A vibrant community of advertising and media professionals dedicated to excellence and innovation.
           </p>
 
-          <Link
-            to="/membership"
-            className="hero-text mt-6 inline-flex items-center gap-3 bg-purple text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:-translate-y-1 hover:shadow-xl transition-all"
-          >
-            Join with Us
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-4 mt-6">
+            <Link
+              to="/membership"
+              className="hero-text inline-flex items-center justify-center gap-3 bg-purple text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:-translate-y-1 hover:shadow-xl transition-all"
+            >
+              Join the Club
+            </Link>
+            <a
+              href="#contact"
+              className="hero-text inline-flex items-center justify-center gap-3 bg-transparent border-2 border-black/20 text-black px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:border-black transition-all"
+            >
+              Contact Us ↓
+            </a>
+          </div>
         </div>
       </section>
 
-      {/* ── FOUNDED STAT ─────────────────────────────────────── */}
-      <section className="px-6 md:px-16 py-20 border-b border-(--color-muted) text-center">
-        <span className="block font-body italic text-purple text-lg mb-2 tracking-wide">
-          Started In
-        </span>
-        <p className="font-display font-bold text-bg-warm text-[clamp(5rem,18vw,11rem)] leading-none tracking-tight">
-          2024
-        </p>
-      </section>
-
-      {/* ── 3-COLUMN IMAGE ROW ───────────────────────────────── */}
-      <section className="px-6 md:px-16 py-16 border-b border-(--color-muted)">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {["about-a", "about-b", "about-c"].map((seed) => (
-            <div key={seed} className="rounded-2xl overflow-hidden shadow-sm bg-muted" style={{ width: "400px", height: "400px", maxWidth: "100%" }}>
-              <img src="https://placehold.co/400x400/2d1b69/ffffff?text=Photo" alt=""
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+      {/* ── OUR STORY ── */}
+      <section className="px-6 md:px-16 py-24 bg-white border-b border-black/5">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+          <div>
+            <h2 className="font-display font-bold text-4xl md:text-6xl uppercase tracking-tight text-black mb-6">
+              Our <span className="text-purple">Story</span>
+            </h2>
+            <p className="font-body text-xl text-black/70 leading-relaxed">
+              Advertising Club Trivandrum was born from the collective vision of like-minded professionals passionate about elevating the standards of advertising and communication. 
+              <br /><br />
+              Established in 2024, the Club aims to connect the advertising fraternity in Trivandrum, foster learning, and create impactful collaborations.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="flex flex-col gap-4">
+              <div className="rounded-3xl overflow-hidden bg-[#F8F9FA] border border-black/5 aspect-square">
+                <img src="https://placehold.co/600x600/f8f9fa/black?text=Photo+1" alt="" className="w-full h-full object-cover mix-blend-multiply" />
+              </div>
+              <div className="rounded-3xl overflow-hidden bg-[#F8F9FA] border border-black/5 aspect-[4/3]">
+                <img src="https://placehold.co/600x450/f8f9fa/black?text=Photo+2" alt="" className="w-full h-full object-cover mix-blend-multiply" />
+              </div>
             </div>
-          ))}
+            <div className="flex flex-col gap-4 mt-12">
+              <div className="rounded-3xl overflow-hidden bg-[#F8F9FA] border border-black/5 aspect-[4/3]">
+                <img src="https://placehold.co/600x450/f8f9fa/black?text=Photo+3" alt="" className="w-full h-full object-cover mix-blend-multiply" />
+              </div>
+              <div className="rounded-3xl overflow-hidden bg-[#F8F9FA] border border-black/5 aspect-square">
+                <img src="https://placehold.co/600x600/f8f9fa/black?text=Photo+4" alt="" className="w-full h-full object-cover mix-blend-multiply" />
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* ── OUR OBJECTIVE ────────────────────────────────────── */}
-      <section className="relative px-6 md:px-16 py-20 border-b border-(--color-muted) overflow-hidden">
-        <img src="/spiral-asset-1.svg" alt="" aria-hidden="true"
-          className="absolute right-8 top-8 w-28 opacity-20 pointer-events-none select-none" />
-        <h2 className="font-display font-bold text-bg-warm text-[clamp(1.8rem,4vw,3rem)] tracking-tight mb-8">
-          Our Objective
-        </h2>
-        <div className="max-w-3xl flex flex-col gap-5">
-          {[
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris.",
-            "Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero.",
-            "Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa.",
-          ].map((text, i) => (
-            <p key={i} className="font-body text-base text-bg-warm/70 leading-relaxed">{text}</p>
-          ))}
+      {/* ── STATS ROW ── */}
+      <section className="px-6 md:px-16 py-24 bg-[#F8F9FA] border-b border-black/5">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-12 md:gap-24 justify-center items-center text-center">
+          <div>
+            <span className="block font-body text-purple font-bold tracking-widest uppercase mb-2">Established In</span>
+            <p className="font-display font-bold text-black text-[clamp(4rem,10vw,7rem)] leading-none tracking-tight">2024</p>
+          </div>
+          <div className="w-full md:w-px h-px md:h-32 bg-black/10"></div>
+          <div>
+            <span className="block font-body text-yellow font-bold tracking-widest uppercase mb-2">Community</span>
+            <p className="font-display font-bold text-black text-[clamp(4rem,10vw,7rem)] leading-none tracking-tight">50<span className="text-purple">+</span></p>
+          </div>
         </div>
       </section>
 
-      {/* ── MEMBERS STAT ─────────────────────────────────────── */}
-      <section className="px-6 md:px-16 py-20 border-b border-(--color-muted) text-center">
-        <span className="block font-body italic text-purple text-lg mb-2 tracking-wide">
-          With more than
-        </span>
-        <p className="font-display font-bold text-bg-warm text-[clamp(3.5rem,14vw,9rem)] leading-none tracking-tight">
-          50+ members
-        </p>
-      </section>
-
-      {/* ── FULL-WIDTH IMAGE ─────────────────────────────────── */}
-      <section className="px-6 md:px-16 py-16 border-b border-(--color-muted)">
-        <div className="w-full h-[180px] md:h-[220px] rounded-3xl overflow-hidden shadow-md bg-muted">
-          <img src="https://placehold.co/1400x400/1a1a2e/ffffff?text=ACT+Community" alt="ACT community"
-            className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
-        </div>
-      </section>
-
-      {/* ── OUR STORY ────────────────────────────────────────── */}
-      <section className="px-6 md:px-16 py-20 border-b border-(--color-muted)">
-        <h2 className="font-display font-bold text-bg-warm text-[clamp(1.8rem,4vw,3rem)] tracking-tight mb-8">
-          Our Story
-        </h2>
-        <div className="max-w-3xl flex flex-col gap-5">
-          {[
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris.",
-            "Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero.",
-            "Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa.",
-          ].map((text, i) => (
-            <p key={i} className="font-body text-base text-bg-warm/70 leading-relaxed">{text}</p>
-          ))}
-        </div>
-      </section>
-
-      {/* ── CORE TEAM ────────────────────────────────────────── */}
-      <section className="relative px-6 md:px-16 py-20 border-b border-(--color-muted) overflow-hidden">
-        <img src="/love-asset-3.svg" alt="" aria-hidden="true"
-          className="absolute left-0 bottom-10 w-20 opacity-10 pointer-events-none select-none" />
-
-        <h2 className="font-display font-bold text-bg-warm text-[clamp(2rem,5vw,3.5rem)] tracking-tight text-center mb-14">
-          Core Team
-        </h2>
-
-        <div className="flex flex-col gap-20">
-          {(["Office Bearers", "Managing Committee", "Advisory Board"] as const).map((group) => {
-            const groupMembers = committee.filter((m) => m.group === group);
-            if (groupMembers.length === 0) return null;
-
-            return (
-              <div key={group} className="flex flex-col gap-8">
-                <h3 className="font-display font-bold text-purple text-[clamp(1.5rem,3vw,2rem)] border-b border-muted pb-3">
-                  {group}
-                </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-                  {groupMembers.map((member) => (
-                    <div key={member.name} className="flex flex-col gap-3 group">
-                      {/* Photo */}
-                      <div className="bg-muted flex items-center justify-center overflow-hidden w-full aspect-square relative">
-                        {member.image ? (
-                          <img 
-                            src={member.image} 
-                            alt={member.name} 
-                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
-                          />
-                        ) : (
-                          <span className="font-display text-bg-warm/30 uppercase text-[10px] tracking-widest font-bold text-center px-4">
-                            Photo Unavailable
-                          </span>
-                        )}
-                        <div className="absolute inset-0 bg-purple/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      </div>
-                      {/* Info */}
-                      <div className="flex flex-col gap-0.5">
-                        <p className="font-display font-bold text-bg-warm text-lg tracking-tight">{member.name}</p>
-                        {member.role !== "Member" && (
-                          <p className="font-body text-sm font-semibold text-purple tracking-wide">{member.role}</p>
-                        )}
-                        <p className="font-body text-sm text-bg-warm/60 leading-snug">{member.company}</p>
-                      </div>
-                    </div>
-                  ))}
+      {/* ── OUR OBJECTIVES ── */}
+      <section className="px-6 md:px-16 py-32 bg-white border-b border-black/5 relative overflow-hidden">
+        {/* Subtle background decoration */}
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-yellow/5 rounded-full blur-[120px] -mr-[200px] -mt-[200px] pointer-events-none" />
+        
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="mb-24 flex flex-col md:flex-row gap-12 items-end justify-between">
+            <div className="max-w-3xl">
+              <h2 className="font-display font-bold text-[clamp(3rem,6vw,5.5rem)] uppercase tracking-tight text-black mb-6 leading-none">
+                Our <span className="text-purple">Objectives</span>
+              </h2>
+              <p className="font-body text-xl md:text-2xl text-black/60">
+                The core pillars driving our community forward, shaping the future of advertising in Trivandrum.
+              </p>
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-10">
+            {objectives.map((obj, i) => (
+              <motion.div
+                key={i}
+                custom={i}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeUp}
+                className={`relative flex flex-col justify-between p-10 lg:p-14 rounded-[2.5rem] overflow-hidden group transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] ${
+                  i % 2 !== 0 ? "md:mt-16" : ""
+                } ${
+                  i === 0 ? "bg-[#3A1D5A] text-white" :
+                  i === 1 ? "bg-purple text-white" :
+                  i === 2 ? "bg-[#F8F9FA] text-black border border-black/5" :
+                  "bg-yellow text-black"
+                }`}
+              >
+                {/* Massive Number Background */}
+                <div className={`absolute -right-4 -bottom-10 text-[10rem] lg:text-[14rem] font-display font-bold leading-none transition-transform duration-700 group-hover:scale-110 pointer-events-none select-none ${
+                  i === 0 ? "text-white/5" :
+                  i === 1 ? "text-white/10" :
+                  i === 2 ? "text-black/5" :
+                  "text-black/10"
+                }`}>
+                  0{i + 1}
                 </div>
-              </div>
-            );
-          })}
+                
+                <div className="relative z-10">
+                  <div className={`w-12 h-1 mb-10 transition-all duration-500 group-hover:w-24 ${
+                    i === 0 ? "bg-yellow" :
+                    i === 1 ? "bg-yellow" :
+                    i === 2 ? "bg-purple" :
+                    "bg-[#3A1D5A]"
+                  }`}></div>
+                  
+                  <p className="font-display font-bold text-2xl lg:text-3xl uppercase tracking-tight leading-snug">
+                    {obj}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ── CONTACT US ───────────────────────────────────────── */}
-      <section className="px-6 md:px-16 py-20">
-        <h2 className="font-display font-bold text-bg-warm text-[clamp(2rem,5vw,3.5rem)] tracking-tight text-center mb-12">
-          Contact Us
-        </h2>
+      {/* ── CORE TEAM ── */}
+      <section className="px-6 md:px-16 py-24 bg-[#F8F9FA] border-b border-black/5">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-16 text-center">
+            <h2 className="font-display font-bold text-4xl md:text-6xl uppercase tracking-tight text-black mb-4">
+              Core <span className="text-purple">Team</span>
+            </h2>
+            <p className="font-body text-xl text-black/60 max-w-2xl mx-auto">
+              The people behind Advertising Club Trivandrum.
+            </p>
+          </div>
 
-        <div className="max-w-xl mx-auto border border-(--color-muted) rounded-2xl p-8 bg-white">
-          <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-            {[
-              { name: "name", label: "Name", type: "text", placeholder: "Your name" },
-              { name: "email", label: "Email", type: "email", placeholder: "your@email.com" },
-            ].map((field) => (
-              <div key={field.name} className="flex flex-col gap-1.5">
-                <label className="text-xs font-body font-medium text-purple tracking-[0.15em] uppercase">
-                  {field.label}
-                </label>
-                <input type={field.type} name={field.name}
-                  value={(form as Record<string, string>)[field.name]}
-                  onChange={handleChange} required placeholder={field.placeholder}
-                  className="w-full px-4 py-3 rounded-xl border border-(--color-muted) bg-surface text-bg-warm text-sm font-body placeholder:text-bg-warm/30 focus:outline-none focus:border-purple transition-colors" />
+          <div className="flex flex-col gap-24">
+            {(["Office Bearers", "Managing Committee", "Advisory Board"] as const).map((group) => {
+              const groupMembers = committee.filter((m) => m.group === group);
+              if (groupMembers.length === 0) return null;
+
+              return (
+                <div key={group} className="flex flex-col gap-10">
+                  <h3 className="font-display font-bold text-black text-3xl md:text-4xl uppercase tracking-tight border-b border-black/10 pb-4">
+                    {group}
+                  </h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                    {groupMembers.map((member, i) => (
+                      <motion.div
+                        key={member.name}
+                        custom={i}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        variants={fadeUp}
+                        className="flex flex-col rounded-[2.5rem] border border-black/10 bg-white overflow-hidden hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-500 group cursor-pointer isolate"
+                      >
+                        <div className="w-full aspect-[4/5] bg-[#F8F9FA] relative overflow-hidden flex items-center justify-center border-b border-black/5 rounded-t-[2.5rem] [transform:translateZ(0)]">
+                          {member.image ? (
+                            <img
+                              src={member.image}
+                              alt={member.name}
+                              loading="lazy"
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                            />
+                          ) : (
+                            <span className="font-display text-black/20 uppercase text-xs tracking-widest font-bold text-center px-4">
+                              Photo Unavailable
+                            </span>
+                          )}
+                          <div className="absolute inset-0 bg-purple/0 group-hover:bg-purple/10 transition-colors duration-500 mix-blend-multiply pointer-events-none" />
+                        </div>
+                        <div className="flex flex-col gap-2 p-8 bg-white flex-grow">
+                          <p className="font-display font-bold text-black text-2xl uppercase tracking-tight leading-none group-hover:text-purple transition-colors duration-300">
+                            {member.name}
+                          </p>
+                          {member.role !== "Member" && (
+                            <span className="text-[11px] font-bold text-black/40 tracking-widest uppercase mt-1">
+                              {member.role}
+                            </span>
+                          )}
+                          <span className="text-sm font-body text-black/70 mt-auto pt-6 border-t border-black/5 font-medium">
+                            {member.company}
+                          </span>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ── CONTACT US ── */}
+      <section id="contact" className="px-6 md:px-16 py-24 bg-white">
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16">
+          <div className="lg:w-1/3 flex flex-col">
+            <h2 className="font-display font-bold text-4xl md:text-6xl uppercase tracking-tight text-black mb-8">
+              Get In <br /><span className="text-yellow">Touch</span>
+            </h2>
+            
+            <div className="flex flex-col gap-8">
+              <div>
+                <p className="font-body font-bold text-purple text-sm uppercase tracking-widest mb-3">President's Office</p>
+                <p className="font-body text-black/70 text-lg leading-relaxed">
+                  PLAINSPEAK, TC 15/2008, VRA A18<br />
+                  Behind Govt. College for Women<br />
+                  Vazhuthacaud, 695014, Kerala, India
+                </p>
               </div>
-            ))}
-
-            <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-body font-medium text-purple tracking-[0.15em] uppercase">Message</label>
-              <textarea name="message" value={form.message} onChange={handleChange} required rows={5}
-                placeholder="Write your message..."
-                className="w-full px-4 py-3 rounded-xl border border-(--color-muted) bg-surface text-bg-warm text-sm font-body placeholder:text-bg-warm/30 focus:outline-none focus:border-purple transition-colors resize-none" />
+              
+              <div>
+                <p className="font-body font-bold text-purple text-sm uppercase tracking-widest mb-3">Contact</p>
+                <p className="font-body text-black/70 text-lg">T: 0471 4060881</p>
+                <a href="mailto:adclubtrivandrum@gmail.com" className="font-body text-black/70 text-lg hover:text-purple transition-colors">
+                  adclubtrivandrum@gmail.com
+                </a>
+              </div>
             </div>
+          </div>
 
-            <button type="submit"
-              className="self-end inline-flex items-center gap-2 px-7 py-3 text-sm font-body font-medium tracking-wide text-white bg-coral rounded-full transition-opacity hover:opacity-85">
-              Send Message →
-            </button>
-          </form>
+          <div className="lg:w-2/3">
+            <div className="border border-black/10 rounded-[2.5rem] p-8 md:p-12 bg-[#F8F9FA]">
+              <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="flex flex-col gap-2">
+                    <label className="text-xs font-body font-bold text-black/50 tracking-widest uppercase">
+                      Your Name
+                    </label>
+                    <input type="text" name="name"
+                      value={form.name}
+                      onChange={handleChange} required placeholder="John Doe"
+                      className="w-full px-6 py-4 rounded-2xl border border-black/10 bg-white text-black font-body placeholder:text-black/30 focus:outline-none focus:border-purple focus:ring-1 focus:ring-purple transition-all" />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <label className="text-xs font-body font-bold text-black/50 tracking-widest uppercase">
+                      Email Address
+                    </label>
+                    <input type="email" name="email"
+                      value={form.email}
+                      onChange={handleChange} required placeholder="john@example.com"
+                      className="w-full px-6 py-4 rounded-2xl border border-black/10 bg-white text-black font-body placeholder:text-black/30 focus:outline-none focus:border-purple focus:ring-1 focus:ring-purple transition-all" />
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <label className="text-xs font-body font-bold text-black/50 tracking-widest uppercase">Message</label>
+                  <textarea name="message" value={form.message} onChange={handleChange} required rows={6}
+                    placeholder="How can we help you?"
+                    className="w-full px-6 py-4 rounded-2xl border border-black/10 bg-white text-black font-body placeholder:text-black/30 focus:outline-none focus:border-purple focus:ring-1 focus:ring-purple transition-all resize-none" />
+                </div>
+
+                <button type="submit"
+                  className="mt-4 self-start inline-flex items-center justify-center gap-3 px-10 py-5 text-sm font-bold uppercase tracking-widest text-white bg-black rounded-full hover:bg-purple hover:-translate-y-1 hover:shadow-xl transition-all">
+                  Send Message →
+                </button>
+              </form>
+            </div>
+          </div>
         </div>
       </section>
 

@@ -44,7 +44,7 @@ export default function HeroSection() {
             </h1>
           </div>
           <p className="font-body text-base text-bg-warm/50 mt-8 max-w-sm leading-relaxed text-center">
-            Kerala's premier community for advertising and media professionals — based in Trivandrum.
+            A vibrant community of advertising and media professionals dedicated to excellence and innovation.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4 mt-10">
             <a

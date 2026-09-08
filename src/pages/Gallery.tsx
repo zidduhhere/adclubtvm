@@ -112,7 +112,7 @@ export default function Gallery() {
           </h1>
 
           <p className="hero-text font-body text-xl md:text-2xl text-black/70 max-w-2xl leading-relaxed mt-4">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Moments captured from ACT events, sessions, and community gatherings.
           </p>
         </div>
       </section>

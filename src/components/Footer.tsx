@@ -52,9 +52,9 @@ export default function Footer() {
         {
           heading: "Contact",
           links: [
-            { href: "mailto:adclubtrivandrum@gmail.com", label: "Email Us" },
-            { href: "tel:04714060881", label: "0471 4060881" },
-            { href: "/about", label: "Thiruvananthapuram, KL" },
+            { href: "mailto:adclubtrivandrum@gmail.com", label: "adclubtrivandrum@gmail.com" },
+            { href: "tel:04714060881", label: "T: 0471 4060881" },
+            { href: "/about#contact", label: "PLAINSPEAK, TC 15/2008, VRA A18, Behind Govt. College for Women, Vazhuthacaud, 695014, Kerala, India" },
           ],
         },
       ]}

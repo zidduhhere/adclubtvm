@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import StaggeredMenu from "./StaggeredMenu";
@@ -7,8 +7,8 @@ const links = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
   { to: "/events", label: "Events" },
-  { to: "/living-room", label: "Living Room" },
-  { to: "https://loaawards.com", label: "LOA Awards" },
+  { to: "/gallery", label: "Gallery" },
+  { to: "/about#contact", label: "Contact Us" },
   { to: "/membership", label: "Membership" },
 ];
 
@@ -26,6 +26,7 @@ const socialItems = [
 export default function Nav() {
   const headerRef = useRef<HTMLElement>(null);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
@@ -67,11 +68,19 @@ export default function Nav() {
                 to={link.to}
                 end={link.to === "/"}
                 className={({ isActive }) => {
+                  let isLinkActive = isActive;
+                  if (link.to.includes("#")) {
+                    isLinkActive = location.pathname + location.hash === link.to;
+                  } else if (location.hash && link.to === location.pathname) {
+                     isLinkActive = false;
+                  }
+
                   if (link.label === "Membership") {
                     return "text-[14px] font-display font-bold uppercase tracking-widest transition-all duration-200 bg-purple text-white px-6 py-2.5 rounded-full hover:bg-black hover:-translate-y-0.5 shadow-sm";
                   }
+                  
                   return `text-[15px] font-display font-bold uppercase tracking-widest transition-colors duration-200 ${
-                    isActive ? "text-purple" : "text-black/70 hover:text-black"
+                    isLinkActive ? "text-purple" : "text-black/70 hover:text-black"
                   }`;
                 }}
               >

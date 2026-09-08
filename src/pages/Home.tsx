@@ -53,37 +53,41 @@ export default function Home() {
 
   useGSAP(
     () => {
-      // Parallax background elements
-      gsap.to(".parallax-bg", {
-        yPercent: 30,
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".hero-section",
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
+      let mm = gsap.matchMedia();
 
-      gsap.to(".parallax-fast", {
-        yPercent: -20,
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".hero-section",
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
-      gsap.to(".parallax-mid", {
-        yPercent: 30,
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".mid-section",
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true,
-        },
+      mm.add("(min-width: 768px)", () => {
+        // Parallax background elements
+        gsap.to(".parallax-bg", {
+          yPercent: 30,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".hero-section",
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+
+        gsap.to(".parallax-fast", {
+          yPercent: -20,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".hero-section",
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+        gsap.to(".parallax-mid", {
+          yPercent: 30,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".mid-section",
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
       });
 
       // Hero Text Stagger Intro
@@ -111,7 +115,7 @@ export default function Home() {
       {/* ── 1. HERO HEADER ── */}
       <section className="hero-section min-h-screen px-6 md:px-16 pt-32 pb-24 relative flex flex-col items-center justify-center text-center">
         {/* Wavy lines / Grid Backgrounds from Figma */}
-        <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
+        <div className="hidden md:block absolute top-0 left-0 w-full h-full pointer-events-none z-0">
           {/* Top Subtle Wavy Lines Accent */}
           <svg
             viewBox="0 0 1440 100"
@@ -147,7 +151,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto flex flex-col gap-6 relative z-10 w-full">
           <div className="relative w-full flex justify-center">
             {/* Love Hero Background Graphic */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[90%] md:h-[110%] flex items-center justify-center pointer-events-none -z-10">
+            <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[90%] md:h-[110%] items-center justify-center pointer-events-none -z-10">
               <img
                 src="/SVG/love-hero.svg"
                 alt=""
@@ -172,7 +176,7 @@ export default function Home() {
       {/* ── 2. INTRODUCTION & BACKGROUND GRID ── */}
       <section className="mid-section relative z-0 px-6 md:px-16 py-32 md:py-48 flex items-center justify-end">
         {/* Background Grid 4 */}
-        <div className="absolute top-1/2 left-0 -translate-y-1/2 w-full h-[150%] flex items-center justify-start pointer-events-none z-0">
+        <div className="hidden md:flex absolute top-1/2 left-0 -translate-y-1/2 w-full h-[150%] items-center justify-start pointer-events-none z-0">
           <img
             src="/SVG/grid-4.svg"
             alt=""
@@ -188,10 +192,11 @@ export default function Home() {
             </span>{" "}
             is an exclusive platform established to bring together professionals
             from the advertising and media industries in Kerala's capital city.
-            We foster{" "}
+            This initiative aims to foster{" "}
             <span className="text-magenta font-bold">
-              innovation, collaboration, and professional excellence.
-            </span>
+              innovation, collaboration, and professional excellence
+            </span>{" "}
+            within the region's dynamic creative economy.
           </p>
         </FadeUp>
       </section>
@@ -214,20 +219,14 @@ export default function Home() {
             delay={0.2}
           >
             <h3 className="font-display font-bold text-4xl md:text-5xl uppercase tracking-tight mb-8">
-              Advertising <span className="text-purple">DNA</span>
+              Advertising <span className="text-purple">Club Trivandrum</span>
             </h3>
             <div className="space-y-6 text-black/80 font-body text-lg leading-relaxed">
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
-              </p>
-              <p>
-                Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                cupidatat non proident, sunt in culpa qui officia deserunt
-                mollit anim id est laborum.
+                The Club, formed with the active participation of professionals
+                across various domains of advertising and media, aims to serve
+                as a hub for knowledge-sharing, networking, and nurturing talent
+                in the region.
               </p>
             </div>
           </FadeUp>
@@ -247,10 +246,9 @@ export default function Home() {
             </h3>
             <div className="space-y-6 text-black/80 font-body text-lg leading-relaxed mb-10">
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
+                An exclusive knowledge-sharing series by ACT, featuring intimate
+                conversations with advertising industry leaders, offering members
+                a platform to learn from some of the brightest minds in advertising.
               </p>
             </div>
             <Link
@@ -283,11 +281,9 @@ export default function Home() {
             Don't just attend events, join the movement.
           </p>
           <p className="font-body text-xl md:text-2xl leading-relaxed text-black/90">
-            Be part of a community that defines advertising in India, right here
-            in Trivandrum, where creativity thrives, careers accelerate, and
-            bold ideas find their stage. This is more than a calendar of events;
-            it's a movement that keeps the pulse of advertising alive and
-            future-ready.
+            Be part of a thriving community where creativity meets collaboration.
+            Network with industry professionals, access learning opportunities,
+            and shape the future of advertising in Trivandrum.
           </p>
         </FadeUp>
       </section>
@@ -301,43 +297,43 @@ export default function Home() {
         <div className="w-[110%] -ml-[5%] -rotate-2 bg-gradient-to-r from-purple/5 via-purple/10 to-purple/5 py-8 border-y border-purple/10 flex whitespace-nowrap shadow-sm backdrop-blur-sm relative">
           <div className="animate-marquee flex items-center font-display font-medium italic text-4xl md:text-5xl tracking-wide text-purple">
             <span className="mx-8 flex items-center gap-8">
-              Lorem{" "}
+              For the Love of Advertising{" "}
               <span className="text-yellow text-3xl not-italic opacity-80">
                 ♥
               </span>
             </span>
             <span className="mx-8 flex items-center gap-8">
-              Lorem{" "}
+              For the Love of Advertising{" "}
               <span className="text-yellow text-3xl not-italic opacity-80">
                 ♥
               </span>
             </span>
             <span className="mx-8 flex items-center gap-8">
-              Lorem{" "}
+              For the Love of Advertising{" "}
               <span className="text-yellow text-3xl not-italic opacity-80">
                 ♥
               </span>
             </span>
             <span className="mx-8 flex items-center gap-8">
-              Lorem{" "}
+              For the Love of Advertising{" "}
               <span className="text-yellow text-3xl not-italic opacity-80">
                 ♥
               </span>
             </span>
             <span className="mx-8 flex items-center gap-8">
-              Lorem{" "}
+              For the Love of Advertising{" "}
               <span className="text-yellow text-3xl not-italic opacity-80">
                 ♥
               </span>
             </span>
             <span className="mx-8 flex items-center gap-8">
-              Lorem{" "}
+              For the Love of Advertising{" "}
               <span className="text-yellow text-3xl not-italic opacity-80">
                 ♥
               </span>
             </span>
             <span className="mx-8 flex items-center gap-8">
-              Lorem{" "}
+              For the Love of Advertising{" "}
               <span className="text-yellow text-3xl not-italic opacity-80">
                 ♥
               </span>
@@ -365,22 +361,23 @@ export default function Home() {
                 <span className="text-purple">Do it with Distinction.</span>
               </h2>
               <p className="font-body text-black/70 leading-relaxed mb-10">
-                Because this is where Kerala's advertising story is written
-                every day. At ACT, you don't just watch the industry evolve,
-                you're part of the movement that drives it.
+                Be part of a thriving community where creativity meets
+                collaboration. Network with industry professionals, access
+                learning opportunities, and shape the future of advertising
+                in Trivandrum.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
                   to="/membership"
                   className="bg-black text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:bg-black/80 transition-colors flex items-center justify-center gap-3 text-center"
                 >
-                  Become a Member <ArrowRight className="w-4 h-4" />
+                  Join the Club <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
-                  to="/about"
+                  to="/events"
                   className="bg-transparent border-2 border-black/20 text-black px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:bg-black/5 transition-colors flex items-center justify-center gap-3 text-center"
                 >
-                  Begin Your Journey <ArrowRight className="w-4 h-4" />
+                  Explore Upcoming Events <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
             </div>

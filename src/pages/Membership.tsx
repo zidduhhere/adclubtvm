@@ -1,18 +1,20 @@
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { membershipTiers, committee } from "../data/members";
-import SectionTag from "../components/SectionTag";
+import { membershipTiers } from "../data/members";
 
 gsap.registerPlugin(ScrollTrigger);
 
+import { Users, GraduationCap, Globe, Star } from "lucide-react";
+
 const benefits = [
-  { icon: "🤝", title: "Networking", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore." },
-  { icon: "🎓", title: "Skill Development", desc: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo." },
-  { icon: "🏆", title: "LOA Awards", desc: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur." },
-  { icon: "📰", title: "Industry Intel", desc: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim." },
+  { icon: Users, title: "Networking Opportunities", desc: "Connect and exchange ideas with professionals from advertising, media, and related industries." },
+  { icon: GraduationCap, title: "Skill Development", desc: "Enhance your creative and business acumen through workshops and seminars led by top industry experts." },
+  { icon: Globe, title: "Industry Exposure", desc: "Gain insights from nationally acclaimed speakers across diverse fields such as advertising, media, communications, and PR." },
+  { icon: Star, title: "Exclusive Benefits", desc: "Enjoy FREE or discounted access to Ad Club events, seminars, and activities." },
 ];
 
 const fadeUp = {
@@ -25,27 +27,31 @@ export default function Membership() {
 
   useGSAP(
     () => {
-      // Parallax background elements
-      gsap.to(".parallax-bg", {
-        yPercent: 30,
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".hero-section",
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
+      let mm = gsap.matchMedia();
 
-      gsap.to(".parallax-fast", {
-        yPercent: -20,
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".hero-section",
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-        },
+      mm.add("(min-width: 768px)", () => {
+        // Parallax background elements
+        gsap.to(".parallax-bg", {
+          yPercent: 30,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".hero-section",
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+
+        gsap.to(".parallax-fast", {
+          yPercent: -20,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".hero-section",
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
       });
 
       // Hero Text Stagger Intro
@@ -73,7 +79,7 @@ export default function Membership() {
       {/* ── 1. HERO HEADER ── */}
       <section className="hero-section min-h-screen px-6 md:px-16 pt-32 pb-24 relative flex flex-col items-center justify-center text-center">
         {/* Wavy lines / Grid Backgrounds from Figma */}
-        <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
+        <div className="hidden md:block absolute top-0 left-0 w-full h-full pointer-events-none z-0">
           <svg
             viewBox="0 0 1440 100"
             className="parallax-bg absolute top-20 left-0 w-full h-auto opacity-[0.15] stroke-black fill-none"
@@ -116,7 +122,7 @@ export default function Membership() {
           </h1>
 
           <p className="hero-text font-body text-xl md:text-2xl text-black/70 max-w-2xl leading-relaxed mt-4">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+            Why you should be a member of the Advertising Club Trivandrum
           </p>
 
           <a
@@ -129,151 +135,121 @@ export default function Membership() {
       </section>
 
       {/* ── WHY JOIN ── */}
-      <section className="px-6 md:px-16 py-20 border-b border-(--color-muted)">
-        <SectionTag>Why Join ACT</SectionTag>
-        <h2 className="font-display font-bold text-bg-warm text-[clamp(1.8rem,4vw,3rem)] tracking-tight mt-3 mb-12">
-          What membership gives you
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
-          {benefits.map((b, i) => (
-            <motion.div
-              key={b.title}
-              custom={i}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeUp}
-              className="flex flex-col gap-3 p-6 rounded-2xl border border-(--color-muted) bg-white hover:shadow-md transition-shadow"
-            >
-              <span className="text-3xl">{b.icon}</span>
-              <p className="font-display font-bold text-bg-warm text-base tracking-tight">{b.title}</p>
-              <p className="font-body text-sm text-bg-warm/65 leading-relaxed">{b.desc}</p>
-            </motion.div>
-          ))}
+      <section className="px-6 md:px-16 py-24 bg-white border-b border-black/5">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-16">
+            <h2 className="font-display font-bold text-4xl md:text-6xl uppercase tracking-tight text-black mb-4">
+              Why <span className="text-purple">Join</span> ACT?
+            </h2>
+            <p className="font-body text-xl text-black/60 max-w-2xl">
+              Join us to grow, learn, and be a part of a vibrant professional community!
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {benefits.map((b, i) => (
+              <motion.div
+                key={b.title}
+                custom={i}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeUp}
+                className="flex flex-col p-10 rounded-[2rem] border border-black/5 bg-[#F8F9FA] hover:bg-white hover:border-purple/20 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-500 group relative overflow-hidden"
+              >
+                {/* Decorative corner shape */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-purple/5 rounded-bl-[100px] -mr-8 -mt-8 transition-transform duration-700 group-hover:scale-125" />
+                
+                <div className="w-16 h-16 rounded-2xl bg-white border border-black/5 text-purple flex items-center justify-center mb-8 relative z-10 group-hover:bg-purple group-hover:text-yellow group-hover:border-purple transition-colors duration-500 shadow-sm">
+                  <b.icon className="w-8 h-8" strokeWidth={1.5} />
+                </div>
+                
+                <div className="relative z-10 flex flex-col flex-grow">
+                  <h3 className="font-display font-bold text-black text-2xl uppercase tracking-tight mb-4 group-hover:text-purple transition-colors duration-300">
+                    {b.title}
+                  </h3>
+                  <p className="font-body text-black/60 leading-relaxed mt-auto">
+                    {b.desc}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* ── MEMBERSHIP TIERS ── */}
-      <section className="px-6 md:px-16 py-20 border-b border-(--color-muted)">
-        <SectionTag>Membership Categories</SectionTag>
-        <h2 className="font-display font-bold text-bg-warm text-[clamp(1.8rem,4vw,3rem)] tracking-tight mt-3 mb-12">
-          Find the right membership
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {membershipTiers.map((tier, i) => (
-            <motion.div
-              key={tier.id}
-              custom={i}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeUp}
-              className="flex flex-col gap-4 p-7 rounded-2xl border border-(--color-muted) bg-white"
-            >
-              <div className="flex items-start justify-between gap-4">
-                <p className="font-display font-bold text-bg-warm text-xl tracking-tight">{tier.name}</p>
-                <span className="shrink-0 font-body font-medium text-sm text-purple bg-purple/10 px-3 py-1 rounded-full">
-                  {tier.fee}
-                </span>
-              </div>
-              <p className="font-body text-sm text-bg-warm/60 leading-relaxed">{tier.eligibility}</p>
-              <ul className="flex flex-col gap-2 mt-1">
-                {tier.perks.map((p) => (
-                  <li key={p} className="flex items-start gap-2 font-body text-sm text-bg-warm/75">
-                    <span className="mt-0.5 shrink-0 w-4 h-4 rounded-full bg-yellow/20 flex items-center justify-center text-[10px]">✓</span>
-                    {p}
-                  </li>
-                ))}
-              </ul>
-              <a
-                href={`mailto:adclubtrivandrum@gmail.com?subject=Membership%20Application%20-%20${tier.name}`}
-                className="self-start mt-2 inline-flex items-center gap-2 px-5 py-2.5 text-sm font-body font-medium text-white bg-purple rounded-full transition-opacity hover:opacity-85"
+      <section className="px-6 md:px-16 py-24 bg-[#F8F9FA] border-b border-black/5">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-16 flex flex-col items-center text-center">
+            <h2 className="font-display font-bold text-4xl md:text-6xl uppercase tracking-tight text-black mb-4">
+              Membership <span className="text-purple">Categories</span>
+            </h2>
+            <p className="font-body text-xl text-black/60 max-w-2xl">
+              Find the right fit for your professional journey.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {membershipTiers.map((tier, i) => (
+              <motion.div
+                key={tier.id}
+                custom={i}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeUp}
+                className="flex flex-col p-10 md:p-12 rounded-[2.5rem] border border-black/10 bg-white hover:shadow-2xl transition-all duration-300"
               >
-                Apply →
-              </a>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── HOW TO JOIN ── */}
-      <section className="px-6 md:px-16 py-20 border-b border-(--color-muted) bg-bg-warm">
-        <SectionTag color="coral">How to Join</SectionTag>
-        <h2 className="font-display font-bold text-white text-[clamp(1.8rem,4vw,3rem)] tracking-tight mt-3 mb-12">
-          Three simple steps
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {[
-            { step: "01", title: "Email Us", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore." },
-            { step: "02", title: "Review", desc: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." },
-            { step: "03", title: "Welcome!", desc: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur." },
-          ].map((s, i) => (
-            <motion.div
-              key={s.step}
-              custom={i}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeUp}
-              className="flex flex-col gap-3 p-7 rounded-2xl border border-white/10 bg-white/5"
-            >
-              <span className="font-display font-bold text-yellow text-4xl leading-none">{s.step}</span>
-              <p className="font-display font-bold text-white text-lg tracking-tight">{s.title}</p>
-              <p className="font-body text-sm text-white/60 leading-relaxed">{s.desc}</p>
-            </motion.div>
-          ))}
-        </div>
-        <div className="mt-10">
-          <a
-            href="mailto:adclubtrivandrum@gmail.com?subject=Membership%20Application"
-            className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-body font-medium text-bg-warm bg-yellow rounded-full transition-opacity hover:opacity-85"
-          >
-            Email Us to Apply →
-          </a>
-        </div>
-      </section>
-
-      {/* ── COMMITTEE ── */}
-      <section className="px-6 md:px-16 py-20">
-        <SectionTag>Committee</SectionTag>
-        <h2 className="font-display font-bold text-bg-warm text-[clamp(1.8rem,4vw,3rem)] tracking-tight mt-3 mb-12 text-center">
-          The people behind ACT
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {committee.map((member, i) => (
-            <motion.div
-              key={member.name}
-              custom={i}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeUp}
-              className="flex items-start gap-4 border border-(--color-muted) rounded-2xl p-4 bg-white hover:shadow-md transition-shadow"
-            >
-              <div className="w-20 h-20 shrink-0 rounded-xl overflow-hidden bg-muted flex items-center justify-center">
-                {member.image ? (
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <span className="font-display text-bg-warm/30 uppercase text-[8px] tracking-widest font-bold text-center px-1">
-                    Photo
+                <div className="flex flex-col items-start gap-4 mb-8 pb-8 border-b border-black/5">
+                  <h3 className="font-display font-bold text-black text-3xl md:text-4xl uppercase tracking-tight">{tier.name}</h3>
+                  <span className="font-body font-bold text-sm md:text-base text-purple bg-purple/10 px-5 py-2 rounded-full uppercase tracking-widest text-left">
+                    {tier.fee}
                   </span>
+                </div>
+                <p className="font-body text-lg text-black/70 leading-relaxed mb-8">{tier.eligibility}</p>
+                <ul className="flex flex-col gap-4 mb-12 flex-grow">
+                  {tier.perks.map((p) => (
+                    <li key={p} className="flex items-start gap-4 font-body text-black/80">
+                      <span className="shrink-0 w-6 h-6 rounded-full bg-yellow text-black flex items-center justify-center text-xs mt-0.5">✓</span>
+                      {p}
+                    </li>
+                  ))}
+                </ul>
+                {tier.id === "institutional" ? (
+                  <Link
+                    to="/membership/institutional"
+                    className="mt-auto inline-flex items-center justify-center gap-3 w-full px-8 py-4 text-sm font-bold uppercase tracking-widest text-white bg-black rounded-full hover:bg-purple transition-colors"
+                  >
+                    Apply Now →
+                  </Link>
+                ) : tier.id === "student" ? (
+                  <Link
+                    to="/membership/student"
+                    className="mt-auto inline-flex items-center justify-center gap-3 w-full px-8 py-4 text-sm font-bold uppercase tracking-widest text-white bg-black rounded-full hover:bg-purple transition-colors"
+                  >
+                    Apply Now →
+                  </Link>
+                ) : tier.id === "corporate" ? (
+                  <Link
+                    to="/membership/corporate"
+                    className="mt-auto inline-flex items-center justify-center gap-3 w-full px-8 py-4 text-sm font-bold uppercase tracking-widest text-white bg-black rounded-full hover:bg-purple transition-colors"
+                  >
+                    Apply Now →
+                  </Link>
+                ) : (
+                  <a
+                    href={`mailto:adclubtrivandrum@gmail.com?subject=Membership%20Application%20-%20${tier.name}`}
+                    className="mt-auto inline-flex items-center justify-center gap-3 w-full px-8 py-4 text-sm font-bold uppercase tracking-widest text-white bg-black rounded-full hover:bg-purple transition-colors"
+                  >
+                    Apply Now →
+                  </a>
                 )}
-              </div>
-              <div className="flex flex-col gap-1 py-0.5">
-                <p className="font-display font-bold text-bg-warm text-sm tracking-tight">{member.name}</p>
-                {member.role !== "Member" && (
-                  <span className="text-[11px] font-body text-purple font-medium tracking-wide uppercase">{member.role}</span>
-                )}
-                <span className="text-[12px] font-body text-bg-warm/60 leading-snug">{member.company}</span>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
+
+
 
     </main>
   );
