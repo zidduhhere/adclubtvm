@@ -2,7 +2,6 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { events } from "../data/events";
 import { DomeGallery, type ImageItem } from "../components/ui/dome-gallery";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -115,7 +114,11 @@ export default function Gallery() {
 
       {/* ── DOME GALLERY ─────────────────────────────────────── */}
       <div className="w-full h-[100vh] relative">
-        <DomeGallery images={allPhotos} overlayBlurColor="#ffffff" grayscale={false} />
+        <DomeGallery
+          images={allPhotos}
+          overlayBlurColor="#ffffff"
+          grayscale={false}
+        />
       </div>
     </main>
   );
