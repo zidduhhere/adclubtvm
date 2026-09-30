@@ -115,7 +115,7 @@ export default function Home() {
       {/* ── 1. HERO HEADER ── */}
       <section className="hero-section min-h-screen px-6 md:px-16 pt-32 pb-24 relative flex flex-col items-center justify-center text-center">
         {/* Wavy lines / Grid Backgrounds from Figma */}
-        <div className="hidden md:block absolute top-0 left-0 w-full h-full pointer-events-none z-0">
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
           {/* Top Subtle Wavy Lines Accent */}
           {/* <svg
             viewBox="0 0 1440 100"
@@ -151,7 +151,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto flex flex-col gap-6 relative z-10 w-full">
           <div className="relative w-full flex justify-center">
             {/* Love Hero Background Graphic */}
-            <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[90%] md:h-[110%] items-center justify-center pointer-events-none -z-10">
+            <div className="flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[90%] md:h-[110%] items-center justify-center pointer-events-none -z-10">
               <img
                 src="/SVG/love-hero.svg"
                 alt=""
@@ -176,7 +176,7 @@ export default function Home() {
       {/* ── 2. INTRODUCTION & BACKGROUND GRID ── */}
       <section className="mid-section relative z-0 px-6 md:px-16 py-32 md:py-48 flex items-center justify-end">
         {/* Background Grid 4 */}
-        <div className="hidden md:flex absolute top-1/2 left-0 -translate-y-1/2 w-full h-[75%] items-center justify-start pointer-events-none z-0">
+        <div className="flex absolute top-1/2 left-0 -translate-y-1/2 w-full h-[75%] items-center justify-start pointer-events-none z-0">
           <img
             src="/SVG/grid-4.svg"
             alt=""

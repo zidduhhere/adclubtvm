@@ -56,11 +56,10 @@ export const membershipTiers: MembershipTier[] = [
     fee: "₹25,000 / year (for 5 members)",
     eligibility: "Advertising Agencies and mainline Media Houses engaged in the business of advertising and mass communication in print and electronic media.",
     perks: [
-      "5 individual passes to all ACT events",
-      "Brand logo on ACT collateral",
-      "Priority speaking opportunities",
-      "Complimentary LOA Awards entries (2)",
-      "Featured in ACT newsletter",
+      "Nominate up to 5 members with Individual Member privileges",
+      "Flexible nomination replacement if members leave",
+      "Up to 5 votes for the organization (1 per representative)",
+      "Additional memberships available (Rs. 4,000/person/year)",
     ],
   },
   {
@@ -69,10 +68,9 @@ export const membershipTiers: MembershipTier[] = [
     fee: "₹10,000 / year (for 1 member)",
     eligibility: "Central/State Govt. Organisations, PSU's, Organisations of Govt Undertaking and Boards, Public Sector Banks represented by the professionals in the field of communication & public relations of these organisations.",
     perks: [
-      "1 faculty + 2 student passes per event",
-      "Access to ACT's industry mentors network",
-      "Co-branding on student outreach programmes",
-      "Resource library access",
+      "Representation by communication & PR professionals",
+      "Voting rights during election procedures",
+      "Additional membership available (Rs. 5,000/member)",
     ],
   },
   {
@@ -80,11 +78,6 @@ export const membershipTiers: MembershipTier[] = [
     name: "Student",
     fee: "₹1,000 / year",
     eligibility: "Aspiring students below 25 years whose curriculum is related to advertising/media/communication.",
-    perks: [
-      "Discounted entry to all ACT events",
-      "Student-only workshops and mentorship",
-      "Access to industry networking evenings",
-      "Certificate of ACT membership",
-    ],
+    perks: [],
   },
 ];

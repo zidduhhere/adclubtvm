@@ -136,7 +136,7 @@ export default function CorporateForm() {
       alert("Please agree to the terms and conditions.");
       return;
     }
-    alert("Form submitted! Proceeding to payment…");
+    alert("Application submitted!");
   }
 
   return (
@@ -435,7 +435,7 @@ export default function CorporateForm() {
                 type="submit"
                 className="w-full md:w-auto self-end inline-flex items-center justify-center gap-2 px-10 py-5 text-sm font-body font-bold uppercase tracking-widest text-white bg-purple rounded-full transition-all hover:opacity-85 hover:-translate-y-0.5 hover:shadow-xl"
               >
-                Submit &amp; Proceed to Pay →
+                Submit application →
               </button>
             </div>
           </form>

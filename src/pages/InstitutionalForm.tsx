@@ -104,7 +104,7 @@ export default function InstitutionalForm() {
       alert("Please agree to the declaration before submitting.");
       return;
     }
-    alert("Form submitted! Proceeding to payment…");
+    alert("Application submitted!");
   }
 
   return (
@@ -410,7 +410,7 @@ export default function InstitutionalForm() {
               disabled={!form.agreed}
               className="self-end inline-flex items-center gap-2 px-8 py-4 text-sm font-body font-bold uppercase tracking-widest text-white bg-purple rounded-full transition-all hover:opacity-85 disabled:opacity-40 disabled:cursor-not-allowed hover:-translate-y-0.5 hover:shadow-lg"
             >
-              Submit &amp; Proceed to Pay →
+              Submit application →
             </button>
           </form>
         </div>

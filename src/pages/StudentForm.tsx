@@ -100,7 +100,7 @@ export default function StudentForm() {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    alert("Form submitted! Proceeding to payment…");
+    alert("Application submitted!");
   }
 
   return (
@@ -149,228 +149,196 @@ export default function StudentForm() {
       {/* ── FORM ── */}
       <section className="px-6 md:px-16 py-12 pb-32">
         <div className="max-w-3xl mx-auto border border-(--color-muted) rounded-2xl p-8 md:p-12 bg-white shadow-sm">
-          <form onSubmit={handleSubmit} className="flex flex-col gap-10">
-            {/* ── Personal Details ── */}
-            <div className="flex flex-col gap-6">
-              <h2 className="font-display font-bold text-bg-warm text-xl tracking-tight border-b border-(--color-muted) pb-3">
-                Personal Details
-              </h2>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+            <div className="flex flex-col gap-1.5">
+              <label htmlFor="name" className={labelClass}>
+                Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={form.name}
+                onChange={handleChange}
+                required
+                placeholder="Name"
+                className={inputClass}
+              />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div className="flex flex-col gap-1.5">
+                <label htmlFor="email" className={labelClass}>
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={form.email}
+                  onChange={handleChange}
+                  required
+                  placeholder="Email Address"
+                  className={inputClass}
+                />
+              </div>
 
               <div className="flex flex-col gap-1.5">
-                <label htmlFor="name" className={labelClass}>
-                  Name
+                <label htmlFor="mobile" className={labelClass}>
+                  Mobile number
+                </label>
+                <input
+                  type="tel"
+                  id="mobile"
+                  name="mobile"
+                  value={form.mobile}
+                  onChange={handleChange}
+                  required
+                  placeholder="Mobile number"
+                  className={inputClass}
+                />
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-1.5">
+              <label htmlFor="institutionName" className={labelClass}>
+                Name of the Institution where studying
+              </label>
+              <input
+                type="text"
+                id="institutionName"
+                name="institutionName"
+                value={form.institutionName}
+                onChange={handleChange}
+                required
+                placeholder="Name of the Institution where studying"
+                className={inputClass}
+              />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div className="flex flex-col gap-1.5">
+                <label htmlFor="courseName" className={labelClass}>
+                  Name of the Course of Study
                 </label>
                 <input
                   type="text"
-                  id="name"
-                  name="name"
-                  value={form.name}
+                  id="courseName"
+                  name="courseName"
+                  value={form.courseName}
                   onChange={handleChange}
                   required
-                  placeholder="Your full name"
+                  placeholder="Name of the Course of Study"
                   className={inputClass}
                 />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div className="flex flex-col gap-1.5">
-                  <label htmlFor="email" className={labelClass}>
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={form.email}
-                    onChange={handleChange}
-                    required
-                    placeholder="your@email.com"
-                    className={inputClass}
-                  />
-                </div>
-
-                <div className="flex flex-col gap-1.5">
-                  <label htmlFor="mobile" className={labelClass}>
-                    Mobile Number
-                  </label>
-                  <input
-                    type="tel"
-                    id="mobile"
-                    name="mobile"
-                    value={form.mobile}
-                    onChange={handleChange}
-                    required
-                    placeholder="Mobile number"
-                    className={inputClass}
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* ── Institution Details ── */}
-            <div className="flex flex-col gap-6">
-              <h2 className="font-display font-bold text-bg-warm text-xl tracking-tight border-b border-(--color-muted) pb-3">
-                Institution Details
-              </h2>
-
               <div className="flex flex-col gap-1.5">
-                <label htmlFor="institutionName" className={labelClass}>
-                  Name of the Institution where studying
+                <label htmlFor="idCardNo" className={labelClass}>
+                  ID Card No.
                 </label>
                 <input
                   type="text"
-                  id="institutionName"
-                  name="institutionName"
-                  value={form.institutionName}
+                  id="idCardNo"
+                  name="idCardNo"
+                  value={form.idCardNo}
                   onChange={handleChange}
                   required
-                  placeholder="Institution name"
+                  placeholder="ID Card No."
                   className={inputClass}
                 />
               </div>
+            </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div className="flex flex-col gap-1.5">
-                  <label htmlFor="courseName" className={labelClass}>
-                    Name of the Course of Study
-                  </label>
-                  <input
-                    type="text"
-                    id="courseName"
-                    name="courseName"
-                    value={form.courseName}
-                    onChange={handleChange}
-                    required
-                    placeholder="Course name"
-                    className={inputClass}
-                  />
-                </div>
+            <div className="flex flex-col gap-1.5">
+              <label htmlFor="courseCompletionDate" className={labelClass}>
+                Likely date of completion of the Course
+              </label>
+              <input
+                type="date"
+                id="courseCompletionDate"
+                name="courseCompletionDate"
+                value={form.courseCompletionDate}
+                onChange={handleChange}
+                required
+                className={inputClass}
+              />
+            </div>
 
-                <div className="flex flex-col gap-1.5">
-                  <label htmlFor="idCardNo" className={labelClass}>
-                    ID Card No.
-                  </label>
-                  <input
-                    type="text"
-                    id="idCardNo"
-                    name="idCardNo"
-                    value={form.idCardNo}
-                    onChange={handleChange}
-                    required
-                    placeholder="Student ID card number"
-                    className={inputClass}
-                  />
-                </div>
-              </div>
+            <div className="flex flex-col gap-1.5">
+              <label htmlFor="residenceAddress" className={labelClass}>
+                Address (Residence)
+              </label>
+              <textarea
+                id="residenceAddress"
+                name="residenceAddress"
+                value={form.residenceAddress}
+                onChange={handleChange}
+                required
+                rows={3}
+                placeholder="Address (Residence)"
+                className={`${inputClass} resize-none`}
+              />
+            </div>
 
+            <div className="flex flex-col gap-1.5">
+              <label htmlFor="institutionAddress" className={labelClass}>
+                Address (Institution)
+              </label>
+              <textarea
+                id="institutionAddress"
+                name="institutionAddress"
+                value={form.institutionAddress}
+                onChange={handleChange}
+                required
+                rows={3}
+                placeholder="Address (Institution)"
+                className={`${inputClass} resize-none`}
+              />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div className="flex flex-col gap-1.5">
-                <label htmlFor="courseCompletionDate" className={labelClass}>
-                  Likely date of completion of the Course
+                <label htmlFor="photograph" className={labelClass}>
+                  Photograph: To be uploaded
                 </label>
                 <input
-                  type="date"
-                  id="courseCompletionDate"
-                  name="courseCompletionDate"
-                  value={form.courseCompletionDate}
-                  onChange={handleChange}
+                  type="file"
+                  id="photograph"
+                  name="photograph"
+                  accept="image/*"
+                  onChange={handleFileChange}
                   required
-                  className={inputClass}
-                />
-              </div>
-            </div>
-
-            {/* ── Addresses ── */}
-            <div className="flex flex-col gap-6">
-              <h2 className="font-display font-bold text-bg-warm text-xl tracking-tight border-b border-(--color-muted) pb-3">
-                Address
-              </h2>
-
-              <div className="flex flex-col gap-1.5">
-                <label htmlFor="residenceAddress" className={labelClass}>
-                  Address (Residence)
-                </label>
-                <textarea
-                  id="residenceAddress"
-                  name="residenceAddress"
-                  value={form.residenceAddress}
-                  onChange={handleChange}
-                  required
-                  rows={3}
-                  placeholder="Residential address"
-                  className={`${inputClass} resize-none`}
+                  className="w-full text-sm font-body text-bg-warm/70 file:mr-4 file:py-2.5 file:px-5 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-purple/10 file:text-purple hover:file:bg-purple/20 file:cursor-pointer file:transition-colors cursor-pointer"
                 />
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label htmlFor="institutionAddress" className={labelClass}>
-                  Address (Institution)
+                <label htmlFor="bonafideCertificate" className={labelClass}>
+                  Bonafide Certificate from Institution: To be uploaded
                 </label>
-                <textarea
-                  id="institutionAddress"
-                  name="institutionAddress"
-                  value={form.institutionAddress}
-                  onChange={handleChange}
+                <input
+                  type="file"
+                  id="bonafideCertificate"
+                  name="bonafideCertificate"
+                  accept="image/*,.pdf"
+                  onChange={handleFileChange}
                   required
-                  rows={3}
-                  placeholder="Institution address"
-                  className={`${inputClass} resize-none`}
+                  className="w-full text-sm font-body text-bg-warm/70 file:mr-4 file:py-2.5 file:px-5 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-purple/10 file:text-purple hover:file:bg-purple/20 file:cursor-pointer file:transition-colors cursor-pointer"
                 />
-              </div>
-            </div>
-
-            {/* ── Uploads ── */}
-            <div className="flex flex-col gap-6">
-              <h2 className="font-display font-bold text-bg-warm text-xl tracking-tight border-b border-(--color-muted) pb-3">
-                Documents
-              </h2>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div className="flex flex-col gap-1.5">
-                  <label htmlFor="photograph" className={labelClass}>
-                    Photograph
-                  </label>
-                  <div className="relative">
-                    <input
-                      type="file"
-                      id="photograph"
-                      name="photograph"
-                      accept="image/*"
-                      onChange={handleFileChange}
-                      required
-                      className="w-full text-sm font-body text-bg-warm/70 file:mr-4 file:py-2.5 file:px-5 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-purple/10 file:text-purple hover:file:bg-purple/20 file:cursor-pointer file:transition-colors cursor-pointer"
-                    />
-                  </div>
-                </div>
-
-                <div className="flex flex-col gap-1.5">
-                  <label htmlFor="bonafideCertificate" className={labelClass}>
-                    Bonafide Certificate from Institution
-                  </label>
-                  <div className="relative">
-                    <input
-                      type="file"
-                      id="bonafideCertificate"
-                      name="bonafideCertificate"
-                      accept="image/*,.pdf"
-                      onChange={handleFileChange}
-                      required
-                      className="w-full text-sm font-body text-bg-warm/70 file:mr-4 file:py-2.5 file:px-5 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-purple/10 file:text-purple hover:file:bg-purple/20 file:cursor-pointer file:transition-colors cursor-pointer"
-                    />
-                  </div>
-                </div>
               </div>
             </div>
 
             {/* ── Payment & Submit ── */}
-            <div className="flex flex-col gap-4 border-t border-(--color-muted) pt-8">
+            <div className="flex flex-col gap-4 border-t border-(--color-muted) pt-8 mt-4">
               <p className="font-body text-sm text-bg-warm/70">
                 Payment Details: <span className="font-bold text-bg-warm">Rs. 1,000</span> for annual membership
               </p>
               <button
                 type="submit"
-                className="self-end inline-flex items-center gap-2 px-8 py-4 text-sm font-body font-bold uppercase tracking-widest text-white bg-purple rounded-full transition-all hover:opacity-85 hover:-translate-y-0.5 hover:shadow-lg"
+                className="self-end inline-flex items-center justify-center gap-2 px-10 py-5 text-sm font-body font-bold uppercase tracking-widest text-white bg-purple rounded-full transition-all hover:opacity-85 hover:-translate-y-0.5 hover:shadow-lg"
               >
-                Submit &amp; Proceed to Pay →
+                Submit application →
               </button>
             </div>
           </form>
