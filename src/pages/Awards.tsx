@@ -116,9 +116,9 @@ export default function Awards() {
             LOA Awards 2025
           </div>
 
-          <h1 className="hero-text font-display font-bold text-[clamp(3.5rem,8.5vw,6rem)] leading-[0.9] tracking-tight uppercase">
+          <h1 className="hero-text font-display font-bold text-[clamp(3.5rem,8.5vw,6rem)] leading-[0.9] tracking-tight">
             Love of <br />
-            <span className="text-yellow">Advertising</span> Awards
+            <span className="text-yellow">advertising</span> awards
           </h1>
 
           <p className="hero-text font-body text-xl md:text-2xl text-black/70 max-w-2xl leading-relaxed mt-4">

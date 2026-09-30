@@ -39,8 +39,8 @@ export default function HeroSection() {
             >
               <div className="block">For</div>
               <div className="block">the</div>
-              <div className="block">Love of</div>
-              <div className="block">Advertising.</div>
+              <div className="block">love of</div>
+              <div className="block">advertising.</div>
             </h1>
           </div>
           <p className="font-body text-base text-bg-warm/50 mt-8 max-w-sm leading-relaxed text-center">

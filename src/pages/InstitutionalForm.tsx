@@ -143,9 +143,9 @@ export default function InstitutionalForm() {
             Membership
           </div>
 
-          <h1 className="hero-text font-display font-bold text-[clamp(2.5rem,7vw,5rem)] leading-[0.9] tracking-tight uppercase">
+          <h1 className="hero-text font-display font-bold text-[clamp(2.5rem,7vw,5rem)] leading-[0.9] tracking-tight">
             Institutional <br />
-            <span className="text-yellow">Membership Form</span>
+            <span className="text-yellow">membership form</span>
           </h1>
         </div>
       </section>

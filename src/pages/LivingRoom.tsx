@@ -107,9 +107,9 @@ export default function LivingRoom() {
             Flagship Programme
           </div>
 
-          <h1 className="hero-text font-display font-bold text-[clamp(3.5rem,8.5vw,6rem)] leading-[0.9] tracking-tight uppercase">
-            The Living <br />
-            <span className="text-yellow">Room</span>
+          <h1 className="hero-text font-display font-bold text-[clamp(3.5rem,8.5vw,6rem)] leading-[0.9] tracking-tight">
+            The living <br />
+            <span className="text-yellow">room</span>
           </h1>
 
           <p className="hero-text font-body text-xl md:text-2xl text-black/70 max-w-2xl leading-relaxed mt-4">

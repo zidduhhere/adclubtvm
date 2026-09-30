@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -13,6 +14,7 @@ const allCards = [
     date: e.date,
     type: e.type,
     image: e.images?.[0] ?? "",
+    description: e.description,
     real: true,
   })),
   ...upcoming.map((u) => ({
@@ -21,12 +23,14 @@ const allCards = [
     date: u.date,
     type: u.type,
     image: "",
+    description: u.description,
     real: false,
   })),
 ];
 
 export default function Events() {
   const [filter, setFilter] = useState<"all" | "past" | "upcoming">("all");
+  const [selectedEvent, setSelectedEvent] = useState<typeof allCards[0] | null>(null);
   const container = useRef<HTMLElement>(null);
 
   useGSAP(
@@ -88,7 +92,7 @@ export default function Events() {
         {/* Wavy lines / Grid Backgrounds from Figma */}
         <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
           {/* Top Subtle Wavy Lines Accent */}
-          <svg
+          {/* <svg
             viewBox="0 0 1440 100"
             className="parallax-bg absolute top-20 left-0 w-full h-auto opacity-[0.15] stroke-black fill-none"
             preserveAspectRatio="none"
@@ -97,7 +101,7 @@ export default function Events() {
             <path d="M0,30 Q180,-10 360,30 T720,30 T1080,30 T1440,30" />
             <path d="M0,50 Q180,10 360,50 T720,50 T1080,50 T1440,50" />
             <path d="M0,70 Q180,30 360,70 T720,70 T1080,70 T1440,70" />
-          </svg>
+          </svg> */}
 
           {/* Left Grid */}
           <img
@@ -132,7 +136,8 @@ export default function Events() {
             </h1>
           </div>
           <p className="hero-text font-body text-xl md:text-2xl text-black/60 max-w-2xl mx-auto mt-6">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
         </div>
       </section>
@@ -160,7 +165,8 @@ export default function Events() {
           {displayCards.map((card) => (
             <div
               key={card.id}
-              className="group flex flex-col rounded-2xl overflow-hidden border border-(--color-muted) bg-white hover:shadow-md transition-shadow"
+              onClick={() => { if (card.real) setSelectedEvent(card); }}
+              className={`group flex flex-col rounded-2xl overflow-hidden border border-(--color-muted) bg-white hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300 ${card.real ? "cursor-pointer" : ""}`}
             >
               {/* Image — 4:3 landscape */}
               <div
@@ -199,6 +205,68 @@ export default function Events() {
           ))}
         </div>
       </section>
+
+      {/* ── EVENT OVERLAY MODAL ── */}
+      <AnimatePresence>
+        {selectedEvent && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              onClick={() => setSelectedEvent(null)}
+              className="fixed inset-0 z-[100] bg-black/40 backdrop-blur-sm"
+            />
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 30, stiffness: 250 }}
+              className="fixed top-0 right-0 z-[101] w-full max-w-2xl h-full bg-white border-l border-black/5 shadow-2xl overflow-y-auto flex flex-col"
+            >
+              <div className="sticky top-0 bg-white/80 backdrop-blur-md z-10 px-8 py-6 border-b border-black/5 flex justify-between items-center">
+                <span className="font-display font-bold uppercase tracking-widest text-xs text-black/40">Event Details</span>
+                <button
+                  onClick={() => setSelectedEvent(null)}
+                  className="w-10 h-10 rounded-full border border-black/10 flex items-center justify-center hover:bg-black hover:text-white transition-all group"
+                  aria-label="Close modal"
+                >
+                  <span className="font-body font-bold text-xl leading-none group-hover:-rotate-90 transition-transform duration-300">×</span>
+                </button>
+              </div>
+
+              <div className="p-8 md:p-14 flex flex-col gap-10">
+                <div className="flex flex-col gap-6">
+                  <div className="flex flex-col gap-2">
+                    <span className="font-body text-purple text-xs font-bold tracking-widest uppercase inline-block border border-purple/20 px-3 py-1 rounded-full self-start">
+                      {selectedEvent.type}
+                    </span>
+                    <p className="font-body text-black/50 text-sm font-medium tracking-wide uppercase mt-2">
+                      {selectedEvent.date}
+                    </p>
+                  </div>
+                  <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tighter uppercase leading-[0.9] text-black">
+                    {selectedEvent.title}
+                  </h2>
+                </div>
+
+                {selectedEvent.image && (
+                  <div className="w-full aspect-[16/9] relative overflow-hidden bg-black/5 rounded-xl">
+                    <img src={selectedEvent.image} alt={selectedEvent.title} className="w-full h-full object-cover" />
+                  </div>
+                )}
+
+                <div className="font-body text-lg md:text-xl text-black/80 leading-relaxed flex flex-col gap-6">
+                  {selectedEvent.description?.split('\n').filter(p => p.trim() !== '').map((paragraph, idx) => (
+                    <p key={idx}>{paragraph}</p>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </main>
   );
 }

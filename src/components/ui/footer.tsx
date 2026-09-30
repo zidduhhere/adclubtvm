@@ -37,7 +37,7 @@ export function Footer({
       {/* Giant display text */}
       <div className="px-6 md:px-10 pt-20 pb-16 border-b border-white/10">
         <p
-          className="font-display font-800 uppercase leading-[0.85] text-[clamp(4rem,14vw,11rem)] tracking-[-0.03em] text-white select-none"
+          className="font-display font-800 uppercase leading-[0.85] text-[clamp(4rem,10vw,11rem)] tracking-[-0.03em] text-white select-none"
           aria-hidden="true"
         >
           {displayText}
@@ -49,7 +49,11 @@ export function Footer({
         <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-12 md:gap-20">
           {/* Left — brand + socials */}
           <div className="flex flex-col gap-6">
-            <Link to="/" className="inline-flex items-center gap-2" aria-label={brandName}>
+            <Link
+              to="/"
+              className="inline-flex items-center gap-2"
+              aria-label={brandName}
+            >
               <span className="font-display font-800 text-white text-lg tracking-widest">
                 ACT
               </span>
@@ -116,7 +120,9 @@ export function Footer({
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
           <p className="text-xs font-body text-white/40">{copyright.text}</p>
           {copyright.subtitle && (
-            <p className="text-xs font-body text-white/30">{copyright.subtitle}</p>
+            <p className="text-xs font-body text-white/30">
+              {copyright.subtitle}
+            </p>
           )}
         </div>
       </div>

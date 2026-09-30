@@ -410,7 +410,7 @@ export default function Instagram() {
             @{HANDLE}
           </div>
 
-          <h1 className="hero-text font-display font-bold text-[clamp(3.5rem,8.5vw,6rem)] leading-[0.9] tracking-tight uppercase">
+          <h1 className="hero-text font-display font-bold text-[clamp(3.5rem,8.5vw,6rem)] leading-[0.9] tracking-tight">
             <span className="text-yellow">Instagram</span>
           </h1>
 

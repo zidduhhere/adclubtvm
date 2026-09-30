@@ -117,7 +117,7 @@ export default function Home() {
         {/* Wavy lines / Grid Backgrounds from Figma */}
         <div className="hidden md:block absolute top-0 left-0 w-full h-full pointer-events-none z-0">
           {/* Top Subtle Wavy Lines Accent */}
-          <svg
+          {/* <svg
             viewBox="0 0 1440 100"
             className="parallax-bg absolute top-20 left-0 w-full h-auto opacity-[0.15] stroke-black fill-none"
             preserveAspectRatio="none"
@@ -126,7 +126,7 @@ export default function Home() {
             <path d="M0,30 Q180,-10 360,30 T720,30 T1080,30 T1440,30" />
             <path d="M0,50 Q180,10 360,50 T720,50 T1080,50 T1440,50" />
             <path d="M0,70 Q180,30 360,70 T720,70 T1080,70 T1440,70" />
-          </svg>
+          </svg> */}
 
           {/* Left Grid */}
           <img
@@ -144,7 +144,7 @@ export default function Home() {
           <img
             src="/SVG/grid-3.svg"
             alt=""
-            className="parallax-bg absolute bottom-32 right-0 h-[30%] md:h-[40%] object-contain -mr-[5%] lg:-mr-[10%]"
+            className="parallax-bg absolute bottom-0 right-0 h-[30%] md:h-[40%] object-contain "
           />
         </div>
 
@@ -160,11 +160,11 @@ export default function Home() {
             </div>
             <h1
               className="font-display font-bold leading-[1.1] tracking-tighter w-full"
-              style={{ fontSize: "clamp(3rem, 9vw, 8rem)" }}
+              style={{ fontSize: "clamp(3rem, 7vw, 8rem)" }}
             >
-              <span className="hero-text inline-block">For the</span> <br />
+              <span className="hero-text inline-block">For The</span> <br />
               <span className="hero-text text-purple inline-block">
-                Love of
+                Love Of
               </span>{" "}
               <br />
               <span className="hero-text inline-block">Advertising.</span>
@@ -176,7 +176,7 @@ export default function Home() {
       {/* ── 2. INTRODUCTION & BACKGROUND GRID ── */}
       <section className="mid-section relative z-0 px-6 md:px-16 py-32 md:py-48 flex items-center justify-end">
         {/* Background Grid 4 */}
-        <div className="hidden md:flex absolute top-1/2 left-0 -translate-y-1/2 w-full h-[150%] items-center justify-start pointer-events-none z-0">
+        <div className="hidden md:flex absolute top-1/2 left-0 -translate-y-1/2 w-full h-[75%] items-center justify-start pointer-events-none z-0">
           <img
             src="/SVG/grid-4.svg"
             alt=""
@@ -209,7 +209,7 @@ export default function Home() {
             delay={0.1}
           >
             <img
-              src="/images/logo-reveal.jpeg"
+              src="https://act-pull-zone.b-cdn.net/logo-reveal.jpeg"
               alt="ACT Logo Reveal"
               className="w-full h-auto aspect-video object-cover transition-all duration-700 rounded-3xl"
             />
@@ -235,20 +235,21 @@ export default function Home() {
 
       {/* ── 5. WHAT WE DO (CAREER DRIVEN) ── */}
       <section className="px-6 md:px-16 py-12">
-        <div className="max-w-7xl mx-auto flex flex-col-reverse md:flex-row gap-6">
+        <div className="max-w-7xl mx-auto flex flex-col-reverse md:flex-row gap-6 items-center">
           <FadeUp
-            className="w-full md:w-1/2 bg-[#F8F9FA] border border-black/5 p-10 md:p-16 rounded-3xl flex flex-col justify-center"
+            className="w-full md:w-1/2 bg-[#F8F9FA] border border-black/5 p-8 md:p-12 rounded-3xl flex flex-col justify-center"
             delay={0.1}
           >
             <h3 className="font-display font-bold text-4xl md:text-5xl uppercase tracking-tight leading-[1.1] mb-8">
               Living Room <br />
               <span className="text-purple">Series</span>
             </h3>
-            <div className="space-y-6 text-black/80 font-body text-lg leading-relaxed mb-10">
+            <div className="space-y-6 text-black/80 font-body text-md  leading-relaxed mb-10">
               <p>
                 An exclusive knowledge-sharing series by ACT, featuring intimate
-                conversations with advertising industry leaders, offering members
-                a platform to learn from some of the brightest minds in advertising.
+                conversations with advertising industry leaders, offering
+                members a platform to learn from some of the brightest minds in
+                advertising.
               </p>
             </div>
             <Link
@@ -258,20 +259,23 @@ export default function Home() {
               Learn More <ArrowRight className="w-4 h-4" />
             </Link>
           </FadeUp>
-          <FadeUp
-            className="w-full md:w-1/2 h-[400px] md:h-[auto] rounded-3xl overflow-hidden relative"
-            delay={0.2}
-          >
+          <FadeUp className="w-full md:w-1/2 flex flex-col gap-4" delay={0.2}>
             <img
-              src="https://placehold.co/800x1200/CDC7D3/000000?text=Living+Room+Series"
-              alt="Living Room"
-              className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+              src="https://act-pull-zone.b-cdn.net/gallery/gallery-7.jpg"
+              alt="Living Room 1"
+              className="w-full aspect-video object-cover rounded-3xl transition-all duration-700"
+            />
+            <img
+              src="https://act-pull-zone.b-cdn.net/gallery/gallery-10.jpg"
+              alt="Living Room 2"
+              className="w-full aspect-video object-cover rounded-3xl transition-all duration-700"
             />
           </FadeUp>
         </div>
       </section>
 
       {/* ── 6. WHY ACT? (MANIFESTO) ── */}
+      {/*
       <section className="px-6 md:px-16 py-32 text-center flex flex-col items-center justify-center">
         <FadeUp className="max-w-4xl flex flex-col items-center">
           <h2 className="font-display font-bold text-4xl md:text-6xl uppercase tracking-tight mb-4">
@@ -281,14 +285,16 @@ export default function Home() {
             Don't just attend events, join the movement.
           </p>
           <p className="font-body text-xl md:text-2xl leading-relaxed text-black/90">
-            Be part of a thriving community where creativity meets collaboration.
-            Network with industry professionals, access learning opportunities,
-            and shape the future of advertising in Trivandrum.
+            Be part of a thriving community where creativity meets
+            collaboration. Network with industry professionals, access learning
+            opportunities, and shape the future of advertising in Trivandrum.
           </p>
         </FadeUp>
       </section>
+      */}
 
       {/* ── 7. SCROLLING MARQUEE ── */}
+      {/*
       <section className="py-20 bg-white overflow-hidden relative flex flex-col justify-center">
         <div className="absolute inset-0 pointer-events-none flex items-center justify-center -z-10">
           <div className="w-[120%] h-40 bg-purple/5 blur-[80px] rounded-full"></div>
@@ -347,46 +353,29 @@ export default function Home() {
           </div>
         </div>
       </section>
+      */}
 
       {/* ── 8. MEMBERSHIP CTA ── */}
       <section className="px-6 md:px-16 py-12">
         <FadeUp>
-          <div className="max-w-7xl mx-auto bg-[#F8F9FA] border border-black/10 rounded-[2rem] overflow-hidden flex flex-col md:flex-row">
-            <div className="w-full md:w-1/2 p-10 md:p-16 flex flex-col justify-center border-b md:border-b-0 md:border-r border-black/10">
-              <div className="inline-block border border-black/20 rounded-full px-4 py-1 text-xs uppercase tracking-widest mb-8 self-start text-black/60">
-                Membership
-              </div>
-              <h2 className="font-display font-bold text-4xl md:text-6xl uppercase tracking-tight leading-[1.05] mb-8">
-                Don't Just Disrupt, <br />
-                <span className="text-purple">Do it with Distinction.</span>
-              </h2>
-              <p className="font-body text-black/70 leading-relaxed mb-10">
-                Be part of a thriving community where creativity meets
-                collaboration. Network with industry professionals, access
-                learning opportunities, and shape the future of advertising
-                in Trivandrum.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link
-                  to="/membership"
-                  className="bg-black text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:bg-black/80 transition-colors flex items-center justify-center gap-3 text-center"
-                >
-                  Join the Club <ArrowRight className="w-4 h-4" />
-                </Link>
-                <Link
-                  to="/events"
-                  className="bg-transparent border-2 border-black/20 text-black px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:bg-black/5 transition-colors flex items-center justify-center gap-3 text-center"
-                >
-                  Explore Upcoming Events <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
-            </div>
-            <div className="w-full md:w-1/2 h-[400px] md:h-auto">
-              <img
-                src="https://placehold.co/800x1000/F0EBE3/000000?text=ACT+Members"
-                alt="ACT Members"
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
-              />
+          <div className="max-w-7xl mx-auto relative rounded-[2rem] overflow-hidden min-h-[400px] md:min-h-[500px] flex items-end justify-center pb-12">
+            {/* Background Image */}
+            <img
+              src="https://act-pull-zone.b-cdn.net/gallery/gallery-2.jpg"
+              alt="ACT Members"
+              className="absolute inset-0 w-full h-full object-cover transition-all duration-700"
+            />
+            {/* Black Filter Backdrop */}
+            <div className="absolute inset-0 bg-black/40 pointer-events-none transition-all duration-700 group-hover:bg-black/50"></div>
+
+            {/* CTA Button */}
+            <div className="relative z-10 flex flex-col sm:flex-row gap-4 px-6 w-full max-w-sm">
+              <Link
+                to="/membership"
+                className="bg-white text-black px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:bg-gray-100 transition-colors flex items-center justify-center gap-3 text-center w-full"
+              >
+                Join the Club <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
           </div>
         </FadeUp>

@@ -4,8 +4,8 @@ import { Footer as FooterUI } from "./ui/footer";
 export default function Footer() {
   return (
     <FooterUI
-      brandName="Ad Club TVM"
-      displayText="Ad Club TVM"
+      brandName="Advertisement Club Trivandrum"
+      displayText="Advertisement Club Trivandrum"
       socialLinks={[
         {
           icon: <Camera className="h-4 w-4" />,
@@ -45,16 +45,29 @@ export default function Footer() {
           heading: "Community",
           links: [
             { href: "/instagram", label: "Instagram Feed" },
-            { href: "https://instagram.com/adclubtvm", label: "Follow on Instagram" },
-            { href: "https://linkedin.com/company/adclubtvm", label: "LinkedIn" },
+            {
+              href: "https://instagram.com/adclubtvm",
+              label: "Follow on Instagram",
+            },
+            {
+              href: "https://linkedin.com/company/adclubtvm",
+              label: "LinkedIn",
+            },
           ],
         },
         {
           heading: "Contact",
           links: [
-            { href: "mailto:adclubtrivandrum@gmail.com", label: "adclubtrivandrum@gmail.com" },
+            {
+              href: "mailto:adclubtrivandrum@gmail.com",
+              label: "adclubtrivandrum@gmail.com",
+            },
             { href: "tel:04714060881", label: "T: 0471 4060881" },
-            { href: "/about#contact", label: "PLAINSPEAK, TC 15/2008, VRA A18, Behind Govt. College for Women, Vazhuthacaud, 695014, Kerala, India" },
+            {
+              href: "/about#contact",
+              label:
+                "PLAINSPEAK, TC 15/2008, VRA A18, Behind Govt. College for Women, Vazhuthacaud, 695014, Kerala, India",
+            },
           ],
         },
       ]}

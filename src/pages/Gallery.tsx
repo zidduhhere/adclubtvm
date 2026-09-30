@@ -3,19 +3,14 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { events } from "../data/events";
-import { DomeGallery, type DomePhoto } from "../components/ui/dome-gallery";
+import { DomeGallery, type ImageItem } from "../components/ui/dome-gallery";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const allPhotos: DomePhoto[] = events.flatMap((event) =>
-  (event.images ?? []).map((src, i) => ({
-    src,
-    event: event.title,
-    date: event.date,
-    type: event.type,
-    key: `${event.id}-${i}`,
-  }))
-);
+const allPhotos: ImageItem[] = Array.from({ length: 16 }).map((_, i) => ({
+  src: `https://act-pull-zone.b-cdn.net/gallery/gallery-${i + 1}.jpg`,
+  alt: `Gallery Image ${i + 1}`,
+}));
 
 export default function Gallery() {
   const container = useRef<HTMLDivElement>(null);
@@ -71,7 +66,7 @@ export default function Gallery() {
       <section className="hero-section min-h-screen px-6 md:px-16 pt-32 pb-24 relative flex flex-col items-center justify-center text-center">
         {/* Wavy lines / Grid Backgrounds from Figma */}
         <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
-          <svg
+          {/* <svg
             viewBox="0 0 1440 100"
             className="parallax-bg absolute top-20 left-0 w-full h-auto opacity-[0.15] stroke-black fill-none"
             preserveAspectRatio="none"
@@ -80,7 +75,7 @@ export default function Gallery() {
             <path d="M0,30 Q180,-10 360,30 T720,30 T1080,30 T1440,30" />
             <path d="M0,50 Q180,10 360,50 T720,50 T1080,50 T1440,50" />
             <path d="M0,70 Q180,30 360,70 T720,70 T1080,70 T1440,70" />
-          </svg>
+          </svg> */}
 
           {/* Left Grid */}
           <img
@@ -107,18 +102,21 @@ export default function Gallery() {
             Visual Archive
           </div>
 
-          <h1 className="hero-text font-display font-bold text-[clamp(3.5rem,8.5vw,6rem)] leading-[0.9] tracking-tight uppercase">
+          <h1 className="hero-text font-display font-bold text-[clamp(3.5rem,8.5vw,6rem)] leading-[0.9] tracking-tight ">
             <span className="text-yellow">Gallery</span>
           </h1>
 
           <p className="hero-text font-body text-xl md:text-2xl text-black/70 max-w-2xl leading-relaxed mt-4">
-            Moments captured from ACT events, sessions, and community gatherings.
+            Moments captured from ACT events, sessions, and community
+            gatherings.
           </p>
         </div>
       </section>
 
       {/* ── DOME GALLERY ─────────────────────────────────────── */}
-      <DomeGallery photos={allPhotos} />
+      <div className="w-full h-[100vh] relative">
+        <DomeGallery images={allPhotos} overlayBlurColor="#ffffff" grayscale={false} />
+      </div>
     </main>
   );
 }
