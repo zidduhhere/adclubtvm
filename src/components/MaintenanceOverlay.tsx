@@ -3,12 +3,12 @@ import loaPoster from "../assets/loa-poster.jpg";
 
 export default function MaintenanceOverlay() {
   return (
-    <div className="fixed inset-0 z-[9999] flex min-h-screen flex-col items-center justify-center gap-10 bg-bg px-6 py-12 text-center overflow-y-auto">
+    <div className="fixed inset-0 z-9999 flex min-h-screen flex-col items-center justify-center gap-10 bg-bg px-6 py-12 text-center overflow-y-auto">
       <a
         href="https://loaawards.com"
         target="_blank"
         rel="noopener noreferrer"
-        className="block max-w-[400px] w-full transition-transform hover:scale-[1.02] active:scale-95"
+        className="block max-w-100 w-full transition-transform hover:scale-[1.02] active:scale-95"
       >
         <img
           src={loaPoster}
