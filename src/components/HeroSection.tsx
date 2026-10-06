@@ -34,7 +34,7 @@ export default function HeroSection() {
               }}
             />
             <h1
-              className="font-display font-bold text-purple leading-[1] tracking-tight relative z-10"
+              className="font-display font-bold text-purple leading-none tracking-tight relative z-10"
               style={{ fontSize: "clamp(3.5rem, 6vw, 6.5rem)" }}
             >
               <div className="block">For</div>

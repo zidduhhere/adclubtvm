@@ -10,10 +10,10 @@ import Home from "./pages/Home";
 import Events from "./pages/Events";
 import Gallery from "./pages/Gallery";
 import About from "./pages/About";
-import Instagram from "./pages/Instagram";
+
 import Membership from "./pages/Membership";
 import Awards from "./pages/Awards";
-import LivingRoom from "./pages/LivingRoom";
+
 import InstitutionalForm from "./pages/InstitutionalForm";
 import StudentForm from "./pages/StudentForm";
 import CorporateForm from "./pages/CorporateForm";
@@ -42,8 +42,12 @@ function AppLayout() {
     const handleHashClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const anchor = target.closest("a");
-      
-      if (anchor && anchor.hash && anchor.pathname === window.location.pathname) {
+
+      if (
+        anchor &&
+        anchor.hash &&
+        anchor.pathname === window.location.pathname
+      ) {
         e.preventDefault();
         window.history.pushState(null, "", anchor.hash);
         gsap.to(window, {
@@ -71,11 +75,15 @@ function AppLayout() {
           <Route path="/events" element={<Events />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/about" element={<About />} />
-          <Route path="/instagram" element={<Instagram />} />
+
+
           <Route path="/membership" element={<Membership />} />
           <Route path="/awards" element={<Awards />} />
-          <Route path="/living-room" element={<LivingRoom />} />
-          <Route path="/membership/institutional" element={<InstitutionalForm />} />
+
+          <Route
+            path="/membership/institutional"
+            element={<InstitutionalForm />}
+          />
           <Route path="/membership/student" element={<StudentForm />} />
           <Route path="/membership/corporate" element={<CorporateForm />} />
         </Routes>

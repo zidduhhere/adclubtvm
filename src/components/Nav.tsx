@@ -19,7 +19,7 @@ const menuItems = links.map((l) => ({
 }));
 
 const socialItems = [
-  { label: "Instagram", link: "https://instagram.com/adclubtvm" },
+  { label: "Instagram", link: "https://www.instagram.com/adclubtvm/" },
   { label: "LinkedIn", link: "https://linkedin.com/company/adclubtvm" },
 ];
 
@@ -56,39 +56,37 @@ export default function Nav() {
           borderBottom: scrolled ? "1px solid rgba(0,0,0,0.06)" : "none",
         }}
       >
-        <nav className="relative flex items-center justify-between px-6 md:px-10 h-20">
-          <NavLink to="/" className="flex items-center hover:opacity-75 transition-opacity">
-            <img src="/logo.svg" alt="Advertising Club Trivandrum" className="h-14 w-auto" />
-          </NavLink>
+        <div className="w-full px-6 md:px-12 lg:px-16">
+          <nav className="relative flex items-center justify-end h-20">
+            <div className="flex items-center gap-7">
+              {links.map((link) => (
+                <NavLink
+                  key={link.to}
+                  to={link.to}
+                  end={link.to === "/"}
+                  className={({ isActive }) => {
+                    let isLinkActive = isActive;
+                    if (link.to.includes("#")) {
+                      isLinkActive = location.pathname + location.hash === link.to;
+                    } else if (location.hash && link.to === location.pathname) {
+                      isLinkActive = false;
+                    }
 
-          <div className="flex items-center gap-7">
-            {links.map((link) => (
-              <NavLink
-                key={link.to}
-                to={link.to}
-                end={link.to === "/"}
-                className={({ isActive }) => {
-                  let isLinkActive = isActive;
-                  if (link.to.includes("#")) {
-                    isLinkActive = location.pathname + location.hash === link.to;
-                  } else if (location.hash && link.to === location.pathname) {
-                     isLinkActive = false;
-                  }
-
-                  if (link.label === "Membership") {
-                    return "text-[14px] font-display font-bold uppercase tracking-widest transition-all duration-200 bg-purple text-white px-6 py-2.5 rounded-full hover:bg-black hover:-translate-y-0.5 shadow-sm";
-                  }
-                  
-                  return `text-[15px] font-display font-bold uppercase tracking-widest transition-colors duration-200 ${
-                    isLinkActive ? "text-purple" : "text-black/70 hover:text-black"
-                  }`;
-                }}
-              >
-                {link.label}
-              </NavLink>
-            ))}
-          </div>
-        </nav>
+                    if (link.label === "Membership") {
+                      return "text-[14px] font-display font-bold uppercase tracking-widest transition-all duration-200 bg-purple text-white px-6 py-2.5 rounded-full hover:bg-black hover:-translate-y-0.5 shadow-sm";
+                    }
+                    
+                    return `text-[15px] font-display font-bold uppercase tracking-widest transition-colors duration-200 ${
+                      isLinkActive ? "text-purple" : "text-black/70 hover:text-black"
+                    }`;
+                  }}
+                >
+                  {link.label}
+                </NavLink>
+              ))}
+            </div>
+          </nav>
+        </div>
       </header>
 
       {/* ── MOBILE NAV — StaggeredMenu overlay ── */}

@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import PageHero from "../components/PageHero";
 import { awardGroups, editions, loaFAQ, jury } from "../data/awards";
 import SectionTag from "../components/SectionTag";
 import { ChevronDown, Search } from "lucide-react";
@@ -77,72 +78,14 @@ export default function Awards() {
       className="min-h-screen bg-white text-black overflow-x-hidden font-body selection:bg-yellow selection:text-black pt-20"
     >
       {/* ── 1. HERO HEADER ── */}
-      <section className="hero-section min-h-screen px-6 md:px-16 pt-32 pb-24 relative flex flex-col items-center justify-center text-center">
-        {/* Wavy lines / Grid Backgrounds from Figma */}
-        <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
-          <svg
-            viewBox="0 0 1440 100"
-            className="parallax-bg absolute top-20 left-0 w-full h-auto opacity-[0.15] stroke-black fill-none"
-            preserveAspectRatio="none"
-            style={{ strokeWidth: "1.5px" }}
-          >
-            <path d="M0,30 Q180,-10 360,30 T720,30 T1080,30 T1440,30" />
-            <path d="M0,50 Q180,10 360,50 T720,50 T1080,50 T1440,50" />
-            <path d="M0,70 Q180,30 360,70 T720,70 T1080,70 T1440,70" />
-          </svg>
-
-          {/* Left Grid */}
-          <img
-            src="/SVG/grid.svg"
-            alt=""
-            className="parallax-fast absolute top-4 left-0 h-[60%] md:h-[70%] object-contain -ml-[5%] lg:-ml-[10%]"
-          />
-          {/* Right Grid */}
-          <img
-            src="/SVG/grid-2.svg"
-            alt=""
-            className="parallax-fast absolute top-4 right-0 h-[40%] md:h-[50%] object-contain -mr-[5%] lg:-mr-[10%]"
-          />
-          {/* Bottom Right Grid */}
-          <img
-            src="/SVG/grid-3.svg"
-            alt=""
-            className="parallax-fast absolute bottom-0 right-0 h-[40%] md:h-[50%] object-contain -mr-[5%] lg:-mr-[10%]"
-          />
-        </div>
-
-        <div className="relative z-10 max-w-5xl flex flex-col items-center gap-8">
-          <div className="hero-text inline-block border-2 border-black/20 rounded-full px-6 py-2 text-xs font-bold uppercase tracking-widest text-black/60 shadow-sm">
-            LOA Awards 2025
-          </div>
-
-          <h1 className="hero-text font-display font-bold text-[clamp(3.5rem,8.5vw,6rem)] leading-[0.9] tracking-tight">
-            Love of <br />
-            <span className="text-yellow">advertising</span> awards
-          </h1>
-
-          <p className="hero-text font-body text-xl md:text-2xl text-black/70 max-w-2xl leading-relaxed mt-4">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-          </p>
-
-          <div className="hero-text mt-6 flex flex-wrap justify-center gap-4">
-            <a
-              href="https://loaawards.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-yellow text-black px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:-translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all"
-            >
-              Submit Entry →
-            </a>
-            <a
-              href="mailto:adclubtrivandrum@gmail.com?subject=LOA%20Awards%20Sponsorship"
-              className="inline-flex items-center gap-2 bg-transparent border-2 border-black/20 text-black px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:bg-black/5 hover:-translate-y-1 transition-all"
-            >
-              Sponsor an Award
-            </a>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        title={
+          <>
+            <span className="hero-text block">LOA</span>
+            <span className="hero-text block">Awards</span>
+          </>
+        }
+      />
 
       {/* ── EDITION BANNER ── */}
       {upcoming && (

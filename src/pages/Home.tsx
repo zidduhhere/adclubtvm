@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import PageHero from "../components/PageHero";
 import { useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import { upcoming } from "../data/events";
@@ -78,16 +79,6 @@ export default function Home() {
             scrub: true,
           },
         });
-        gsap.to(".parallax-mid", {
-          yPercent: 30,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".mid-section",
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true,
-          },
-        });
       });
 
       // Hero Text Stagger Intro
@@ -113,117 +104,53 @@ export default function Home() {
       className="min-h-screen bg-white text-black overflow-x-hidden font-body selection:bg-yellow selection:text-black pt-20"
     >
       {/* ── 1. HERO HEADER ── */}
-      <section className="hero-section min-h-screen px-6 md:px-16 pt-32 pb-24 relative flex flex-col items-center justify-center text-center">
-        {/* Wavy lines / Grid Backgrounds from Figma */}
-        <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
-          {/* Top Subtle Wavy Lines Accent */}
-          {/* <svg
-            viewBox="0 0 1440 100"
-            className="parallax-bg absolute top-20 left-0 w-full h-auto opacity-[0.15] stroke-black fill-none"
-            preserveAspectRatio="none"
-            style={{ strokeWidth: "1.5px" }}
-          >
-            <path d="M0,30 Q180,-10 360,30 T720,30 T1080,30 T1440,30" />
-            <path d="M0,50 Q180,10 360,50 T720,50 T1080,50 T1440,50" />
-            <path d="M0,70 Q180,30 360,70 T720,70 T1080,70 T1440,70" />
-          </svg> */}
+      <PageHero
+        title={
+          <>
+            <span className="hero-text block">For</span>
+            <span className="hero-text block">the</span>
+            <span className="hero-text block">Love of</span>
+            <span className="hero-text block">Advertising.</span>
+          </>
+        }
+      />
 
-          {/* Left Grid */}
-          <img
-            src="/SVG/grid.svg"
-            alt=""
-            className="parallax-fast absolute top-4 left-0 h-[60%] md:h-[70%] object-contain -ml-[5%] lg:-ml-[10%]"
-          />
-          {/* Right Grid */}
-          <img
-            src="/SVG/grid-2.svg"
-            alt=""
-            className="parallax-fast absolute top-4 right-0 h-[40%] md:h-[50%] object-contain -mr-[5%] lg:-mr-[10%]"
-          />
-          {/* Bottom Right Grid */}
-          <img
-            src="/SVG/grid-3.svg"
-            alt=""
-            className="parallax-bg absolute bottom-0 right-0 h-[30%] md:h-[40%] object-contain "
-          />
-        </div>
-
-        <div className="max-w-7xl mx-auto flex flex-col gap-6 relative z-10 w-full">
-          <div className="relative w-full flex justify-center">
-            {/* Love Hero Background Graphic */}
-            <div className="flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[90%] md:h-[110%] items-center justify-center pointer-events-none -z-10">
-              <img
-                src="/SVG/love-hero.svg"
-                alt=""
-                className="parallax-bg h-full w-auto max-w-none object-contain opacity-90"
-              />
-            </div>
-            <h1
-              className="font-display font-bold leading-[1.1] tracking-tighter w-full"
-              style={{ fontSize: "clamp(3rem, 7vw, 8rem)" }}
-            >
-              <span className="hero-text inline-block">For The</span> <br />
-              <span className="hero-text text-purple inline-block">
-                Love Of
-              </span>{" "}
-              <br />
-              <span className="hero-text inline-block">Advertising.</span>
-            </h1>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 2. INTRODUCTION & BACKGROUND GRID ── */}
-      <section className="mid-section relative z-0 px-6 md:px-16 py-32 md:py-48 flex items-center justify-end">
-        {/* Background Grid 4 */}
-        <div className="flex absolute top-1/2 left-0 -translate-y-1/2 w-full h-[75%] items-center justify-start pointer-events-none z-0">
-          <img
-            src="/SVG/grid-4.svg"
-            alt=""
-            className="parallax-mid h-full max-w-none object-contain"
-          />
-        </div>
-
-        {/* Introduction Paragraph */}
-        <FadeUp className="max-w-4xl ml-auto relative z-10">
-          <p className="font-display font-medium text-2xl md:text-4xl leading-snug tracking-tight text-black/90">
-            <span className="text-purple font-bold">
-              Advertising Club Trivandrum (ACT)
-            </span>{" "}
-            is an exclusive platform established to bring together professionals
-            from the advertising and media industries in Kerala's capital city.
-            This initiative aims to foster{" "}
-            <span className="text-magenta font-bold">
-              innovation, collaboration, and professional excellence
-            </span>{" "}
-            within the region's dynamic creative economy.
-          </p>
-        </FadeUp>
-      </section>
-
-      {/* ── 4. WHO WE ARE (DNA) ── */}
-      <section className="px-6 md:px-16 py-12">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-6">
+      {/* ── 4. WHO WE ARE  ── */}
+      <section className="px-6 md:px-16 py-12 max-h-screen overflow-hidden flex flex-col justify-center">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-6 md:gap-8 w-full">
           <FadeUp
-            className="w-full md:w-3/5 rounded-3xl overflow-hidden relative flex items-center"
+            className="w-full md:w-1/2 aspect-[4/3] rounded-[2rem] overflow-hidden relative shadow-lg"
             delay={0.1}
           >
             <img
               src="https://act-pull-zone.b-cdn.net/logo-reveal.jpeg"
               alt="ACT Logo Reveal"
-              className="w-full h-auto aspect-video object-cover transition-all duration-700 rounded-3xl"
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-105"
             />
           </FadeUp>
           <FadeUp
-            className="w-full md:w-2/5 bg-[#F8F9FA] border border-black/5 p-10 md:p-12 rounded-3xl flex flex-col justify-center"
+            className="w-full md:w-1/2 aspect-auto md:aspect-[4/3] bg-[#F8F9FA] border border-black/5 p-8 lg:p-14 rounded-[2rem] flex flex-col justify-center relative overflow-hidden shadow-sm"
             delay={0.2}
           >
-            <h3 className="font-display font-bold text-4xl md:text-5xl uppercase tracking-tight mb-8">
-              Advertising <span className="text-purple">Club Trivandrum</span>
+            {/* Subtle decorative accent */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-purple/5 rounded-bl-[4rem] pointer-events-none"></div>
+
+            {/* <h3 className="font-display font-extrabold text-[2.5rem] md:text-[3.5rem] uppercase tracking-tighter leading-[0.9] mb-8 relative z-10">
+              <span className="text-black block">Advertising</span>
+              <span className="text-purple block">Club</span>
+              <span className="text-purple block">Trivandrum</span>
             </h3>
-            <div className="space-y-6 text-black/80 font-body text-lg leading-relaxed">
+             */}
+            <div className="w-12 h-1 bg-yellow mb-8 relative z-10"></div>
+
+            <div className="text-black/75 font-body text-base md:text-[17px] leading-relaxed font-medium relative z-10">
               <p>
-                The Club, formed with the active participation of professionals
+                Advertising Club Trivandrum (ACT) is an exclusive platform
+                established to bring together professionals from the advertising
+                and media industries in Kerala's capital city. This initiative
+                aims to foster innovation, collaboration, and professional
+                excellence within the region’s dynamic creative economy. The
+                Club, formed with the active participation of professionals
                 across various domains of advertising and media, aims to serve
                 as a hub for knowledge-sharing, networking, and nurturing talent
                 in the region.
@@ -234,17 +161,17 @@ export default function Home() {
       </section>
 
       {/* ── 5. WHAT WE DO (CAREER DRIVEN) ── */}
-      <section className="px-6 md:px-16 py-12">
-        <div className="max-w-7xl mx-auto flex flex-col-reverse md:flex-row gap-6 items-center">
+      <section className="px-6 md:px-16 min-h-screen max-h-screen overflow-hidden flex flex-col justify-center py-12">
+        <div className="max-w-6xl mx-auto flex flex-col-reverse md:flex-row gap-6 items-center w-full">
           <FadeUp
-            className="w-full md:w-1/2 bg-[#F8F9FA] border border-black/5 p-8 md:p-12 rounded-3xl flex flex-col justify-center"
+            className="w-full md:w-5/12 bg-[#F8F9FA] border border-black/5 p-8 md:p-12 rounded-3xl flex flex-col justify-center"
             delay={0.1}
           >
-            <h3 className="font-display font-bold text-4xl md:text-5xl uppercase tracking-tight leading-[1.1] mb-8">
+            <h3 className="font-display font-bold text-3xl md:text-4xl uppercase tracking-tight leading-[1.1] mb-6">
               Living Room <br />
               <span className="text-purple">Series</span>
             </h3>
-            <div className="space-y-6 text-black/80 font-body text-md  leading-relaxed mb-10">
+            <div className="space-y-6 text-black/80 font-body text-md leading-relaxed mb-8">
               <p>
                 An exclusive knowledge-sharing series by ACT, featuring intimate
                 conversations with advertising industry leaders, offering
@@ -253,13 +180,13 @@ export default function Home() {
               </p>
             </div>
             <Link
-              to="/living-room"
+              to="/events"
               className="inline-flex items-center gap-3 bg-purple/10 text-purple px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:bg-purple hover:text-white transition-colors self-start"
             >
               Learn More <ArrowRight className="w-4 h-4" />
             </Link>
           </FadeUp>
-          <FadeUp className="w-full md:w-1/2 flex flex-col gap-4" delay={0.2}>
+          <FadeUp className="w-full md:w-7/12 flex flex-col gap-4" delay={0.2}>
             <img
               src="https://act-pull-zone.b-cdn.net/gallery/gallery-7.jpg"
               alt="Living Room 1"
@@ -356,7 +283,7 @@ export default function Home() {
       */}
 
       {/* ── 8. MEMBERSHIP CTA ── */}
-      <section className="px-6 md:px-16 py-12">
+      <section className="px-6 md:px-16 py-12 max-h-screen overflow-hidden flex flex-col justify-center">
         <FadeUp>
           <div className="max-w-7xl mx-auto relative rounded-[2rem] overflow-hidden min-h-[400px] md:min-h-[500px] flex items-end justify-center pb-12">
             {/* Background Image */}
@@ -382,7 +309,7 @@ export default function Home() {
       </section>
 
       {/* ── 9. UPCOMING EVENTS ── */}
-      <section className="px-6 md:px-16 pt-24 pb-32 bg-[#F8F9FA] relative">
+      <section className="px-6 md:px-16 pt-24 pb-32 bg-[#F8F9FA] relative max-h-screen overflow-hidden flex flex-col justify-center">
         <div className="max-w-4xl mx-auto relative z-10">
           <FadeUp>
             <div className="bg-white rounded-[2rem] shadow-xl shadow-purple/5 p-8 md:p-12 border border-black/5">

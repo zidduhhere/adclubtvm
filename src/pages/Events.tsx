@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import PageHero from "../components/PageHero";
 import { events, upcoming } from "../data/events";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -88,59 +89,14 @@ export default function Events() {
       className="min-h-screen bg-white text-black overflow-x-hidden font-body selection:bg-yellow selection:text-black pt-20"
     >
       {/* ── 1. HERO HEADER ── */}
-      <section className="hero-section min-h-screen px-6 md:px-16 pt-32 pb-24 relative flex flex-col items-center justify-center text-center">
-        {/* Wavy lines / Grid Backgrounds from Figma */}
-        <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
-          {/* Top Subtle Wavy Lines Accent */}
-          {/* <svg
-            viewBox="0 0 1440 100"
-            className="parallax-bg absolute top-20 left-0 w-full h-auto opacity-[0.15] stroke-black fill-none"
-            preserveAspectRatio="none"
-            style={{ strokeWidth: "1.5px" }}
-          >
-            <path d="M0,30 Q180,-10 360,30 T720,30 T1080,30 T1440,30" />
-            <path d="M0,50 Q180,10 360,50 T720,50 T1080,50 T1440,50" />
-            <path d="M0,70 Q180,30 360,70 T720,70 T1080,70 T1440,70" />
-          </svg> */}
-
-          {/* Left Grid */}
-          <img
-            src="/SVG/grid.svg"
-            alt=""
-            className="parallax-fast absolute top-4 left-0 h-[60%] md:h-[70%] object-contain -ml-[5%] lg:-ml-[10%]"
-          />
-          {/* Right Grid */}
-          <img
-            src="/SVG/grid-2.svg"
-            alt=""
-            className="parallax-fast absolute top-4 right-0 h-[40%] md:h-[50%] object-contain -mr-[5%] lg:-mr-[10%]"
-          />
-          {/* Bottom Right Grid */}
-          <img
-            src="/SVG/grid-3.svg"
-            alt=""
-            className="parallax-bg absolute bottom-32 right-0 h-[30%] md:h-[40%] object-contain -mr-[5%] lg:-mr-[10%]"
-          />
-        </div>
-
-        <div className="max-w-7xl mx-auto flex flex-col gap-6 relative z-10 w-full">
-          <div className="relative w-full flex justify-center">
-            <h1
-              className="font-display font-bold leading-[1.1] tracking-tighter w-full"
-              style={{ fontSize: "clamp(3rem, 9vw, 8rem)" }}
-            >
-              <span className="hero-text inline-block">Our</span> <br />
-              <span className="hero-text text-purple inline-block">
-                Events
-              </span>{" "}
-            </h1>
-          </div>
-          <p className="hero-text font-body text-xl md:text-2xl text-black/60 max-w-2xl mx-auto mt-6">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        title={
+          <>
+            <span className="hero-text block">Our</span>
+            <span className="hero-text block">Events</span>
+          </>
+        }
+      />
 
       {/* ── FILTER TABS ── */}
       <div className="px-6 md:px-16 py-6 border-b border-(--color-muted) flex gap-3">
