@@ -33,7 +33,6 @@ export const committee: CommitteeMember[] = [
   { name: "K. K. Joshy", role: "Member", company: "Vice President- Kerala, The Hindu", image: "/images/Joshy.jpeg", group: "Advisory Board" },
   { name: "R. Raghunath", role: "Member", company: "CEO, Mediamate", image: "/images/Reghunath.jpeg", group: "Advisory Board" },
   { name: "Roy Mathew", role: "Member", company: "CEO, Stark Communications", image: "/images/Roy.jpeg", group: "Advisory Board" },
-  { name: "Deepu S.", role: "Member", company: "Kerala Head, Asianet Star TV", group: "Advisory Board" },
 ];
 
 export const membershipTiers: MembershipTier[] = [

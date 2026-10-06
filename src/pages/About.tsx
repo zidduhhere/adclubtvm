@@ -1,9 +1,10 @@
 import { useState, useRef } from "react";
-import { Link } from "react-router-dom";
+
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import PageHero from "../components/PageHero";
 import { committee } from "../data/members";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -92,72 +93,36 @@ export default function About() {
       className="min-h-screen bg-white text-black overflow-x-hidden font-body selection:bg-yellow selection:text-black pt-20"
     >
       {/* ── 1. HERO HEADER ── */}
-      <section className="hero-section min-h-screen px-6 md:px-16 pt-32 pb-24 relative flex flex-col items-center justify-center text-center">
-        {/* Wavy lines / Grid Backgrounds from Figma */}
-        <div className="hidden md:block absolute top-0 left-0 w-full h-full pointer-events-none z-0">
-          {/* <svg
-            viewBox="0 0 1440 100"
-            className="parallax-bg absolute top-20 left-0 w-full h-auto opacity-[0.15] stroke-black fill-none"
-            preserveAspectRatio="none"
-            style={{ strokeWidth: "1.5px" }}
-          >
-            <path d="M0,30 Q180,-10 360,30 T720,30 T1080,30 T1440,30" />
-            <path d="M0,50 Q180,10 360,50 T720,50 T1080,50 T1440,50" />
-            <path d="M0,70 Q180,30 360,70 T720,70 T1080,70 T1440,70" />
-          </svg> */}
+      <PageHero
+        title={
+          <>
+            <span className="hero-text block">Our</span>
+            <span className="hero-text block">Story</span>
+          </>
+        }
+      />
 
-          {/* Left Grid */}
-          <img
-            src="/SVG/grid.svg"
-            alt=""
-            className="parallax-fast absolute top-4 left-0 h-[60%] md:h-[70%] object-contain -ml-[5%] lg:-ml-[10%]"
-          />
-          {/* Right Grid */}
-          <img
-            src="/SVG/grid-2.svg"
-            alt=""
-            className="parallax-fast absolute top-4 right-0 h-[40%] md:h-[50%] object-contain -mr-[5%] lg:-mr-[10%]"
-          />
-          {/* Bottom Right Grid */}
-          <img
-            src="/SVG/grid-3.svg"
-            alt=""
-            className="parallax-fast absolute bottom-0 right-0 h-[40%] md:h-[50%] object-contain -mr-[5%] lg:-mr-[10%]"
-          />
-        </div>
-
-        <div className="relative z-10 max-w-5xl flex flex-col items-center gap-8">
-          <div className="hero-text inline-block border-2 border-black/20 rounded-full px-6 py-2 text-xs font-bold  tracking-widest text-black/60 shadow-sm">
-            About Us
-          </div>
-
-          <h1 className="hero-text font-display font-bold text-[clamp(3.5rem,8.5vw,6rem)] leading-[0.9] tracking-tight ">
-            Advertising
-            <br />
-            <span className="text-yellow">Club TVM</span>
-          </h1>
-
-          <p className="hero-text font-body text-xl md:text-2xl text-black/70 max-w-2xl leading-relaxed mt-4">
-            Advertising Club Trivandrum was born from the collective vision of
-            like-minded professionals passionate about elevating the standards
-            of advertising and communication.
+      {/* ── INTRO / MANIFESTO ── */}
+      <section className="px-6 md:px-16 pb-24 md:pb-24 bg-white flex justify-end text-left">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="max-w-4xl"
+        >
+          <p className="font-display font-medium text-[clamp(1.5rem,3.5vw,2.5rem)] leading-[1.3] text-black/80">
+            <span className="text-purple font-bold">
+              Advertising Club Trivandrum
+            </span>{" "}
+            was born from the collective vision of like-minded professionals
+            passionate about elevating the standards of advertising and
+            communication. Established in{" "}
+            <span className="text-yellow font-bold">2024</span>, the Club aims
+            to connect the advertising fraternity in Trivandrum, foster
+            learning, and create impactful collaborations.
           </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 mt-6">
-            <Link
-              to="/membership"
-              className="hero-text inline-flex items-center justify-center gap-3 bg-purple text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:-translate-y-1 hover:shadow-xl transition-all"
-            >
-              Join the Club
-            </Link>
-            <a
-              href="#contact"
-              className="hero-text inline-flex items-center justify-center gap-3 bg-transparent border-2 border-black/20 text-black px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:border-black transition-all"
-            >
-              Contact Us ↓
-            </a>
-          </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* ── STATS ROW ── */}
@@ -174,10 +139,19 @@ export default function About() {
           <div className="w-full md:w-px h-px md:h-32 bg-black/10"></div>
           <div>
             <span className="block font-body text-yellow font-bold tracking-widest uppercase mb-2">
-              Community
+              Members
             </span>
             <p className="font-display font-bold text-black text-[clamp(4rem,10vw,7rem)] leading-none tracking-tight">
-              50<span className="text-purple">+</span>
+              100<span className="text-purple">+</span>
+            </p>
+          </div>
+          <div className="w-full md:w-px h-px md:h-32 bg-black/10"></div>
+          <div>
+            <span className="block font-body text-purple font-bold tracking-widest uppercase mb-2">
+              Organizations
+            </span>
+            <p className="font-display font-bold text-black text-[clamp(4rem,10vw,7rem)] leading-none tracking-tight">
+              50<span className="text-yellow">+</span>
             </p>
           </div>
         </div>
@@ -186,7 +160,7 @@ export default function About() {
       {/* ── OUR OBJECTIVES ── */}
       <section className="px-6 md:px-16 py-32 bg-white border-b border-black/5 relative overflow-hidden">
         {/* Subtle background decoration */}
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-yellow/5 rounded-full blur-[120px] -mr-[200px] -mt-[200px] pointer-events-none" />
+        <div className="absolute top-0 right-0 w-200 h-200 bg-yellow/5 rounded-full blur-[120px] -mr-50 -mt-50 pointer-events-none" />
 
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="mb-24 flex flex-col md:flex-row gap-12 items-end justify-between">
@@ -212,7 +186,7 @@ export default function About() {
                 variants={fadeUp}
                 className={`relative flex flex-col justify-between p-10 lg:p-14 rounded-[2.5rem] overflow-hidden group transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] h-full ${
                   i === 0
-                    ? "bg-[#3A1D5A] text-white"
+                    ? "bg-purple-deep text-white"
                     : i === 1
                       ? "bg-purple text-white"
                       : i === 2
@@ -244,7 +218,7 @@ export default function About() {
                           ? "bg-yellow"
                           : i === 2
                             ? "bg-purple"
-                            : "bg-[#3A1D5A]"
+                            : "bg-purple-deep"
                     }`}
                   ></div>
 
@@ -254,37 +228,6 @@ export default function About() {
                 </div>
               </motion.div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── BYLAW SECTION (Editorial Layout) ── */}
-      <section className="px-6 md:px-16 py-24 md:py-32 bg-white border-b border-black/5 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto relative z-10 flex flex-col md:flex-row items-center gap-12 lg:gap-24">
-          <div className="w-full md:w-5/12 flex flex-col items-start relative">
-            <div className="text-[12rem] lg:text-[18rem] font-display font-bold text-black/[0.03] leading-none absolute -top-12 -left-8 md:-left-12 pointer-events-none select-none">
-              §
-            </div>
-            <h2 className="font-display font-bold text-5xl md:text-7xl uppercase tracking-tight text-black relative z-10 leading-[0.9]">
-              Our <br/><span className="text-purple">Bylaw</span>
-            </h2>
-            <div className="w-24 h-1 bg-yellow mt-10"></div>
-          </div>
-          
-          <div className="w-full md:w-7/12 flex flex-col items-start md:border-l-2 md:border-black/10 md:pl-16 py-4 mt-8 md:mt-0">
-            <p className="font-display text-2xl md:text-3xl leading-snug text-black/80 font-medium mb-10">
-              Advertising Club Trivandrum’s Bylaw serve as a roadmap for the organization's actions and also contain the fundamental principles of the association.
-            </p>
-            <p className="font-body text-xs font-bold uppercase tracking-widest text-black/40 mb-6">
-               To view the Bylaw, click on the link below
-            </p>
-            <a
-              href="#"
-              className="group inline-flex items-center justify-center gap-4 bg-white border-2 border-black/90 text-black px-10 py-5 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-black hover:text-white hover:shadow-xl transition-all duration-300"
-            >
-              Read The Bylaw
-              <span className="group-hover:translate-x-2 transition-transform duration-300">→</span>
-            </a>
           </div>
         </div>
       </section>
@@ -302,12 +245,7 @@ export default function About() {
           </div>
 
           <div className="flex flex-col gap-24">
-            {(
-              [
-                "Office Bearers",
-                "Advisory Board",
-              ] as const
-            ).map((group) => {
+            {(["Office Bearers", "Advisory Board"] as const).map((group) => {
               const groupMembers = committee.filter((m) => m.group === group);
               if (groupMembers.length === 0) return null;
 
@@ -327,13 +265,13 @@ export default function About() {
                         variants={fadeUp}
                         className="flex flex-col rounded-[2.5rem] border border-black/10 bg-white overflow-hidden hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-500 group cursor-pointer isolate"
                       >
-                        <div className="w-full aspect-[4/5] bg-[#F8F9FA] relative overflow-hidden flex items-center justify-center border-b border-black/5 rounded-t-[2.5rem] [transform:translateZ(0)]">
+                        <div className="w-full aspect-4/5 bg-[#F8F9FA] relative overflow-hidden flex items-center justify-center border-b border-black/5 rounded-t-[2.5rem] [transform:translateZ(0)]">
                           {member.image ? (
                             <img
                               src={member.image}
                               alt={member.name}
                               loading="lazy"
-                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                              className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out"
                             />
                           ) : (
                             <span className="font-display text-black/20 uppercase text-xs tracking-widest font-bold text-center px-4">
@@ -342,7 +280,7 @@ export default function About() {
                           )}
                           <div className="absolute inset-0 bg-purple/0 group-hover:bg-purple/10 transition-colors duration-500 mix-blend-multiply pointer-events-none" />
                         </div>
-                        <div className="flex flex-col gap-2 p-8 bg-white flex-grow">
+                        <div className="flex flex-col gap-2 p-8 bg-white grow">
                           <p className="font-display font-bold text-black text-2xl uppercase tracking-tight leading-none group-hover:text-purple transition-colors duration-300">
                             {member.name}
                           </p>
@@ -456,9 +394,10 @@ export default function About() {
 
                 <button
                   type="submit"
-                  className="mt-4 self-start inline-flex items-center justify-center gap-3 px-10 py-5 text-sm font-bold uppercase tracking-widest text-white bg-black rounded-full hover:bg-purple hover:-translate-y-1 hover:shadow-xl transition-all"
+                  disabled
+                  className="mt-4 self-start inline-flex items-center justify-center gap-3 px-10 py-5 text-sm font-bold uppercase tracking-widest text-black/40 bg-black/5 rounded-full cursor-not-allowed border border-black/10 transition-all"
                 >
-                  Send Message →
+                  Form Disabled
                 </button>
               </form>
             </div>
