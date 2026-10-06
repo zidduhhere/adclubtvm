@@ -40,7 +40,13 @@ export function Footer({
           className="font-display font-800 uppercase leading-[0.85] text-[clamp(4rem,10vw,11rem)] tracking-[-0.03em] text-white select-none"
           aria-hidden="true"
         >
-          {displayText}
+          {displayText.split(" ").map((word, index, arr) => (
+            <span key={index}>
+              <span className="text-yellow">{word.charAt(0)}</span>
+              {word.slice(1)}
+              {index < arr.length - 1 && " "}
+            </span>
+          ))}
         </p>
       </div>
 

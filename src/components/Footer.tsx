@@ -1,21 +1,16 @@
-import { Camera, Globe, Mail } from "lucide-react";
+import { Camera, Mail } from "lucide-react";
 import { Footer as FooterUI } from "./ui/footer";
 
 export default function Footer() {
   return (
     <FooterUI
-      brandName="Advertisement Club Trivandrum"
-      displayText="Advertisement Club Trivandrum"
+      brandName="Advertising Club Trivandrum"
+      displayText="Advertising Club Trivandrum"
       socialLinks={[
         {
           icon: <Camera className="h-4 w-4" />,
-          href: "https://instagram.com/adclubtvm",
+          href: "https://www.instagram.com/adclubtvm/",
           label: "Instagram",
-        },
-        {
-          icon: <Globe className="h-4 w-4" />,
-          href: "https://linkedin.com/company/adclubtvm",
-          label: "LinkedIn",
         },
         {
           icon: <Mail className="h-4 w-4" />,
@@ -31,13 +26,14 @@ export default function Footer() {
             { href: "/about", label: "About" },
             { href: "/events", label: "Events" },
             { href: "/gallery", label: "Gallery" },
+            { href: "#", label: "Bylaw" },
           ],
         },
         {
           heading: "Programmes",
           links: [
             { href: "/living-room", label: "Living Room" },
-            { href: "https://loaawards.com", label: "LOA Awards" },
+            { href: "https://loaawards.com", label: "Love Of Advertising Awards" },
             { href: "/membership", label: "Membership" },
           ],
         },
@@ -46,12 +42,8 @@ export default function Footer() {
           links: [
             { href: "/instagram", label: "Instagram Feed" },
             {
-              href: "https://instagram.com/adclubtvm",
+              href: "https://www.instagram.com/adclubtvm/",
               label: "Follow on Instagram",
-            },
-            {
-              href: "https://linkedin.com/company/adclubtvm",
-              label: "LinkedIn",
             },
           ],
         },
