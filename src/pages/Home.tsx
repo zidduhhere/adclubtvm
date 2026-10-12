@@ -330,7 +330,7 @@ export default function Home() {
               {/* Column 2: home-2 photo from CDN root */}
               <div className="md:col-span-6 lg:col-span-5 rounded-3xl overflow-hidden border border-black/5 shadow-sm bg-black/5 relative min-h-[320px] md:min-h-[420px]">
                 <img
-                  src="https://act-pull-zone.b-cdn.net/living-home-2.jpg"
+                  src="https://act-pull-zone.b-cdn.net/home-2.jpg"
                   alt="ACT Event"
                   className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                 />

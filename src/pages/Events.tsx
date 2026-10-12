@@ -1,10 +1,13 @@
 import { useState, useRef } from "react";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { Download, ArrowRight, Check } from "lucide-react";
 import PageHero from "../components/PageHero";
 import { events, upcoming } from "../data/events";
+import { downloadImage } from "../lib/download";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -32,7 +35,15 @@ const allCards = [
 export default function Events() {
   const [filter, setFilter] = useState<"all" | "past" | "upcoming">("all");
   const [selectedEvent, setSelectedEvent] = useState<typeof allCards[0] | null>(null);
+  const [downloadToast, setDownloadToast] = useState<string | null>(null);
   const container = useRef<HTMLElement>(null);
+
+  const handleDownload = async (url: string, title: string) => {
+    setDownloadToast("Downloading photo...");
+    await downloadImage(url, title);
+    setDownloadToast("Photo downloaded!");
+    setTimeout(() => setDownloadToast(null), 2500);
+  };
 
   useGSAP(
     () => {
@@ -208,8 +219,33 @@ export default function Events() {
                 </div>
 
                 {selectedEvent.image && (
-                  <div className="w-full aspect-[16/9] relative overflow-hidden bg-black/5 rounded-xl">
-                    <img src={selectedEvent.image} alt={selectedEvent.title} className="w-full h-full object-cover" />
+                  <div className="flex flex-col gap-3">
+                    <div className="w-full aspect-[16/9] relative overflow-hidden bg-black/5 rounded-2xl group shadow-sm">
+                      <img
+                        src={selectedEvent.image}
+                        alt={selectedEvent.title}
+                        className="w-full h-full object-cover"
+                      />
+                      <button
+                        type="button"
+                        onClick={() =>
+                          handleDownload(selectedEvent.image, selectedEvent.title)
+                        }
+                        className="absolute bottom-4 right-4 bg-white/95 text-black hover:bg-yellow px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest flex items-center gap-2 shadow-xl transition-all hover:scale-105"
+                      >
+                        <Download className="w-3.5 h-3.5" />
+                        <span>Download Photo</span>
+                      </button>
+                    </div>
+                    <div className="flex items-center justify-between pt-1">
+                      <Link
+                        to={`/gallery/${selectedEvent.id}`}
+                        className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-purple hover:text-black transition-colors"
+                      >
+                        <span>View In Photo Gallery</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </Link>
+                    </div>
                   </div>
                 )}
 
@@ -221,6 +257,21 @@ export default function Events() {
               </div>
             </motion.div>
           </>
+        )}
+      </AnimatePresence>
+
+      {/* Floating Download Toast */}
+      <AnimatePresence>
+        {downloadToast && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[110] bg-black text-white px-6 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest flex items-center gap-2.5 shadow-2xl border border-white/10"
+          >
+            <Check className="w-4 h-4 text-yellow" />
+            <span>{downloadToast}</span>
+          </motion.div>
         )}
       </AnimatePresence>
     </main>
