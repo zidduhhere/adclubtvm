@@ -57,7 +57,18 @@ export default function Nav() {
         }}
       >
         <div className="w-full px-6 md:px-12 lg:px-16">
-          <nav className="relative flex items-center justify-end h-20">
+          <nav className="relative flex items-center justify-between h-20">
+            <NavLink
+              to="/"
+              className="flex items-center select-none"
+              aria-label="Advertising Club Trivandrum"
+            >
+              <img
+                src="/logo.svg"
+                alt="Advertising Club Trivandrum"
+                className="h-9 md:h-11 w-auto object-contain transition-opacity duration-200 hover:opacity-85"
+              />
+            </NavLink>
             <div className="flex items-center gap-7">
               {links.map((link) => (
                 <NavLink

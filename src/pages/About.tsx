@@ -240,7 +240,7 @@ export default function About() {
               Managing <span className="text-purple">Committee</span>
             </h2>
             <p className="font-body text-xl text-black/60 max-w-2xl mx-auto">
-              The people behind Advertising Club Trivandrum.
+              Meet the leaders driving our vision forward
             </p>
           </div>
 

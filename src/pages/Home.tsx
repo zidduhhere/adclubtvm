@@ -167,6 +167,11 @@ export default function Home() {
             className="w-full md:w-5/12 bg-[#F8F9FA] border border-black/5 p-8 md:p-12 rounded-3xl flex flex-col justify-center"
             delay={0.1}
           >
+            <img
+              src="/living-room-logo.png"
+              alt="Living Room by ACT"
+              className="h-16 md:h-20 w-auto object-contain mb-6 self-start"
+            />
             <h3 className="font-display font-bold text-3xl md:text-4xl uppercase tracking-tight leading-[1.1] mb-6">
               Living Room <br />
               <span className="text-purple">Series</span>
@@ -188,12 +193,12 @@ export default function Home() {
           </FadeUp>
           <FadeUp className="w-full md:w-7/12 flex flex-col gap-4" delay={0.2}>
             <img
-              src="https://act-pull-zone.b-cdn.net/gallery/gallery-7.jpg"
+              src="https://act-pull-zone.b-cdn.net/living-home-1.jpg"
               alt="Living Room 1"
               className="w-full aspect-video object-cover rounded-3xl transition-all duration-700"
             />
             <img
-              src="https://act-pull-zone.b-cdn.net/gallery/gallery-10.jpg"
+              src="https://act-pull-zone.b-cdn.net/living-home-2.jpg"
               alt="Living Room 2"
               className="w-full aspect-video object-cover rounded-3xl transition-all duration-700"
             />
@@ -309,56 +314,77 @@ export default function Home() {
       </section>
 
       {/* ── 9. UPCOMING EVENTS ── */}
-      <section className="px-6 md:px-16 pt-24 pb-32 bg-[#F8F9FA] relative max-h-screen overflow-hidden flex flex-col justify-center">
-        <div className="max-w-4xl mx-auto relative z-10">
+      <section className="px-6 md:px-16 py-20 md:py-28 bg-[#F8F9FA] relative flex flex-col justify-center">
+        <div className="max-w-7xl mx-auto w-full relative z-10">
           <FadeUp>
-            <div className="bg-white rounded-[2rem] shadow-xl shadow-purple/5 p-8 md:p-12 border border-black/5">
-              <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 border-b border-black/5 pb-6 gap-4">
-                <h2 className="font-display font-bold text-4xl md:text-5xl tracking-tight leading-none text-black/90">
-                  Upcoming <br />
-                  <span className="text-purple">Events</span>
-                </h2>
-                <Link
-                  to="/events"
-                  className="inline-flex bg-purple/10 text-purple px-6 py-3 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-purple hover:text-white transition-colors self-start md:self-auto"
-                >
-                  View All Events
-                </Link>
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
+              {/* Column 1: First ACT on Stage photo */}
+              <div className="md:col-span-6 lg:col-span-4 rounded-3xl overflow-hidden border border-black/5 shadow-sm bg-black/5 relative min-h-[320px] md:min-h-[420px]">
+                <img
+                  src="https://act-pull-zone.b-cdn.net/events/first-act.jpg"
+                  alt="FIRST ACT ON STAGE"
+                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                />
               </div>
 
-              <div className="flex flex-col">
-                {upcoming.map((u) => (
-                  <Link
-                    key={u.id}
-                    to="/events"
-                    className="group flex flex-col md:flex-row md:items-center justify-between py-6 border-b border-black/5 last:border-0 hover:bg-purple/5 -mx-4 px-4 rounded-2xl transition-colors"
-                  >
-                    <div className="flex items-center gap-6">
-                      <div className="bg-purple/10 text-purple group-hover:bg-purple group-hover:text-white w-20 h-20 rounded-full flex flex-col items-center justify-center shrink-0 transition-colors">
-                        <span className="text-[10px] font-bold uppercase leading-none">
-                          {u.date.split(" ")[0]}
-                        </span>
-                        <span className="font-display font-bold text-2xl leading-none mt-1">
-                          {u.date.split(" ")[1]}
-                        </span>
-                        <span className="text-[10px] font-bold uppercase leading-none mt-1">
-                          {u.date.split(" ")[2]}
-                        </span>
-                      </div>
-                      <div>
-                        <h3 className="font-display font-bold text-xl md:text-2xl group-hover:text-purple transition-colors text-black/90">
-                          {u.title}
-                        </h3>
-                        <p className="font-body text-sm font-medium text-black/50 mt-1 uppercase tracking-widest">
-                          {u.type}
-                        </p>
-                      </div>
+              {/* Column 2: home-2 photo from CDN root */}
+              <div className="md:col-span-6 lg:col-span-5 rounded-3xl overflow-hidden border border-black/5 shadow-sm bg-black/5 relative min-h-[320px] md:min-h-[420px]">
+                <img
+                  src="https://act-pull-zone.b-cdn.net/living-home-2.jpg"
+                  alt="ACT Event"
+                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                />
+              </div>
+
+              {/* Column 3: Upcoming Events (3 column size) */}
+              <div className="md:col-span-12 lg:col-span-3 bg-white rounded-3xl shadow-sm border border-black/5 p-6 md:p-8 flex flex-col justify-between min-h-[320px] md:min-h-[420px]">
+                <div>
+                  <div className="flex items-start justify-between gap-3 mb-6 border-b border-black/5 pb-4">
+                    <h2 className="font-display font-bold text-2xl md:text-3xl tracking-tight leading-tight text-black/90">
+                      Upcoming <br />
+                      <span className="text-purple">Events</span>
+                    </h2>
+                    <span className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full bg-purple/10 text-purple shrink-0 mt-1">
+                      ACT
+                    </span>
+                  </div>
+
+                  {upcoming.length > 0 ? (
+                    <div className="flex flex-col gap-4">
+                      {upcoming.map((u) => (
+                        <Link
+                          key={u.id}
+                          to="/events"
+                          className="group flex flex-col gap-1 p-3 rounded-xl hover:bg-purple/5 transition-colors border border-black/5"
+                        >
+                          <span className="text-xs font-bold text-purple uppercase tracking-wider">
+                            {u.date}
+                          </span>
+                          <h3 className="font-display font-bold text-base text-black/90 group-hover:text-purple transition-colors line-clamp-2">
+                            {u.title}
+                          </h3>
+                          <span className="text-[11px] text-black/50 uppercase tracking-widest">
+                            {u.type}
+                          </span>
+                        </Link>
+                      ))}
                     </div>
-                    <div className="hidden md:flex mt-4 md:mt-0 w-10 h-10 rounded-full bg-white text-purple items-center justify-center group-hover:bg-yellow group-hover:text-black shadow-sm transition-all">
-                      <ArrowRight className="w-5 h-5" />
+                  ) : (
+                    <div className="py-4 text-black/60 font-body text-sm leading-relaxed">
+                      <p>
+                        Stay tuned for upcoming ACT knowledge-sharing sessions,
+                        workshops, and community events.
+                      </p>
                     </div>
-                  </Link>
-                ))}
+                  )}
+                </div>
+
+                <Link
+                  to="/events"
+                  className="mt-6 inline-flex items-center justify-center gap-2 bg-purple text-white px-5 py-3.5 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-black transition-colors w-full text-center shadow-sm"
+                >
+                  View All Events <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
               </div>
             </div>
           </FadeUp>

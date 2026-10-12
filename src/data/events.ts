@@ -25,6 +25,7 @@ export const events: Event[] = [
     type: "Knowledge Sharing",
     description: "The latest edition of Living Room by ACT featured Kenney Jacob, Digital Specialist at Stark Communications, who explored how social media and AI are reshaping advertising and media. Through practical examples and real-world applications, he demonstrated how creative professionals can use AI to work smarter, improve productivity, and stay ahead in a rapidly evolving industry.",
     tags: ["Living Room", "Knowledge Sharing", "Technology"],
+    images: ["https://act-pull-zone.b-cdn.net/events/double-engine.jpg"],
   },
   {
     id: "13",
@@ -33,6 +34,7 @@ export const events: Event[] = [
     type: "Knowledge Sharing",
     description: "Living Room by ACT welcomed Senthil Kumar, one of India's most celebrated advertising professionals, for an inspiring session on storytelling, creativity, and the power of ideas. Drawing from his award-winning career and creative journey, he shared valuable insights into building meaningful brands and enduring campaigns.",
     tags: ["Living Room", "Knowledge Sharing"],
+    images: ["https://act-pull-zone.b-cdn.net/events/senthil-living-room.jpg"],
   },
   {
     id: "12",
@@ -41,6 +43,7 @@ export const events: Event[] = [
     type: "Sports Event",
     description: "As part of SPORTS ACT 2026, ACT hosted a badminton tournament that brought members together for two days of spirited competition, sportsmanship, and camaraderie. The event witnessed enthusiastic participation across categories, celebrating both competitive excellence and the joy of playing together.",
     tags: ["Sports", "Community"],
+    images: ["https://act-pull-zone.b-cdn.net/events/badminton-image.jpg"],
   },
   {
     id: "11",
@@ -49,6 +52,7 @@ export const events: Event[] = [
     type: "Anniversary Event",
     description: "FIRST ACT ON STAGE marked the first anniversary of Advertising Club Trivandrum (ACT), bringing together leaders from advertising, media, and public life for an evening of inspiration and celebration. The event was inaugurated by Dr. Shashi Tharoor, MP, and featured an engaging conversation with Navaneet VL, CEO of The Hindu Group, on The Power of Advertising: From Brands to Public Narratives.\n\nThe celebration also featured a special video message from Prasoon Joshi, along with reflections on ACT's journey over its first year. Bringing together members, industry leaders, partners, and students, the evening marked an important milestone in the club's mission to build a stronger and more vibrant advertising community in Kerala.",
     tags: ["Anniversary", "Milestone", "Celebration"],
+    images: ["https://act-pull-zone.b-cdn.net/events/first-act.jpg"],
   },
   {
     id: "10",
@@ -66,7 +70,7 @@ export const events: Event[] = [
     type: "Tribute",
     description: "Advertising Club Trivandrum (ACT) hosted a special tribute to Piyush Pandey, one of India's most influential advertising leaders. The session celebrated his remarkable contribution to Indian advertising through an engaging conversation featuring Sneha Iype, Co-Founder of Nirvana Films, and Swarup B. R., Co-Founder, Stark Communications.\n\nThrough stories, reflections, and personal experiences, the speakers explored Piyush Pandey's enduring influence on creativity, storytelling, and the evolution of Indian advertising, making the evening a fitting tribute to an industry icon.",
     tags: ["Tribute", "Event"],
-    images: ["https://act-pull-zone.b-cdn.net/gallery/gallery-6.jpg"],
+    images: ["https://act-pull-zone.b-cdn.net/events/living-home-2.jpg"],
   },
   {
     id: "08",
@@ -75,6 +79,7 @@ export const events: Event[] = [
     type: "Knowledge Sharing",
     description: "Living Room by ACT hosted a unique conversation - Like Father. Like Son, featuring Reghunath R., Founder & CEO, Mediamate, and Gautham Reghunath, Co-founder & CEO, Talented. Moderated by Shelton Pinheiro, ECD, Stark Communications, the session explored the evolution of advertising through the perspectives of two generations of industry leaders.\n\nBlending personal stories with professional experiences, the conversation offered valuable insights into creativity, leadership, and the changing landscape of advertising, making it an engaging and memorable evening for ACT members.",
     tags: ["Living Room", "Knowledge Sharing", "Panel Discussion"],
+    images: ["https://act-pull-zone.b-cdn.net/events/like-father-like-son.jpg"],
   },
   {
     id: "07",
@@ -83,6 +88,7 @@ export const events: Event[] = [
     type: "Sports Event",
     description: "SPORTS ACT 2025 brought together ACT members for a day of friendly competition, teamwork, and camaraderie. Featuring cricket, football, and badminton, the event celebrated the spirit of sportsmanship while providing members an opportunity to connect beyond the workplace.\n\nThe event was made possible with the support of Canara Bank, Swayamvara Silks, and SP Wellfort, whose partnership contributed to the success of this memorable day.",
     tags: ["Sports", "Community"],
+    images: ["https://act-pull-zone.b-cdn.net/events/sports-act.jpg"],
   },
   {
     id: "06",
@@ -91,6 +97,7 @@ export const events: Event[] = [
     type: "Knowledge Sharing",
     description: "The inaugural edition of Living Room by ACT, an exclusive knowledge-sharing series, featured Anil Nair, former CEO of L&K Saatchi & Saatchi and one of India's leading advertising professionals. In an engaging session, he shared valuable insights on the future of advertising, changing consumer behaviour, and the evolving role of creativity in a rapidly transforming industry.\n\nThe session marked the beginning of ACT's commitment to creating intimate conversations with industry leaders, offering members a platform to learn from some of the brightest minds in advertising.",
     tags: ["Living Room", "Knowledge Sharing"],
+    images: ["https://act-pull-zone.b-cdn.net/events/living-room-anil-nair.jpg"],
   },
   {
     id: "05",
@@ -99,7 +106,7 @@ export const events: Event[] = [
     type: "Awards & Recognition",
     description: "As part of its commitment to nurturing future advertising professionals, Advertising Club Trivandrum (ACT) presented participation certificates to the MBA students of DCSMAT who actively volunteered during the club's inaugural launch event.\n\nThe certificate presentation ceremony was held at Malayala Manorama, recognising the students' valuable contribution and enthusiasm. ACT also acknowledged the support extended by Mr. Koshy Abraham, General Manager – Marketing, Malayala Manorama, for facilitating the event and encouraging young creative minds.",
     tags: ["Recognition", "Students"],
-    images: ["https://act-pull-zone.b-cdn.net/gallery/gallery-13.jpg", "https://act-pull-zone.b-cdn.net/gallery/gallery-14.jpg", "https://act-pull-zone.b-cdn.net/gallery/gallery-15.jpg", "https://act-pull-zone.b-cdn.net/gallery/gallery-16.jpg"],
+    images: ["https://act-pull-zone.b-cdn.net/events/recognising-the-next-gen.jpg"],
   },
   {
     id: "04",
@@ -117,7 +124,7 @@ export const events: Event[] = [
     type: "Poster Launch",
     description: "The official launch poster for Advertising Club Trivandrum (ACT) was unveiled by Dr. Shashi Tharoor, Member of Parliament, marking the announcement of the club's inaugural event. The unveiling built momentum for ACT's formal launch and reflected the growing support for a platform dedicated to strengthening Kerala's advertising and marketing community.",
     tags: ["Launch", "Milestone"],
-    images: ["https://act-pull-zone.b-cdn.net/gallery/gallery-5.jpg", "https://act-pull-zone.b-cdn.net/gallery/gallery-6.jpg", "https://act-pull-zone.b-cdn.net/gallery/gallery-7.jpg", "https://act-pull-zone.b-cdn.net/gallery/gallery-8.jpg"],
+    images: ["https://act-pull-zone.b-cdn.net/events/launch-poster.jpg"],
   },
   {
     id: "02",
@@ -126,7 +133,7 @@ export const events: Event[] = [
     type: "General Body Meeting",
     description: "Advertising Club Trivandrum (ACT) officially began its journey with its first general body meeting, bringing together advertising, media, marketing, and creative professionals from across the industry. The meeting marked the election of the club's first office bearers and the formation of its founding team, laying the foundation for a vibrant professional community committed to creativity, collaboration, and industry growth.",
     tags: ["Meeting", "Community"],
-    images: ["https://act-pull-zone.b-cdn.net/gallery/gallery-1.jpg", "https://act-pull-zone.b-cdn.net/gallery/gallery-2.jpg", "https://act-pull-zone.b-cdn.net/gallery/gallery-3.jpg", "https://act-pull-zone.b-cdn.net/gallery/gallery-4.jpg"],
+    images: ["https://act-pull-zone.b-cdn.net/events/beginning-og-act.jpg"],
   },
   {
     id: "01",

@@ -2,9 +2,10 @@ import { type ReactNode } from "react";
 
 interface PageHeroProps {
   title: ReactNode;
+  showLogo?: boolean;
 }
 
-export default function PageHero({ title }: PageHeroProps) {
+export default function PageHero({ title, showLogo = false }: PageHeroProps) {
   return (
     <section className="hero-section h-screen relative flex flex-col items-center justify-center overflow-hidden">
       {/* Background Assets */}
@@ -43,11 +44,13 @@ export default function PageHero({ title }: PageHeroProps) {
           </h1>
 
           {/* Logo */}
-          <img
-            src="/logo.svg"
-            alt="Advertising Club Trivandrum"
-            className="mt-6 md:mt-8 h-10 md:h-[3.85rem] w-auto hero-text"
-          />
+          {showLogo && (
+            <img
+              src="/logo.svg"
+              alt="Advertising Club Trivandrum"
+              className="mt-6 md:mt-8 h-10 md:h-[3.85rem] w-auto hero-text"
+            />
+          )}
         </div>
       </div>
     </section>

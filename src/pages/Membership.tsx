@@ -182,22 +182,9 @@ export default function Membership() {
                     {tier.fee}
                   </span>
                 </div>
-                <p className="font-body text-lg text-black/70 leading-relaxed mb-8">
+                <p className="font-body text-lg text-black/70 leading-relaxed mb-8 flex-grow">
                   {tier.eligibility}
                 </p>
-                <ul className="flex flex-col gap-4 mb-12 flex-grow">
-                  {tier.perks.map((p) => (
-                    <li
-                      key={p}
-                      className="flex items-start gap-4 font-body text-black/80"
-                    >
-                      <span className="shrink-0 w-6 h-6 rounded-full bg-yellow text-black flex items-center justify-center text-xs mt-0.5">
-                        ✓
-                      </span>
-                      {p}
-                    </li>
-                  ))}
-                </ul>
                 <button
                   disabled
                   className="mt-auto inline-flex items-center justify-center gap-3 w-full px-8 py-4 text-sm font-bold uppercase tracking-widest text-black/40 bg-black/5 rounded-full cursor-not-allowed border border-black/10"

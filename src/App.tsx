@@ -18,8 +18,6 @@ import Awards from "./pages/Awards";
 import InstitutionalForm from "./pages/InstitutionalForm";
 import StudentForm from "./pages/StudentForm";
 import CorporateForm from "./pages/CorporateForm";
-import MaintenanceOverlay from "./components/MaintenanceOverlay";
-import { MAINTENANCE_MODE } from "./config/maintenance";
 
 function AppLayout() {
   const { pathname } = useLocation();
@@ -96,10 +94,6 @@ function AppLayout() {
 }
 
 export default function App() {
-  if (MAINTENANCE_MODE) {
-    return <MaintenanceOverlay />;
-  }
-
   return (
     <BrowserRouter>
       <AppLayout />
