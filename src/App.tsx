@@ -6,7 +6,6 @@ gsap.registerPlugin(ScrollToPlugin);
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
-import DelegateBanner from "./components/DelegateBanner";
 import Home from "./pages/Home";
 import Events from "./pages/Events";
 import Gallery from "./pages/Gallery";
@@ -65,9 +64,9 @@ function AppLayout() {
   return (
     <>
       {/* Fixed announcement banner above navbar */}
-      <div className="fixed top-0 left-0 right-0 z-[60]">
+      {/* <div className="fixed top-0 left-0 right-0 z-[60]">
         <DelegateBanner />
-      </div>
+      </div> */}
 
       <div className="relative">
         <Nav />
